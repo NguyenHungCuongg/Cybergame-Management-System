@@ -4,6 +4,8 @@
  */
 package com.cybergamems.view;
 
+import java.awt.Color;
+
 /**
  *
  * @author admin88
@@ -27,64 +29,112 @@ public class LoginFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         loginMainPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        imageLoginSection = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        inputLoginSection = new javax.swing.JPanel();
         usernameTextField = new javax.swing.JTextField();
         passwordTextField = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        imageLoginSection.setBackground(new java.awt.Color(204, 204, 204));
+        imageLoginSection.setName(""); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 428, Short.MAX_VALUE)
+        jLabel1.setIcon(new javax.swing.ImageIcon("F:\\UIT\\JavaLearningProject\\CybergameMS\\src\\main\\resources\\images\\game-stuff-2.jpg")); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(600, 427));
+        jLabel1.setMinimumSize(new java.awt.Dimension(600, 427));
+        jLabel1.setPreferredSize(new java.awt.Dimension(600, 427));
+
+        javax.swing.GroupLayout imageLoginSectionLayout = new javax.swing.GroupLayout(imageLoginSection);
+        imageLoginSection.setLayout(imageLoginSectionLayout);
+        imageLoginSectionLayout.setHorizontalGroup(
+            imageLoginSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(imageLoginSectionLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        imageLoginSectionLayout.setVerticalGroup(
+            imageLoginSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        usernameTextField.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        usernameTextField.setForeground(new java.awt.Color(153, 153, 153));
+        usernameTextField.setText("Tên đăng nhập");
+        usernameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                usernameTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                usernameTextFieldFocusLost(evt);
+            }
+        });
         usernameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameTextFieldActionPerformed(evt);
             }
         });
 
-        loginButton.setText("Login");
+        passwordTextField.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        passwordTextField.setForeground(new java.awt.Color(153, 153, 153));
+        passwordTextField.setText("Mật khẩu");
+        passwordTextField.setEchoChar('\u0000');
+        passwordTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passwordTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordTextFieldFocusLost(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(passwordTextField)
-                    .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
-                .addGap(61, 61, 61))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(84, Short.MAX_VALUE)
-                    .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(60, 60, 60)))
+        loginButton.setBackground(new java.awt.Color(255, 140, 1));
+        loginButton.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        loginButton.setForeground(new java.awt.Color(255, 255, 255));
+        loginButton.setText("Đăng nhập");
+
+        jLabel2.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 140, 1));
+        jLabel2.setText("CHÀO MỪNG ĐẾN VỚI CYBER CORE");
+
+        jLabel3.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jLabel3.setText("Quên mật khẩu?");
+
+        javax.swing.GroupLayout inputLoginSectionLayout = new javax.swing.GroupLayout(inputLoginSection);
+        inputLoginSection.setLayout(inputLoginSectionLayout);
+        inputLoginSectionLayout.setHorizontalGroup(
+            inputLoginSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inputLoginSectionLayout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(30, 30, 30))
+            .addGroup(inputLoginSectionLayout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addGroup(inputLoginSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(210, Short.MAX_VALUE)
+        inputLoginSectionLayout.setVerticalGroup(
+            inputLoginSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inputLoginSectionLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(53, 53, 53)
+                .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(152, 152, 152)
-                    .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(215, Short.MAX_VALUE)))
+                .addGap(75, 75, 75))
         );
 
         javax.swing.GroupLayout loginMainPanelLayout = new javax.swing.GroupLayout(loginMainPanel);
@@ -92,25 +142,26 @@ public class LoginFrame extends javax.swing.JFrame {
         loginMainPanelLayout.setHorizontalGroup(
             loginMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loginMainPanelLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(imageLoginSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(inputLoginSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         loginMainPanelLayout.setVerticalGroup(
             loginMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(inputLoginSection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(imageLoginSection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginMainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(loginMainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginMainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(loginMainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -119,6 +170,50 @@ public class LoginFrame extends javax.swing.JFrame {
     private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameTextFieldActionPerformed
+
+     /*
+    *Tạo sự kiện để thay đổi từ placeholder sang giá trị text bình thường
+    *Thông thường thì giá trị text trong textfield này sẽ để là placeholder với chữ màu xàm
+    *Nếu như textfield này được focus thì placeholder sẽ biết mất(setText về "") và màu chữ 
+    *đổi thành trắng -> đây là giá trị được người dùng nhập.
+    */
+    private void usernameTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameTextFieldFocusGained
+        // TODO add your handling code here:
+        if(usernameTextField.getText().equals("Tên đăng nhập")){
+            usernameTextField.setText("");
+            usernameTextField.setForeground(new Color(204,204,204));
+        }
+    }//GEN-LAST:event_usernameTextFieldFocusGained
+
+    /*
+    *Tạo sự kiện để thay đổi từ text sang placeholder khi textfield rỗng
+    *Nếu textfield rỗng thì chuyển lại màu và giá trị của placeholder.
+    */
+    private void usernameTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameTextFieldFocusLost
+        // TODO add your handling code here:
+        if(usernameTextField.getText().equals("")){
+            usernameTextField.setText("Tên đăng nhập");
+            usernameTextField.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_usernameTextFieldFocusLost
+
+    private void passwordTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTextFieldFocusGained
+        // TODO add your handling code here:
+        if(passwordTextField.getText().equals("Mật khẩu")){
+            passwordTextField.setText("");
+            passwordTextField.setForeground(new Color(204,204,204));
+            passwordTextField.setEchoChar('\u2022');
+        }
+    }//GEN-LAST:event_passwordTextFieldFocusGained
+
+    private void passwordTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTextFieldFocusLost
+        // TODO add your handling code here:
+        if(passwordTextField.getText().equals("")){
+            passwordTextField.setText("Mật khẩu");
+            passwordTextField.setForeground(new Color(153,153,153));
+            passwordTextField.setEchoChar('\u0000');
+        }
+    }//GEN-LAST:event_passwordTextFieldFocusLost
 
     /**
      * @param args the command line arguments
@@ -157,8 +252,11 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel imageLoginSection;
+    private javax.swing.JPanel inputLoginSection;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginMainPanel;
     private javax.swing.JPasswordField passwordTextField;

@@ -4,10 +4,10 @@
 
 package com.cybergamems;
 
+import com.cybergamems.view.LoginFrame;
 import javax.swing.*;
-import com.cybergamems.view.*;
 import com.formdev.flatlaf.intellijthemes.*;
-import com.formdev.flatlaf.*;
+
 
 public class CybergameMS {
     public static void main(String[] args) {
@@ -18,6 +18,8 @@ public class CybergameMS {
         }
         SwingUtilities.invokeLater(()->{
             LoginFrame loginFrame = new LoginFrame();
+
+            loginFrame.setLocationRelativeTo(null);
             loginFrame.setVisible(true);
         });
         System.out.println("Hello World!");
