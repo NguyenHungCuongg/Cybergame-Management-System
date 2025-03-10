@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.cybergamems.view;
+package com.cybergamems.view.frames;
 
 import java.awt.Color;
 
@@ -35,11 +35,14 @@ public class LoginFrame extends javax.swing.JFrame {
         usernameTextField = new javax.swing.JTextField();
         passwordTextField = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        welcomeLoginLabel = new javax.swing.JLabel();
+        forgotPasswordLabel = new javax.swing.JLabel();
+        hideEyeIcon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+
+        loginMainPanel.setBackground(new java.awt.Color(31, 31, 31));
 
         imageLoginSection.setBackground(new java.awt.Color(204, 204, 204));
         imageLoginSection.setName(""); // NOI18N
@@ -62,6 +65,9 @@ public class LoginFrame extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        inputLoginSection.setBackground(new java.awt.Color(31, 31, 31));
+
+        usernameTextField.setBackground(new java.awt.Color(41, 41, 41));
         usernameTextField.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         usernameTextField.setForeground(new java.awt.Color(153, 153, 153));
         usernameTextField.setText("Tên đăng nhập");
@@ -79,6 +85,7 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
+        passwordTextField.setBackground(new java.awt.Color(41, 41, 41));
         passwordTextField.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         passwordTextField.setForeground(new java.awt.Color(153, 153, 153));
         passwordTextField.setText("Mật khẩu");
@@ -92,46 +99,50 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        loginButton.setBackground(new java.awt.Color(255, 140, 1));
+        loginButton.setBackground(new java.awt.Color(227, 115, 9));
         loginButton.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         loginButton.setForeground(new java.awt.Color(255, 255, 255));
         loginButton.setText("Đăng nhập");
 
-        jLabel2.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 140, 1));
-        jLabel2.setText("CHÀO MỪNG ĐẾN VỚI CYBER CORE");
+        welcomeLoginLabel.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        welcomeLoginLabel.setForeground(new java.awt.Color(227, 115, 9));
+        welcomeLoginLabel.setText("CHÀO MỪNG ĐẾN VỚI CYBER CORE");
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jLabel3.setText("Quên mật khẩu?");
+        forgotPasswordLabel.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        forgotPasswordLabel.setText("Quên mật khẩu?");
 
         javax.swing.GroupLayout inputLoginSectionLayout = new javax.swing.GroupLayout(inputLoginSection);
         inputLoginSection.setLayout(inputLoginSectionLayout);
         inputLoginSectionLayout.setHorizontalGroup(
             inputLoginSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inputLoginSectionLayout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(30, 30, 30))
             .addGroup(inputLoginSectionLayout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(86, 86, 86)
                 .addGroup(inputLoginSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
+                    .addComponent(forgotPasswordLabel)
                     .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(hideEyeIcon)
+                .addContainerGap(65, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inputLoginSectionLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(welcomeLoginLabel)
+                .addGap(17, 17, 17))
         );
         inputLoginSectionLayout.setVerticalGroup(
             inputLoginSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inputLoginSectionLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(53, 53, 53)
+                .addComponent(welcomeLoginLabel)
+                .addGap(56, 56, 56)
                 .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(inputLoginSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hideEyeIcon))
                 .addGap(10, 10, 10)
-                .addComponent(jLabel3)
+                .addComponent(forgotPasswordLabel)
                 .addGap(18, 18, 18)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75))
@@ -252,14 +263,15 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel forgotPasswordLabel;
+    private javax.swing.JLabel hideEyeIcon;
     private javax.swing.JPanel imageLoginSection;
     private javax.swing.JPanel inputLoginSection;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginMainPanel;
     private javax.swing.JPasswordField passwordTextField;
     private javax.swing.JTextField usernameTextField;
+    private javax.swing.JLabel welcomeLoginLabel;
     // End of variables declaration//GEN-END:variables
 }
