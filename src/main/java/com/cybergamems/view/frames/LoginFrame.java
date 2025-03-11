@@ -5,6 +5,8 @@
 package com.cybergamems.view.frames;
 
 import java.awt.Color;
+import javax.swing.*;
+import com.formdev.flatlaf.intellijthemes.*;
 
 /**
  *
@@ -16,6 +18,11 @@ public class LoginFrame extends javax.swing.JFrame {
      * Creates new form LoginFrame
      */
     public LoginFrame() {
+        try {
+            UIManager.setLookAndFeel(new FlatArcDarkOrangeIJTheme());
+        } catch (Exception e) {
+            System.err.println("Không thể thiết lập theme: " + e.getMessage());
+        }
         initComponents();
     }
 
@@ -99,13 +106,13 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        loginButton.setBackground(new java.awt.Color(227, 115, 9));
+        loginButton.setBackground(new java.awt.Color(255, 140, 0));
         loginButton.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         loginButton.setForeground(new java.awt.Color(255, 255, 255));
         loginButton.setText("Đăng nhập");
 
         welcomeLoginLabel.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        welcomeLoginLabel.setForeground(new java.awt.Color(227, 115, 9));
+        welcomeLoginLabel.setForeground(new java.awt.Color(255, 140, 0));
         welcomeLoginLabel.setText("CHÀO MỪNG ĐẾN VỚI CYBER CORE");
 
         forgotPasswordLabel.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
