@@ -1,15 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.cybergamems.view.components;
 import javax.swing.*;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-/**
- *
- * @author admin88
- */
-public class DashboardMenuModel {
+
+
+//Ở đây model của menu chỉ là dữ liệu của 1 items trong menu chứ không phải là model của toàn bộ các menu items
+public class DashboardMenuItemModel {
     
     //Khởi tạo kiểu dữ liệu menuType với 3 dữ liệu: TITLE, MENU, EMPTY
     public static enum menuType {
@@ -24,10 +19,10 @@ public class DashboardMenuModel {
     private menuType type;
     
     //Constructor
-    public DashboardMenuModel(){
+    public DashboardMenuItemModel(){
     };
     
-    public DashboardMenuModel(String icon, String name, menuType type){
+    public DashboardMenuItemModel(String icon, String name, menuType type){
         this.icon = icon; //tên của file icon (không tính đuôi .svg)
         this.name = name; //tên của menu item.
         this.type = type;

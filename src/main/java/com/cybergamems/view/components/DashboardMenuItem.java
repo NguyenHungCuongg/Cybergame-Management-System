@@ -13,14 +13,14 @@ public class DashboardMenuItem extends javax.swing.JPanel {
     private boolean selected;
 
     //Truyền model của menu này vào constructor
-    public DashboardMenuItem(DashboardMenuModel data) {
+    public DashboardMenuItem(DashboardMenuItemModel data) {
         initComponents();
         setOpaque(false);
-        if(data.getType()==DashboardMenuModel.menuType.MENU){
+        if(data.getType()==DashboardMenuItemModel.menuType.MENU){
             menuItemIcon.setIcon(data.pathToIcon());
             menuItemName.setText(data.getName());
         }
-        else if (data.getType()== DashboardMenuModel.menuType.TITLE){
+        else if (data.getType()== DashboardMenuItemModel.menuType.TITLE){
             menuItemIcon.setText(data.getName());
             menuItemName.setVisible(false);
         }
