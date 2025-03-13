@@ -3,6 +3,8 @@ package com.cybergamems;
 import com.cybergamems.view.frames.*;
 import javax.swing.*;
 import com.formdev.flatlaf.intellijthemes.*;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
 
 
 public class CybergameMS {
@@ -10,11 +12,11 @@ public class CybergameMS {
         try {
             UIManager.setLookAndFeel(new FlatDarkFlatIJTheme());
         } catch (Exception e) {
-            System.err.println("Không thể thiết lập theme: " + e.getMessage());
+            System.err.println("Không thể thiết lập theme Dark Flat: " + e.getMessage());
         }
 //
 //        try {
-//            UIManager.setLookAndFeel(new FlatArcOrangeIJTheme());
+//            UIManager.setLookAndFeel(new FlatArcDarkOrangeIJTheme());
 //        } catch (Exception e) {
 //            System.err.println("Không thể thiết lập theme: " + e.getMessage());
 //        }

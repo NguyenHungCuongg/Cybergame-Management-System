@@ -36,7 +36,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="com.cybergamems.view.panels.CustomizedBorderPanel" name="mainDashboardPanel1">
+    <Container class="com.cybergamems.view.panels.CustomizedBorderRadiusPanel" name="mainDashboardPanel1">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>

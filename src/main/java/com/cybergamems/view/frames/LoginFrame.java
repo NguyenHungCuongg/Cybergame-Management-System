@@ -209,7 +209,7 @@ public class LoginFrame extends javax.swing.JFrame {
     */
     private void usernameTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameTextFieldFocusLost
         // TODO add your handling code here:
-        if(usernameTextField.getText().equals("")){
+        if(usernameTextField.getText().trim().equals("")){
             usernameTextField.setText("Tên đăng nhập");
             usernameTextField.setForeground(new Color(153,153,153));
         }

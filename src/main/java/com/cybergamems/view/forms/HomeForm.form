@@ -25,7 +25,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="homeFormCardsPanel" max="32767" attributes="0"/>
-                  <Component id="homeFormHeaderPanel" pref="1003" max="32767" attributes="0"/>
+                  <Component id="homeFormHeaderPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -37,14 +37,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="homeFormHeaderPanel" min="-2" pref="142" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="homeFormCardsPanel" pref="522" max="32767" attributes="0"/>
+              <Component id="homeFormCardsPanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="com.cybergamems.view.panels.CustomizedBorderPanel" name="homeFormHeaderPanel">
+    <Container class="com.cybergamems.view.panels.CustomizedBorderRadiusPanel" name="homeFormHeaderPanel">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
@@ -81,11 +81,11 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="com.cybergamems.view.panels.CustomizedBorderPanel" name="homeFormCardsPanel">
+    <Container class="com.cybergamems.view.panels.CustomizedBorderRadiusPanel" name="homeFormCardsPanel">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>
-        <Container class="com.cybergamems.view.panels.CustomizedBorderPanel" name="homeFormCardListPanel">
+        <Container class="com.cybergamems.view.panels.CustomizedBorderRadiusPanel" name="homeFormCardListPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
               <BorderConstraints direction="Center"/>
@@ -98,7 +98,7 @@
             <Property name="rows" type="int" value="1"/>
           </Layout>
           <SubComponents>
-            <Container class="com.cybergamems.view.panels.CustomizedBorderPanel" name="featureCardPanel1">
+            <Container class="com.cybergamems.view.panels.CustomizedBorderRadiusPanel" name="featureCardPanel1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="32" green="32" red="32" type="rgb"/>
@@ -150,7 +150,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="com.cybergamems.view.panels.CustomizedBorderPanel" name="featureCardPanel2">
+            <Container class="com.cybergamems.view.panels.CustomizedBorderRadiusPanel" name="featureCardPanel2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="32" green="32" red="32" type="rgb"/>
@@ -202,7 +202,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="com.cybergamems.view.panels.CustomizedBorderPanel" name="featureCardPanel3">
+            <Container class="com.cybergamems.view.panels.CustomizedBorderRadiusPanel" name="featureCardPanel3">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="32" green="32" red="32" type="rgb"/>

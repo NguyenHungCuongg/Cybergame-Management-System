@@ -10,9 +10,9 @@ import java.awt.*;
  *
  * @author admin88
  */
-public class CustomizedBorderPanel extends javax.swing.JPanel {
+public class CustomizedBorderRadiusPanel extends javax.swing.JPanel {
 
-    public CustomizedBorderPanel() {
+    public CustomizedBorderRadiusPanel() {
         initComponents();
         setOpaque(false);
     }

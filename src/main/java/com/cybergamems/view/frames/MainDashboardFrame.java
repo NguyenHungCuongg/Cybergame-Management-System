@@ -67,7 +67,7 @@ public class MainDashboardFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainDashboardPanel1 = new com.cybergamems.view.panels.CustomizedBorderPanel();
+        mainDashboardPanel1 = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         dashboardMenu2 = new com.cybergamems.view.components.DashboardMenu();
         dashboardFormMainPanel = new javax.swing.JPanel();
 
@@ -130,6 +130,6 @@ public class MainDashboardFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel dashboardFormMainPanel;
     private com.cybergamems.view.components.DashboardMenu dashboardMenu2;
-    private com.cybergamems.view.panels.CustomizedBorderPanel mainDashboardPanel1;
+    private com.cybergamems.view.panels.CustomizedBorderRadiusPanel mainDashboardPanel1;
     // End of variables declaration//GEN-END:variables
 }

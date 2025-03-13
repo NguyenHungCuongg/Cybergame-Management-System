@@ -44,20 +44,20 @@ public class HomeForm extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        homeFormHeaderPanel = new com.cybergamems.view.panels.CustomizedBorderPanel();
+        homeFormHeaderPanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        homeFormCardsPanel = new com.cybergamems.view.panels.CustomizedBorderPanel();
-        homeFormCardListPanel = new com.cybergamems.view.panels.CustomizedBorderPanel();
-        featureCardPanel1 = new com.cybergamems.view.panels.CustomizedBorderPanel();
+        homeFormCardsPanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
+        homeFormCardListPanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
+        featureCardPanel1 = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         featureCardImage1 = new javax.swing.JLabel();
         featureCardTitle1 = new javax.swing.JLabel();
         featureCardDescription1 = new javax.swing.JTextArea();
-        featureCardPanel2 = new com.cybergamems.view.panels.CustomizedBorderPanel();
+        featureCardPanel2 = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         featureCardImage2 = new javax.swing.JLabel();
         featureCardTitle2 = new javax.swing.JLabel();
         featureCardDescription2 = new javax.swing.JTextArea();
-        featureCardPanel3 = new com.cybergamems.view.panels.CustomizedBorderPanel();
+        featureCardPanel3 = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         featureCardImage3 = new javax.swing.JLabel();
         featureCardTitle3 = new javax.swing.JLabel();
         featureCardDescription3 = new javax.swing.JTextArea();
@@ -185,7 +185,7 @@ public class HomeForm extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(homeFormCardsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(homeFormHeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE))
+                    .addComponent(homeFormHeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -194,30 +194,28 @@ public class HomeForm extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(homeFormHeaderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(homeFormCardsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                .addComponent(homeFormCardsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.cybergamems.view.panels.CustomizedBorderPanel customizedBorderPanel2;
-    private com.cybergamems.view.panels.CustomizedBorderPanel customizedBorderPanel3;
     private javax.swing.JTextArea featureCardDescription1;
     private javax.swing.JTextArea featureCardDescription2;
     private javax.swing.JTextArea featureCardDescription3;
     private javax.swing.JLabel featureCardImage1;
     private javax.swing.JLabel featureCardImage2;
     private javax.swing.JLabel featureCardImage3;
-    private com.cybergamems.view.panels.CustomizedBorderPanel featureCardPanel1;
-    private com.cybergamems.view.panels.CustomizedBorderPanel featureCardPanel2;
-    private com.cybergamems.view.panels.CustomizedBorderPanel featureCardPanel3;
+    private com.cybergamems.view.panels.CustomizedBorderRadiusPanel featureCardPanel1;
+    private com.cybergamems.view.panels.CustomizedBorderRadiusPanel featureCardPanel2;
+    private com.cybergamems.view.panels.CustomizedBorderRadiusPanel featureCardPanel3;
     private javax.swing.JLabel featureCardTitle1;
     private javax.swing.JLabel featureCardTitle2;
     private javax.swing.JLabel featureCardTitle3;
-    private com.cybergamems.view.panels.CustomizedBorderPanel homeFormCardListPanel;
-    private com.cybergamems.view.panels.CustomizedBorderPanel homeFormCardsPanel;
-    private com.cybergamems.view.panels.CustomizedBorderPanel homeFormHeaderPanel;
+    private com.cybergamems.view.panels.CustomizedBorderRadiusPanel homeFormCardListPanel;
+    private com.cybergamems.view.panels.CustomizedBorderRadiusPanel homeFormCardsPanel;
+    private com.cybergamems.view.panels.CustomizedBorderRadiusPanel homeFormHeaderPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
