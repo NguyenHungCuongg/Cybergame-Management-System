@@ -1,19 +1,6 @@
 package com.cybergamems.view.components;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-
-/**
- *
- * @author admin88
- */
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.cybergamems.view.events.MenuItemSelectedEvent;
-import java.awt.event.*;
-import javax.swing.*;
-
 
 /*
 *Note: menu ở đây là một panel(JPanel) chứa một list(JList) các items(là một JPanel khác tự định nghĩa) chứ không phải là một JMenuBar.

@@ -7,7 +7,7 @@ import javax.swing.*;
 public class MainDashboardFrame extends javax.swing.JFrame {
     public MainDashboardFrame() {
         initComponents();
-        setSize(1130, 670);
+        setSize(1142, 700);
         /*
         *Instance "dashboardMenu" đại diện cho một đối tượng của class "DashboardMenu.java"
         *Qua instance này, ta gọi phương thức "addMenuItemSelectedEvent()" của class "DashboardMenu.java" với đối số truyền vào là 
@@ -74,22 +74,11 @@ public class MainDashboardFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1200, 800));
 
-        dashboardFormMainPanel.setLayout(new java.awt.BorderLayout());
+        mainDashboardPanel1.setLayout(new java.awt.BorderLayout());
+        mainDashboardPanel1.add(dashboardMenu2, java.awt.BorderLayout.WEST);
 
-        javax.swing.GroupLayout mainDashboardPanel1Layout = new javax.swing.GroupLayout(mainDashboardPanel1);
-        mainDashboardPanel1.setLayout(mainDashboardPanel1Layout);
-        mainDashboardPanel1Layout.setHorizontalGroup(
-            mainDashboardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainDashboardPanel1Layout.createSequentialGroup()
-                .addComponent(dashboardMenu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dashboardFormMainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 896, Short.MAX_VALUE))
-        );
-        mainDashboardPanel1Layout.setVerticalGroup(
-            mainDashboardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dashboardMenu2, javax.swing.GroupLayout.PREFERRED_SIZE, 651, Short.MAX_VALUE)
-            .addComponent(dashboardFormMainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        dashboardFormMainPanel.setLayout(new java.awt.BorderLayout());
+        mainDashboardPanel1.add(dashboardFormMainPanel, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
