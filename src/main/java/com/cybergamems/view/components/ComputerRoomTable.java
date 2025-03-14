@@ -28,8 +28,8 @@ public class ComputerRoomTable extends javax.swing.JPanel {
         }
     }
     
-    public void initComboBoxForComputerStatus(){
-        String[] computerStatuses = {"online","empty","broken"};
+    private void initComboBoxForComputerStatus(){
+        String[] computerStatuses = {"Đang dùng","Trống","Đang bảo trì"};
         JComboBox computerStatusComboBox = new JComboBox<>(computerStatuses);
         computerRoomTable.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(computerStatusComboBox));
     }
@@ -38,27 +38,27 @@ public class ComputerRoomTable extends javax.swing.JPanel {
         String[] columnNames = {"Mã máy","Trạng thái máy","Mã người chơi","Tên đăng nhập","Thời gian còn lại"};
         if(roomName=="Thường"){
             Object[][] tableData = {
-                {1, "online","23520201","cuong1",6.2},
-                {2, "empty","23510101","teo1",3.2},
-                {3, "broken","2352892","bo1",2.1},
+                {1, "Đang dùng","23520201","cuong1",6.2},
+                {2, "Trống","23510101","teo1",3.2},
+                {3, "Đang bảo trì","2352892","bo1",2.1},
             };
             DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
             return tableModel;
         }
         else if(roomName=="VIP"){
             Object[][] tableData = {
-                {1, "online","23520201","cuong2",6.2},
-                {2, "empty","23510101","teo2",3.2},
-                {3, "broken","2352892","bo2",2.1},
+                {1, "Đang dùng","23520201","cuong2",6.2},
+                {2, "Trống","23510101","teo2",3.2},
+                {3, "Đang bảo trì","2352892","bo2",2.1},
             };
             DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
             return tableModel;
         }
         else{
             Object[][] tableData = {
-                {1, "online","23520201","cuong3",6.2},
-                {2, "empty","23510101","teo3",3.2},
-                {3, "broken","2352892","bo3",2.1},
+                {1, "Đang dùng","23520201","cuong3",6.2},
+                {2, "Trống","23510101","teo3",3.2},
+                {3, "Đang bảo trì","2352892","bo3",2.1},
             };
             DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
             return tableModel;
@@ -90,8 +90,12 @@ public class ComputerRoomTable extends javax.swing.JPanel {
         computerRoomTable.setModel(this.getTableModel());
         computerRoomTable.setFocusable(false);
         computerRoomTable.setOpaque(false);
+        computerRoomTable.setRowHeight(30);
         computerRoomTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
         computerRoomTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        computerRoomTable.setShowGrid(true);
+        computerRoomTable.setShowHorizontalLines(true);
+        computerRoomTable.setShowVerticalLines(true);
         tableScrollPane.setViewportView(computerRoomTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
