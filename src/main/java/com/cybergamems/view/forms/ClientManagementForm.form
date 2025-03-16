@@ -21,11 +21,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="clientManagementTablePanel" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="clientManagementHeaderPanel" max="32767" attributes="0"/>
+                  <Component id="clientManagementTablePanel" alignment="0" pref="872" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -49,12 +49,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="tableMenuBar1" alignment="1" max="32767" attributes="0"/>
+              <Component id="tableMenuBar1" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="tableMenuBar1" alignment="1" max="32767" attributes="0"/>
+              <Component id="tableMenuBar1" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -64,21 +64,26 @@
       </SubComponents>
     </Container>
     <Container class="com.cybergamems.view.panels.CustomizedBorderRadiusPanel" name="clientManagementTablePanel">
+      <Properties>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[464, 431]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="clientManagementTable1" alignment="1" max="32767" attributes="0"/>
+              <Component id="clientManagementTable2" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="clientManagementTable1" alignment="0" max="32767" attributes="0"/>
+              <Component id="clientManagementTable2" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="com.cybergamems.view.components.ClientManagementTable" name="clientManagementTable1">
+        <Component class="com.cybergamems.view.components.ClientManagementTable" name="clientManagementTable2">
         </Component>
       </SubComponents>
     </Container>
