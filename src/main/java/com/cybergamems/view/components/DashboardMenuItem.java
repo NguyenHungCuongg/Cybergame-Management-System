@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.cybergamems.view.components;
 import java.awt.*;
-/**
- *
- * @author admin88
- */
+
 public class DashboardMenuItem extends javax.swing.JPanel {
     
     private boolean selected;

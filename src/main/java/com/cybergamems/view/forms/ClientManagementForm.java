@@ -1,6 +1,5 @@
 package com.cybergamems.view.forms;
 
-import java.awt.Dimension;
 
 public class ClientManagementForm extends javax.swing.JPanel {
     public ClientManagementForm() {
@@ -14,7 +13,7 @@ public class ClientManagementForm extends javax.swing.JPanel {
         clientManagementHeaderPanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         tableMenuBar1 = new com.cybergamems.view.components.TableMenuBar();
         clientManagementTablePanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
-        clientManagementTable1 = new com.cybergamems.view.components.clientManagementTable();
+        clientManagementTable1 = new com.cybergamems.view.components.ClientManagementTable();
 
         setBackground(new java.awt.Color(50, 50, 50));
 
@@ -33,16 +32,11 @@ public class ClientManagementForm extends javax.swing.JPanel {
         clientManagementTablePanel.setLayout(clientManagementTablePanelLayout);
         clientManagementTablePanelLayout.setHorizontalGroup(
             clientManagementTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(clientManagementTablePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(clientManagementTable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(clientManagementTable1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         clientManagementTablePanelLayout.setVerticalGroup(
             clientManagementTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(clientManagementTablePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(clientManagementTable1, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE))
+            .addComponent(clientManagementTable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -70,7 +64,7 @@ public class ClientManagementForm extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel clientManagementHeaderPanel;
-    private com.cybergamems.view.components.clientManagementTable clientManagementTable1;
+    private com.cybergamems.view.components.ClientManagementTable clientManagementTable1;
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel clientManagementTablePanel;
     private com.cybergamems.view.components.TableMenuBar tableMenuBar1;
     // End of variables declaration//GEN-END:variables

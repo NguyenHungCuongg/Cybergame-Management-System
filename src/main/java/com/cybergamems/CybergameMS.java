@@ -3,8 +3,6 @@ package com.cybergamems;
 import com.cybergamems.view.frames.*;
 import javax.swing.*;
 import com.formdev.flatlaf.intellijthemes.*;
-import java.awt.Color;
-import javax.swing.border.LineBorder;
 
 
 public class CybergameMS {
@@ -15,7 +13,7 @@ public class CybergameMS {
             System.err.println("Không thể thiết lập theme Dark Flat: " + e.getMessage());
         }
 //
-//        try {
+//        try { 
 //            UIManager.setLookAndFeel(new FlatArcDarkOrangeIJTheme());
 //        } catch (Exception e) {
 //            System.err.println("Không thể thiết lập theme: " + e.getMessage());

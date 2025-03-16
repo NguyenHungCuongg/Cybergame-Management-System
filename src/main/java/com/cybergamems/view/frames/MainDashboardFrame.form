@@ -40,7 +40,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>
-        <Component class="com.cybergamems.view.components.DashboardMenu" name="dashboardMenu2">
+        <Component class="com.cybergamems.view.components.DashboardMenuBar" name="dashboardMenu2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
               <BorderConstraints direction="West"/>

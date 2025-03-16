@@ -5,7 +5,7 @@ import com.cybergamems.view.events.MenuItemSelectedEvent;
 /*
 *Note: menu ở đây là một panel(JPanel) chứa một list(JList) các items(là một JPanel khác tự định nghĩa) chứ không phải là một JMenuBar.
 */
-public class DashboardMenu extends javax.swing.JPanel {    
+public class DashboardMenuBar extends javax.swing.JPanel {    
     
     public void addMenuItemSelectedEvent(MenuItemSelectedEvent menuItemSelectedEvent){
         /*
@@ -16,7 +16,7 @@ public class DashboardMenu extends javax.swing.JPanel {
         dashboardMenuList1.updateMenuIndex(menuItemSelectedEvent);
     }
     
-    public DashboardMenu() {
+    public DashboardMenuBar() {
         initComponents();
         setOpaque(false);
         dashboardMenuList1.setOpaque(false);
@@ -54,7 +54,7 @@ public class DashboardMenu extends javax.swing.JPanel {
         jLabel2.setMaximumSize(new java.awt.Dimension(64, 64));
         jLabel2.setMinimumSize(new java.awt.Dimension(64, 64));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto Bk", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 140, 0));
         jLabel1.setText("CYBER CORE");
 
@@ -80,7 +80,7 @@ public class DashboardMenu extends javax.swing.JPanel {
                     .addGroup(headerOfMenuPanelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         headerOfMenuPanelLayout.setVerticalGroup(
             headerOfMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,14 +104,14 @@ public class DashboardMenu extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(headerOfMenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(dashboardMenuList1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(dashboardMenuList1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(headerOfMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dashboardMenuList1, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE))
+                .addComponent(dashboardMenuList1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

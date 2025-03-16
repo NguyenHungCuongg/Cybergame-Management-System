@@ -19,38 +19,29 @@ public class MainDashboardFrame extends javax.swing.JFrame {
                 switch(index){
                     case 0:
                         setCurrentForm(new HomeForm());
-                        System.out.println("index: " + index);
                         break;
                     case 1:
-                        setCurrentForm(new ComputerRoomForm());
-                        System.out.println("index: " + index);
+                        setCurrentForm(new ComputerRoomForm());                      
                         break;
                     case 2:
                         setCurrentForm(new ClientManagementForm());
-                        System.out.println("index: " + index);
                         break;
                     case 3:
                         setCurrentForm(new ServicesForm());
-                        System.out.println("index: " + index);
                         break;
                     case 4:
                         setCurrentForm(new StaffManagementForm());
-                        System.out.println("index: " + index);
                         break;
                     case 5:
                         setCurrentForm(new StatisticsForm());
-                        System.out.println("index: " + index);
                         break;
                     case 6:
                         setCurrentForm(new BillForm());
-                        System.out.println("index: " + index);
                         break;
                     case 7:
                         setCurrentForm(new AccountForm());
-                        System.out.println("index: " + index);
                         break;
                     default:
-                        System.out.println("Đăng xuất");
                 }
             }
         });
@@ -68,7 +59,7 @@ public class MainDashboardFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         mainDashboardPanel1 = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
-        dashboardMenu2 = new com.cybergamems.view.components.DashboardMenu();
+        dashboardMenu2 = new com.cybergamems.view.components.DashboardMenuBar();
         dashboardFormMainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -129,7 +120,7 @@ public class MainDashboardFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel dashboardFormMainPanel;
-    private com.cybergamems.view.components.DashboardMenu dashboardMenu2;
+    private com.cybergamems.view.components.DashboardMenuBar dashboardMenu2;
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel mainDashboardPanel1;
     // End of variables declaration//GEN-END:variables
 }
