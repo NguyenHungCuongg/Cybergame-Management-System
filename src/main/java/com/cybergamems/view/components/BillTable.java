@@ -7,9 +7,9 @@ import javax.swing.JComboBox;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
-public class StaffManagementTable extends javax.swing.JPanel {
+public class BillTable extends javax.swing.JPanel {
 
-    public StaffManagementTable() {
+    public BillTable() {
         try {
             UIManager.setLookAndFeel(new FlatArcDarkOrangeIJTheme());
         } catch (Exception e) {
@@ -25,17 +25,16 @@ public class StaffManagementTable extends javax.swing.JPanel {
     }
     
     private void initComboBoxForClientStatus(){
-        String[] staffStatuses = {"Hoạt động","Vắng mặt"};
-        JComboBox staffStatusComboBox = new JComboBox<>(staffStatuses);
-        staffTable.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(staffStatusComboBox));
+        String[] billStatuses = {"Đã thanh toán","Chưa thanh toán"};
+        JComboBox billStatusComboBox = new JComboBox<>(billStatuses);
+        staffTable.getColumnModel().getColumn(6).setCellEditor(new DefaultCellEditor(billStatusComboBox));
     }
     
     public DefaultTableModel  getTableModel(){
-        String[] columnNames = {"Mã nhân viên","Họ và tên","Tên đăng nhập","Email","Trạng thái","Vị trí"};
+        String[] columnNames = {"Mã hóa đơn","Tên khách hàng","Tên nhân viên","Tên dịch vụ","Thành tiền","Ngày lập hóa đơn","Trạng thái hóa đơn"};
         Object[][] tableData = {
-            {1, "Nhân viên A","NVA","nhanviena@gmail.com","Hoạt động","Kĩ thuật"},
-            {2, "Nhân viên B","NVB","nhanvienb@gmail.com","Vắng","Phục vụ"},
-            {3, "Nhân viên C","NVc","nhanvienc@gmail.com","Hoạt động","Nấu ăn"},
+            {1, "Khách hàng B","Nhân viên A","Mì xào bò, Pepsi",35000,"3/16/2025","Đã thanh toán"},
+            {2, "Khách hàng D","Nhân viên A","Mì xào trứng",25000,"4/16/2025","Chưa thanh toán"},
         };
         DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
         return tableModel;
