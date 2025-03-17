@@ -35,7 +35,7 @@ public class StaffManagementTable extends javax.swing.JPanel {
         Object[][] tableData = {
             {1, "Nhân viên A","NVA","nhanviena@gmail.com","Hoạt động","Kĩ thuật"},
             {2, "Nhân viên B","NVB","nhanvienb@gmail.com","Vắng","Phục vụ"},
-            {3, "Nhân viên C","NVc","nhanvienc@gmail.com","Hoạt động","Nấu ăn"},
+            {3, "Nhân viên C","NVC","nhanvienc@gmail.com","Hoạt động","Nấu ăn"},
         };
         DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
         return tableModel;
