@@ -7,6 +7,8 @@ import javax.swing.JComboBox;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
+import com.cybergamems.controller.NhanVienController;
+
 public class StaffManagementTable extends javax.swing.JPanel {
 
     public StaffManagementTable() {
@@ -31,12 +33,9 @@ public class StaffManagementTable extends javax.swing.JPanel {
     }
     
     public DefaultTableModel  getTableModel(){
-        String[] columnNames = {"Mã nhân viên","Họ và tên","Tên đăng nhập","Email","Trạng thái","Vị trí"};
-        Object[][] tableData = {
-            {1, "Nhân viên A","NVA","nhanviena@gmail.com","Hoạt động","Kĩ thuật"},
-            {2, "Nhân viên B","NVB","nhanvienb@gmail.com","Vắng","Phục vụ"},
-            {3, "Nhân viên C","NVC","nhanvienc@gmail.com","Hoạt động","Nấu ăn"},
-        };
+        String[] columnNames = {"Mã nhân viên","Họ và tên","Tên đăng nhập","Email","Trạng thái","Vị trí","Ngày vào làm"};
+        NhanVienController nhanVienController = new NhanVienController();
+        Object[][] tableData = nhanVienController.getNhanVienTableData();
         DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
         return tableModel;
   

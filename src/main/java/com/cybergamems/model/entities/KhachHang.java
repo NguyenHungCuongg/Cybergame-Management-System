@@ -8,14 +8,6 @@ public class KhachHang {
     private boolean trangThaiKH;
     
     //Constructor
-    public KhachHang(){
-        maKhachHang = 0;
-        hoVaTen = "";
-        username = "";
-        email = "";
-        trangThaiKH = false;
-    }
-
     public KhachHang(int maKhachHang, String hoVaTen, String username, String email, boolean trangThaiKH) {
         this.maKhachHang = maKhachHang;
         this.hoVaTen = hoVaTen;
