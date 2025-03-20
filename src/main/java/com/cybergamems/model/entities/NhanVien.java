@@ -6,17 +6,30 @@ public class NhanVien {
     private int maNhanVien;
     private String hoVaTen;
     private String username;
+    private String matKhau;
     private String email;
     private boolean trangThaiNV;
     private String viTri;
     private Date ngayVaoLam;
 
     //Constructor
-    public NhanVien(int maNhanVien, String hoVaTen, String username, String email, boolean trangThaiNV, String viTri, Date ngayVaoLam) {
+    public NhanVien(){
+        maNhanVien = -1;
+        hoVaTen = "";
+        username = "";
+        matKhau = "";
+        email="";
+        trangThaiNV =false;
+        viTri ="";
+        ngayVaoLam = new Date();
+    }
+    
+    public NhanVien(int maNhanVien, String hoVaTen, String username, String matKhau, String email,boolean trangThaiNV, String viTri, Date ngayVaoLam) {
         this.maNhanVien = maNhanVien;
         this.hoVaTen = hoVaTen;
         this.username = username;
         this.email = email;
+        this.matKhau = matKhau;
         this.trangThaiNV = trangThaiNV;
         this.viTri =viTri;
         this.ngayVaoLam = ngayVaoLam;
@@ -37,6 +50,10 @@ public class NhanVien {
 
     public String getEmail() {
         return email;
+    }
+    
+    public String getMatKhau(){
+        return matKhau;
     }
 
     public boolean isTrangThaiNV() {
@@ -66,6 +83,10 @@ public class NhanVien {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public void setMatKhau(String matKhau){
+        this.matKhau = matKhau;
     }
 
     public void setTrangThaiNV(boolean trangThaiNV) {

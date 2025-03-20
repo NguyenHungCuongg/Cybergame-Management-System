@@ -25,7 +25,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="staffManagementHeaderPanel" max="32767" attributes="0"/>
-                  <Component id="staffManagementTablePanel" alignment="0" pref="872" max="32767" attributes="0"/>
+                  <Component id="staffManagementTablePanel" alignment="0" pref="904" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -85,9 +85,6 @@
       <SubComponents>
         <Component class="com.cybergamems.view.components.StaffManagementTable" name="staffManagementTable1">
           <Properties>
-            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[18, 18]"/>
-            </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[464, 404]"/>
             </Property>

@@ -1,9 +1,106 @@
 package com.cybergamems.view.forms;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
+import com.cybergamems.view.dialogs.AddStaffDialog;
+import com.cybergamems.view.components.StaffManagementTable;
+import com.cybergamems.controller.NhanVienController;
+import com.cybergamems.view.dialogs.EditStaffDialog;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
 public class StaffManagementForm extends javax.swing.JPanel {
+    private int selectedStaffIndex;
 
     public StaffManagementForm() {
+        selectedStaffIndex = -1;
         initComponents();
+        initTableEvent();
+        initButtonEvent();
+    }
+    
+    
+    public void initTableEvent(){
+        staffManagementTable1.getStaffTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!e.getValueIsAdjusting()){ // Đảm bảo sự kiện chỉ kích hoạt một lần
+                    //truy xuất index của hàng được người dùng chọn trong table
+                    int selectedRow = staffManagementTable1.getStaffTable().getSelectedRow();
+                    //Nếu truy xuất được hàng
+                    if(selectedRow != -1){
+                        selectedStaffIndex = selectedRow;
+                    }
+                }
+            }
+        });
+    }
+    
+    private void refreshTable(){
+        StaffManagementTable newTable = new StaffManagementTable();
+        DefaultTableModel newTableModel = (DefaultTableModel) newTable.getTableModel();
+
+        staffManagementTable1.setTableModel(newTableModel);
+        repaint();
+        revalidate();
+    }
+    
+    public void initButtonEvent(){
+        //Xử lý sự kiện cho nút làm mới
+        JButton refreshButton = tableMenuBar1.getRefreshTableDataButton();
+        refreshButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                refreshTable();
+            }  
+        });
+        
+        //Xử lý sự kiện cho nút thêm nhân viên
+        JButton addButton = tableMenuBar1.getAddTableDataButton();
+        addButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddStaffDialog addStaffDialog = new AddStaffDialog((JFrame) SwingUtilities.getWindowAncestor(StaffManagementForm.this),true);
+                addStaffDialog.setVisible(true);
+                refreshTable();
+            }  
+        });
+        
+        //Xử lý sự kiện cho nút xóa nhân viên
+        JButton deleteButton = tableMenuBar1.getDeleteTableDataButton();
+        deleteButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                int selectedStaffID = Integer.parseInt(staffManagementTable1.getStaffTable().getValueAt(selectedStaffIndex,0).toString());
+                NhanVienController nhanVienController = new NhanVienController();
+                boolean result = nhanVienController.deleteNhanVienFromModel(selectedStaffID);
+                if(result){
+                    JOptionPane.showMessageDialog(null, "Xóa nhân viên thành công!");
+                    refreshTable();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Xóa nhân viên thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        
+        //Xử lý sự kiện cho nút chỉnh sửa thành viên
+        JButton editButton = tableMenuBar1.getEditTableDataButton();
+        editButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                int selectedStaffID = Integer.parseInt(staffManagementTable1.getStaffTable().getValueAt(selectedStaffIndex,0).toString());
+                EditStaffDialog editStaffDialog = new EditStaffDialog((JFrame) SwingUtilities.getWindowAncestor(StaffManagementForm.this),true,selectedStaffID); 
+                editStaffDialog.setVisible(true);
+                refreshTable();
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")

@@ -2,12 +2,13 @@ package com.cybergamems.view.components;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
-import javax.swing.DefaultCellEditor;
-import javax.swing.JComboBox;
+
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 import com.cybergamems.controller.NhanVienController;
+import javax.swing.JTable;
+
 
 public class StaffManagementTable extends javax.swing.JPanel {
 
@@ -18,7 +19,6 @@ public class StaffManagementTable extends javax.swing.JPanel {
             System.err.println("Không thể thiết lập theme Dark Orange: " + e.getMessage());
         }
         initComponents();
-        initComboBoxForClientStatus();
         try {
             UIManager.setLookAndFeel(new FlatDarkFlatIJTheme());
         } catch (Exception e) {
@@ -26,21 +26,23 @@ public class StaffManagementTable extends javax.swing.JPanel {
         }
     }
     
-    private void initComboBoxForClientStatus(){
-        String[] staffStatuses = {"Hoạt động","Vắng mặt"};
-        JComboBox staffStatusComboBox = new JComboBox<>(staffStatuses);
-        staffTable.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(staffStatusComboBox));
-    }
-    
     public DefaultTableModel  getTableModel(){
         String[] columnNames = {"Mã nhân viên","Họ và tên","Tên đăng nhập","Email","Trạng thái","Vị trí","Ngày vào làm"};
         NhanVienController nhanVienController = new NhanVienController();
-        Object[][] tableData = nhanVienController.getNhanVienTableData();
+        Object[][] tableData = nhanVienController.getNhanVienFromModel();
         DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
         return tableModel;
-  
     }
-
+    
+    public void setTableModel(DefaultTableModel model){
+        staffTable.setModel(model);
+    }
+    
+    public JTable getStaffTable(){
+        return staffTable;
+    }
+   
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -78,4 +80,5 @@ public class StaffManagementTable extends javax.swing.JPanel {
     private javax.swing.JTable staffTable;
     private javax.swing.JScrollPane tableScrollPane;
     // End of variables declaration//GEN-END:variables
+
 }

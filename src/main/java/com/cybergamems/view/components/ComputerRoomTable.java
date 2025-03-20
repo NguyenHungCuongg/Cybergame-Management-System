@@ -20,7 +20,6 @@ public class ComputerRoomTable extends javax.swing.JPanel {
             System.err.println("Không thể thiết lập theme Dark Orange: " + e.getMessage());
         }
         initComponents();
-        initComboBoxForComputerStatus();
         try {
             UIManager.setLookAndFeel(new FlatDarkFlatIJTheme());
         } catch (Exception e) {
@@ -28,11 +27,7 @@ public class ComputerRoomTable extends javax.swing.JPanel {
         }
     }
     
-    private void initComboBoxForComputerStatus(){
-        String[] computerStatuses = {"Đang dùng","Trống","Đang bảo trì"};
-        JComboBox computerStatusComboBox = new JComboBox<>(computerStatuses);
-        computerRoomTable.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(computerStatusComboBox));
-    }
+
     
     public DefaultTableModel  getTableModel(){
         String[] columnNames = {"Mã máy","Trạng thái máy","Mã người chơi","Tên đăng nhập","Thời gian bắt đầu","Thời gian kết thúc"};

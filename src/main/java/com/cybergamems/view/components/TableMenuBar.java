@@ -3,6 +3,8 @@ package com.cybergamems.view.components;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
 import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 public class TableMenuBar extends javax.swing.JPanel {
@@ -24,6 +26,38 @@ public class TableMenuBar extends javax.swing.JPanel {
             System.err.println("Không thể thiết lập theme Dark Flat: " + e.getMessage());
         }
     }
+    
+    //Ta cần thêm các Getter để truy xuất các button ra nếu ta muốn Override các button này ở các form hay frame khác.
+    public JButton getAddTableDataButton() {
+        return addTableDataButton;
+    }
+
+    public JButton getDeleteTableDataButton() {
+        return deleteTableDataButton;
+    }
+
+    public JButton getEditTableDataButton() {
+        return editTableDataButton;
+    }
+
+    public JButton getExportTableDataButton() {
+        return exportTableDataButton;
+    }
+
+    public JButton getSearchTableDataButton() {
+        return searchTableDataButton;
+    }
+    
+    public JButton getRefreshTableDataButton(){
+        return refreshTableDataButton1;
+    }
+
+    public JTextField getSearchTableDataTextField() {
+        return searchTableDataTextField;
+    }
+    
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -38,6 +72,7 @@ public class TableMenuBar extends javax.swing.JPanel {
         tableSearchBarPanel = new javax.swing.JPanel();
         searchTableDataTextField = new javax.swing.JTextField();
         searchTableDataButton = new javax.swing.JButton();
+        refreshTableDataButton1 = new javax.swing.JButton();
 
         tableFunctionBarPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tableFunctionBarPanel.setOpaque(false);
@@ -130,7 +165,7 @@ public class TableMenuBar extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 200;
+        gridBagConstraints.ipadx = 160;
         gridBagConstraints.ipady = 14;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         tableSearchBarPanel.add(searchTableDataTextField, gridBagConstraints);
@@ -145,13 +180,23 @@ public class TableMenuBar extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         tableSearchBarPanel.add(searchTableDataButton, gridBagConstraints);
 
+        refreshTableDataButton1.setBackground(new java.awt.Color(60, 63, 65));
+        refreshTableDataButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        refreshTableDataButton1.setText("Làm mới");
+        refreshTableDataButton1.setMaximumSize(new java.awt.Dimension(100, 40));
+        refreshTableDataButton1.setMinimumSize(new java.awt.Dimension(100, 40));
+        refreshTableDataButton1.setPreferredSize(new java.awt.Dimension(100, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        tableSearchBarPanel.add(refreshTableDataButton1, gridBagConstraints);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(tableFunctionBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tableSearchBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -202,6 +247,7 @@ public class TableMenuBar extends javax.swing.JPanel {
     private javax.swing.JButton deleteTableDataButton;
     private javax.swing.JButton editTableDataButton;
     private javax.swing.JButton exportTableDataButton;
+    private javax.swing.JButton refreshTableDataButton1;
     private javax.swing.JButton searchTableDataButton;
     private javax.swing.JTextField searchTableDataTextField;
     private javax.swing.JPanel tableFunctionBarPanel;
