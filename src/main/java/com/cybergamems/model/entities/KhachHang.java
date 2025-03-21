@@ -4,14 +4,25 @@ public class KhachHang {
     private int maKhachHang;
     private String hoVaTen;
     private String username;
+    private String matKhau;
     private String email;
     private boolean trangThaiKH;
     
     //Constructor
-    public KhachHang(int maKhachHang, String hoVaTen, String username, String email, boolean trangThaiKH) {
+    public KhachHang(){
+        maKhachHang = -1;
+        hoVaTen = "";
+        username = "";
+        matKhau = "";
+        email="";
+        trangThaiKH = false;
+    }
+    
+    public KhachHang(int maKhachHang, String hoVaTen, String username, String matKhau, String email, boolean trangThaiKH) {
         this.maKhachHang = maKhachHang;
         this.hoVaTen = hoVaTen;
         this.username = username;
+        this.matKhau = matKhau;
         this.email = email;
         this.trangThaiKH = trangThaiKH;
     }
@@ -29,6 +40,10 @@ public class KhachHang {
         return username;
     }
 
+    public String getMatKhau(){
+        return matKhau;
+    }
+    
     public String getEmail() {
         return email;
     }
@@ -48,6 +63,10 @@ public class KhachHang {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+    
+    public void setMatKhau(String matKhau){
+        this.matKhau = matKhau;
     }
 
     public void setEmail(String email) {

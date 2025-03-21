@@ -28,5 +28,65 @@ public class KhachHangController {
         }
         return khachHangTableData;
     }
+    
+    public boolean addKhachHangIntoModel(String hoVaTen, String tenDangNhap, String matKhau,String email){
+        if(hoVaTen.trim().isEmpty() || tenDangNhap.trim().isEmpty() || matKhau.trim().isEmpty() 
+                || email.trim().isEmpty()){
+            return false;
+        }
+        else{            
+            //Trạng thái mặc định khi thêm khách hàng sẽ là "hoạt động"
+            int trangThai = 1;
+            
+            try{
+                //Khi sử dụng truy xuất SQL thì nên sử dụng trong Try Catch.
+                khachHangModel.addKhachHang(hoVaTen, tenDangNhap, matKhau, email, trangThai);
+                return true;
+            }
+            catch(Exception e){
+                e.printStackTrace();
+                return false;
+            }
+        }
+    }
+    
+    public boolean deleteKhachHangFromModel(int makhachHang){
+        try{
+            khachHangModel.deleteKhachHang(makhachHang);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    };
+    
+    public KhachHang getKhachHang(int makhachHang){
+        KhachHang khachHang = new KhachHang();
+        try{
+            khachHang = khachHangModel.getKhachHang(makhachHang);
+            return khachHang;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public boolean updateKhachHangModel(int makhachHang, String hoVaTen, String tenDangNhap, String matKhau,String email, int trangThai){
+        if(hoVaTen.trim().isEmpty() || tenDangNhap.trim().isEmpty() || matKhau.trim().isEmpty() 
+                || email.trim().isEmpty() || makhachHang<0){
+            return false;
+        }
+        else{
+            try{
+                //Khi sử dụng truy xuất SQL thì nên sử dụng trong Try Catch.
+                khachHangModel.updateKhachHang(makhachHang, hoVaTen, tenDangNhap, matKhau, email,trangThai);
+                return true;
+            }
+            catch(Exception e){
+                e.printStackTrace();
+                return false;
+            }
+        }
+    }
    
 }

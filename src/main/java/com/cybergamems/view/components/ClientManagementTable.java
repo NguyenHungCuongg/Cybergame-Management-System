@@ -3,6 +3,7 @@ package com.cybergamems.view.components;
 import com.cybergamems.controller.KhachHangController;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,6 +30,14 @@ public class ClientManagementTable extends javax.swing.JPanel {
         DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
         return tableModel;
   
+    }
+    
+    public void setTableModel(DefaultTableModel model){
+        clientTable.setModel(model);
+    }
+    
+    public JTable getClientTable(){
+        return clientTable;
     }
 
     @SuppressWarnings("unchecked")

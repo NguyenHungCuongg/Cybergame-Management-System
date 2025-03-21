@@ -1,15 +1,106 @@
 package com.cybergamems.view.forms;
 
+import com.cybergamems.controller.KhachHangController;
+import com.cybergamems.view.components.ClientManagementTable;
+import com.cybergamems.view.dialogs.AddClientDialog;
+import com.cybergamems.view.dialogs.EditClientDialog;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
 
 public class ClientManagementForm extends javax.swing.JPanel {
-
+    private int selectedClientIndex;
 
     public ClientManagementForm() {
+        selectedClientIndex = -1;
         initComponents();
-
+        initTableEvent();
+        initButtonEvent();
     }
     
+    public void initTableEvent(){
+        clientManagementTable1.getClientTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!e.getValueIsAdjusting()){ // Đảm bảo sự kiện chỉ kích hoạt một lần
+                    //truy xuất index của hàng được người dùng chọn trong table
+                    int selectedRow = clientManagementTable1.getClientTable().getSelectedRow();
+                    //Nếu truy xuất được hàng
+                    if(selectedRow != -1){
+                        selectedClientIndex = selectedRow;
+                    }
+                }
+            }
+        });
+    }
     
+    private void refreshTable(){
+        ClientManagementTable newTable = new ClientManagementTable();
+        DefaultTableModel newTableModel = (DefaultTableModel) newTable.getTableModel();
+
+        clientManagementTable1.setTableModel(newTableModel);
+        repaint();
+        revalidate();
+    }
+    
+    public void initButtonEvent(){
+        //Xử lý sự kiện cho nút làm mới
+        JButton refreshButton = tableMenuBar1.getRefreshTableDataButton();
+        refreshButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                refreshTable();
+            }  
+        });
+        
+        //Xử lý sự kiện cho nút thêm nhân viên
+        JButton addButton = tableMenuBar1.getAddTableDataButton();
+        addButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddClientDialog addClientDialog = new AddClientDialog((JFrame) SwingUtilities.getWindowAncestor(ClientManagementForm.this),true);
+                addClientDialog.setVisible(true);
+                refreshTable();
+            }  
+        });
+        
+        //Xử lý sự kiện cho nút xóa nhân viên
+        JButton deleteButton = tableMenuBar1.getDeleteTableDataButton();
+        deleteButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                int selectedClientID = Integer.parseInt(clientManagementTable1.getClientTable().getValueAt(selectedClientIndex,0).toString());
+                KhachHangController khachHangController = new KhachHangController();
+                boolean result = khachHangController.deleteKhachHangFromModel(selectedClientID);
+                if(result){
+                    JOptionPane.showMessageDialog(null, "Xóa khách hàng thành công!");
+                    refreshTable();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Xóa khách hàng thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        
+        //Xử lý sự kiện cho nút chỉnh sửa thành viên
+        JButton editButton = tableMenuBar1.getEditTableDataButton();
+        editButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                int selectedClientID = Integer.parseInt(clientManagementTable1.getClientTable().getValueAt(selectedClientIndex,0).toString());
+                EditClientDialog editClientDialog = new EditClientDialog((JFrame) SwingUtilities.getWindowAncestor(ClientManagementForm.this),true,selectedClientID); 
+                editClientDialog.setVisible(true);
+                refreshTable();
+            }
+        });
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
