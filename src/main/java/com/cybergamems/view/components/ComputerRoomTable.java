@@ -28,8 +28,6 @@ public class ComputerRoomTable extends javax.swing.JPanel {
         }
     }
     
-
-    
     public DefaultTableModel  getTableModel(){
         String[] columnNames = {"Mã máy","Trạng thái máy","Mã người chơi","Tên đăng nhập","Thời gian bắt đầu"};
         if(roomName=="Thường"){
@@ -50,6 +48,10 @@ public class ComputerRoomTable extends javax.swing.JPanel {
             DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
             return tableModel;
         }
+    }
+    
+    public JTable getComputerTable(){
+        return computerRoomTable;
     }
 
     @SuppressWarnings("unchecked")

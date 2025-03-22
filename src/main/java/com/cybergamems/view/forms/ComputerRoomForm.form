@@ -54,7 +54,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="computerTableMenuBar1" pref="991" max="32767" attributes="0"/>
+                  <Component id="computerTableMenuBar" pref="991" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -63,14 +63,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="computerTableMenuBar1" pref="58" max="32767" attributes="0"/>
+                  <Component id="computerTableMenuBar" pref="58" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="com.cybergamems.view.components.ComputerTableMenuBar" name="computerTableMenuBar1">
+        <Component class="com.cybergamems.view.components.ComputerTableMenuBar" name="computerTableMenuBar">
         </Component>
       </SubComponents>
     </Container>
@@ -127,7 +127,7 @@
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.cybergamems.view.components.ComputerRoomTable(&quot;VIP&quot;)"/>
                   </AuxValues>
                 </Component>
-                <Component class="com.cybergamems.view.components.ComputerRoomTable" name="livestreamComputerRoomTable1">
+                <Component class="com.cybergamems.view.components.ComputerRoomTable" name="livestreamComputerRoomTable">
                   <Properties>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[896, 100]"/>

@@ -13,6 +13,7 @@ public class DetailStaffDialog extends javax.swing.JDialog {
         initComponents();
         getStaffInformation();
         setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     @SuppressWarnings("unchecked")

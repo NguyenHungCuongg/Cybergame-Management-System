@@ -1,11 +1,81 @@
 package com.cybergamems.view.forms;
 
+import com.cybergamems.view.dialogs.AddSessionDialog;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class ComputerRoomForm extends javax.swing.JPanel {
+    int selectedNormalComputerIndex;
+    int selectedVIPComputerIndex;
+    int selectedLivestreamComputerIndex;
+    
     public ComputerRoomForm() {
         initComponents();
+        initTableEvent();
+        initButtonEvent();
+    }
+    
+    public void initTableEvent(){
+        //Thiết lập index cho các máy trong phòng thường 
+        normalComputerRoomTable.getComputerTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!e.getValueIsAdjusting()){ // Đảm bảo sự kiện chỉ kích hoạt một lần
+                    //truy xuất index của hàng được người dùng chọn trong table
+                    int selectedRow = normalComputerRoomTable.getComputerTable().getSelectedRow();
+                    //Nếu truy xuất được hàng
+                    if(selectedRow != -1){
+                        selectedNormalComputerIndex = selectedRow;
+                    }
+                }
+            }
+        });
+        
+        //Thiết lập index cho các máy trong phòng VIP
+        vipComputerRoomTable.getComputerTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!e.getValueIsAdjusting()){ // Đảm bảo sự kiện chỉ kích hoạt một lần
+                    //truy xuất index của hàng được người dùng chọn trong table
+                    int selectedRow = vipComputerRoomTable.getComputerTable().getSelectedRow();
+                    //Nếu truy xuất được hàng
+                    if(selectedRow != -1){
+                        selectedNormalComputerIndex = selectedRow;
+                    }
+                }
+            }
+        });
+        
+        //Thiết lập index cho các máy trong phòng Livestream
+        livestreamComputerRoomTable.getComputerTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!e.getValueIsAdjusting()){ // Đảm bảo sự kiện chỉ kích hoạt một lần
+                    //truy xuất index của hàng được người dùng chọn trong table
+                    int selectedRow = livestreamComputerRoomTable.getComputerTable().getSelectedRow();
+                    //Nếu truy xuất được hàng
+                    if(selectedRow != -1){
+                        selectedNormalComputerIndex = selectedRow;
+                    }
+                }
+            }
+        });
+    }
+    
+    public void initButtonEvent(){
+        //Xử lý sự kiện cho nút bắt đầu phiên chơi
+        JButton addSessionButton = computerTableMenuBar.getAddTableDataButton();
+        addSessionButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                AddSessionDialog addSessionDialog = new AddSessionDialog((JFrame) SwingUtilities.getWindowAncestor(ComputerRoomForm.this),true);
+                addSessionDialog.setVisible(true);
+            }
+        });
     }
 
     public Dimension dimesonOfComputerRoomPanel(){
@@ -19,13 +89,13 @@ public class ComputerRoomForm extends javax.swing.JPanel {
     private void initComponents() {
 
         computerRoomHeaderPanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
-        computerTableMenuBar1 = new com.cybergamems.view.components.ComputerTableMenuBar();
+        computerTableMenuBar = new com.cybergamems.view.components.ComputerTableMenuBar();
         computerRoomTablePanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         customizedBorderRadiusPanel1 = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         normalComputerRoomTable = new com.cybergamems.view.components.ComputerRoomTable("Thường");
         vipComputerRoomTable = new com.cybergamems.view.components.ComputerRoomTable("VIP");
-        livestreamComputerRoomTable1 = new com.cybergamems.view.components.ComputerRoomTable("Livestream");
+        livestreamComputerRoomTable = new com.cybergamems.view.components.ComputerRoomTable("Livestream");
 
         setBackground(new java.awt.Color(50, 50, 50));
         setPreferredSize(new java.awt.Dimension(1015, 682));
@@ -36,14 +106,14 @@ public class ComputerRoomForm extends javax.swing.JPanel {
             computerRoomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(computerRoomHeaderPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(computerTableMenuBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 991, Short.MAX_VALUE)
+                .addComponent(computerTableMenuBar, javax.swing.GroupLayout.DEFAULT_SIZE, 991, Short.MAX_VALUE)
                 .addContainerGap())
         );
         computerRoomHeaderPanelLayout.setVerticalGroup(
             computerRoomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, computerRoomHeaderPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(computerTableMenuBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, Short.MAX_VALUE)
+                .addComponent(computerTableMenuBar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -58,8 +128,8 @@ public class ComputerRoomForm extends javax.swing.JPanel {
         vipComputerRoomTable.setMinimumSize(new java.awt.Dimension(898, 100));
         customizedBorderRadiusPanel1.add(vipComputerRoomTable);
 
-        livestreamComputerRoomTable1.setMinimumSize(new java.awt.Dimension(896, 100));
-        customizedBorderRadiusPanel1.add(livestreamComputerRoomTable1);
+        livestreamComputerRoomTable.setMinimumSize(new java.awt.Dimension(896, 100));
+        customizedBorderRadiusPanel1.add(livestreamComputerRoomTable);
 
         jScrollPane1.setViewportView(customizedBorderRadiusPanel1);
 
@@ -100,10 +170,10 @@ public class ComputerRoomForm extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel computerRoomHeaderPanel;
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel computerRoomTablePanel;
-    private com.cybergamems.view.components.ComputerTableMenuBar computerTableMenuBar1;
+    private com.cybergamems.view.components.ComputerTableMenuBar computerTableMenuBar;
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel customizedBorderRadiusPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private com.cybergamems.view.components.ComputerRoomTable livestreamComputerRoomTable1;
+    private com.cybergamems.view.components.ComputerRoomTable livestreamComputerRoomTable;
     private com.cybergamems.view.components.ComputerRoomTable normalComputerRoomTable;
     private com.cybergamems.view.components.ComputerRoomTable vipComputerRoomTable;
     // End of variables declaration//GEN-END:variables

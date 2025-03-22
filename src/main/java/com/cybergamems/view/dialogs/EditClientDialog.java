@@ -13,6 +13,7 @@ public class EditClientDialog extends javax.swing.JDialog {
         initComponents();
         getClientInformation();
         setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     @SuppressWarnings("unchecked")
