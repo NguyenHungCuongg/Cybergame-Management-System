@@ -1,5 +1,6 @@
 package com.cybergamems.view.components;
 
+import com.cybergamems.controller.MayTinhController;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
 import javax.swing.*;
@@ -32,17 +33,20 @@ public class ComputerRoomTable extends javax.swing.JPanel {
     public DefaultTableModel  getTableModel(){
         String[] columnNames = {"Mã máy","Trạng thái máy","Mã người chơi","Tên đăng nhập","Thời gian bắt đầu"};
         if(roomName=="Thường"){
-            Object[][] tableData = {};
+            MayTinhController mayTinhController = new MayTinhController();
+            Object[][] tableData = mayTinhController.getAllMayTinhFromModel(1);
             DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
             return tableModel;
         }
         else if(roomName=="VIP"){
-            Object[][] tableData = {};
+            MayTinhController mayTinhController = new MayTinhController();
+            Object[][] tableData = mayTinhController.getAllMayTinhFromModel(2);
             DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
             return tableModel;
         }
         else{
-            Object[][] tableData = {};
+            MayTinhController mayTinhController = new MayTinhController();
+            Object[][] tableData = mayTinhController.getAllMayTinhFromModel(3);
             DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
             return tableModel;
         }

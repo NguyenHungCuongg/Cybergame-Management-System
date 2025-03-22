@@ -127,5 +127,75 @@ VALUES
 (2,'Ho Minh Dat','Datt','123','datminhho@gmail.com',2,'2025-03-10'),
 (3,'Huynh Quang Minh Quan','Quann','123','quanminhquanghuynh@gmail.com',3,'2025-03-11');
 
-SELECT * FROM ViTri
-SELECT * FROM NhanVien
+INSERT INTO Phong (TenPhong,GiaMoGio)
+VALUES 
+(N'Thường',7500),
+(N'VIP',10000),
+(N'Livestream',15000)
+
+SELECT * FROM Phong
+SELECT * FROM MayTinh
+
+INSERT INTO MayTinh(MaPhong,TrangThaiMay)
+VALUES
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(1,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(2,N'Trống'),
+(3,N'Trống'),
+(3,N'Trống'),
+(3,N'Trống'),
+(3,N'Trống'),
+(3,N'Trống'),
+(3,N'Trống'),
+(3,N'Trống'),
+(3,N'Trống'),
+(3,N'Trống'),
+(3,N'Trống')
+

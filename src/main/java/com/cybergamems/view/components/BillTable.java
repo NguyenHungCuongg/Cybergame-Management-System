@@ -16,7 +16,6 @@ public class BillTable extends javax.swing.JPanel {
             System.err.println("Không thể thiết lập theme Dark Orange: " + e.getMessage());
         }
         initComponents();
-        initComboBoxForClientStatus();
         try {
             UIManager.setLookAndFeel(new FlatDarkFlatIJTheme());
         } catch (Exception e) {
@@ -24,17 +23,12 @@ public class BillTable extends javax.swing.JPanel {
         }
     }
     
-    private void initComboBoxForClientStatus(){
-        String[] billStatuses = {"Đã thanh toán","Chưa thanh toán"};
-        JComboBox billStatusComboBox = new JComboBox<>(billStatuses);
-        staffTable.getColumnModel().getColumn(6).setCellEditor(new DefaultCellEditor(billStatusComboBox));
-    }
     
     public DefaultTableModel  getTableModel(){
-        String[] columnNames = {"Mã hóa đơn","Tên khách hàng","Tên nhân viên","Tên dịch vụ","Thành tiền","Ngày lập hóa đơn","Trạng thái hóa đơn"};
+        String[] columnNames = {"Mã hóa đơn","Tên khách hàng","Tên nhân viên","Thành tiền","Ngày lập hóa đơn","Trạng thái hóa đơn"};
         Object[][] tableData = {
-            {1, "Khách hàng B","Nhân viên A","Mì xào bò",35000,"3/16/2025","Đã thanh toán"},
-            {2, "Khách hàng D","Nhân viên A","Mì xào trứng",25000,"4/16/2025","Chưa thanh toán"},
+            {1, "Khách hàng B","Nhân viên A",35000,"3/16/2025","Đã thanh toán"},
+            {2, "Khách hàng D","Nhân viên A",25000,"4/16/2025","Chưa thanh toán"},
         };
         DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
         return tableModel;
