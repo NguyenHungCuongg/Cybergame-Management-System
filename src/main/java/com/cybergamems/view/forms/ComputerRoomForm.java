@@ -19,7 +19,7 @@ public class ComputerRoomForm extends javax.swing.JPanel {
     private void initComponents() {
 
         computerRoomHeaderPanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
-        tableMenuBar1 = new com.cybergamems.view.components.TableMenuBar();
+        computerTableMenuBar1 = new com.cybergamems.view.components.ComputerTableMenuBar();
         computerRoomTablePanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         customizedBorderRadiusPanel1 = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
@@ -36,11 +36,15 @@ public class ComputerRoomForm extends javax.swing.JPanel {
             computerRoomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(computerRoomHeaderPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tableMenuBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(computerTableMenuBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 991, Short.MAX_VALUE)
+                .addContainerGap())
         );
         computerRoomHeaderPanelLayout.setVerticalGroup(
             computerRoomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tableMenuBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, computerRoomHeaderPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(computerTableMenuBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -67,7 +71,7 @@ public class ComputerRoomForm extends javax.swing.JPanel {
         );
         computerRoomTablePanelLayout.setVerticalGroup(
             computerRoomTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -96,11 +100,11 @@ public class ComputerRoomForm extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel computerRoomHeaderPanel;
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel computerRoomTablePanel;
+    private com.cybergamems.view.components.ComputerTableMenuBar computerTableMenuBar1;
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel customizedBorderRadiusPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private com.cybergamems.view.components.ComputerRoomTable livestreamComputerRoomTable1;
     private com.cybergamems.view.components.ComputerRoomTable normalComputerRoomTable;
-    private com.cybergamems.view.components.TableMenuBar tableMenuBar1;
     private com.cybergamems.view.components.ComputerRoomTable vipComputerRoomTable;
     // End of variables declaration//GEN-END:variables
 }

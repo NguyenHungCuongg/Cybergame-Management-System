@@ -7,7 +7,7 @@ import javax.swing.*;
 public class MainDashboardFrame extends javax.swing.JFrame {
     public MainDashboardFrame() {
         initComponents();
-        setSize(1142, 700);
+        setSize(1400, 800);
         /*
         *Instance "dashboardMenu" đại diện cho một đối tượng của class "DashboardMenu.java"
         *Qua instance này, ta gọi phương thức "addMenuItemSelectedEvent()" của class "DashboardMenu.java" với đối số truyền vào là 

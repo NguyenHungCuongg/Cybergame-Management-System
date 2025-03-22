@@ -30,31 +30,19 @@ public class ComputerRoomTable extends javax.swing.JPanel {
 
     
     public DefaultTableModel  getTableModel(){
-        String[] columnNames = {"Mã máy","Trạng thái máy","Mã người chơi","Tên đăng nhập","Thời gian bắt đầu","Thời gian kết thúc"};
+        String[] columnNames = {"Mã máy","Trạng thái máy","Mã người chơi","Tên đăng nhập","Thời gian bắt đầu"};
         if(roomName=="Thường"){
-            Object[][] tableData = {
-                {1, "Đang dùng","23520201","cuong1",12,4},
-                {2, "Trống","23510101","teo1",3.2,5},
-                {3, "Đang bảo trì","2352892","bo1",2.1,9},
-            };
+            Object[][] tableData = {};
             DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
             return tableModel;
         }
         else if(roomName=="VIP"){
-            Object[][] tableData = {
-                {1, "Đang dùng","23520201","cuong2",6.2,4},
-                {2, "Trống","23510101","teo2",3.2,11},
-                {3, "Đang bảo trì","2352892","bo2",2.1,5},
-            };
+            Object[][] tableData = {};
             DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
             return tableModel;
         }
         else{
-            Object[][] tableData = {
-                {1, "Đang dùng","23520201","cuong3",6.2,10},
-                {2, "Trống","23510101","teo3",3.2,2},
-                {3, "Đang bảo trì","2352892","bo3",2.1,3},
-            };
+            Object[][] tableData = {};
             DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
             return tableModel;
         }

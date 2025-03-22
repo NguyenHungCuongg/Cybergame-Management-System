@@ -3,6 +3,7 @@ package com.cybergamems.view.forms;
 import com.cybergamems.controller.KhachHangController;
 import com.cybergamems.view.components.ClientManagementTable;
 import com.cybergamems.view.dialogs.AddClientDialog;
+import com.cybergamems.view.dialogs.DetailClientDialog;
 import com.cybergamems.view.dialogs.EditClientDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,7 +61,7 @@ public class ClientManagementForm extends javax.swing.JPanel {
             }  
         });
         
-        //Xử lý sự kiện cho nút thêm nhân viên
+        //Xử lý sự kiện cho nút thêm khách hàng
         JButton addButton = tableMenuBar1.getAddTableDataButton();
         addButton.addActionListener(new ActionListener(){
             @Override
@@ -71,7 +72,7 @@ public class ClientManagementForm extends javax.swing.JPanel {
             }  
         });
         
-        //Xử lý sự kiện cho nút xóa nhân viên
+        //Xử lý sự kiện cho nút xóa khách hàng
         JButton deleteButton = tableMenuBar1.getDeleteTableDataButton();
         deleteButton.addActionListener(new ActionListener(){
             @Override
@@ -89,7 +90,7 @@ public class ClientManagementForm extends javax.swing.JPanel {
             }
         });
         
-        //Xử lý sự kiện cho nút chỉnh sửa thành viên
+        //Xử lý sự kiện cho nút chỉnh sửa khách hàng
         JButton editButton = tableMenuBar1.getEditTableDataButton();
         editButton.addActionListener(new ActionListener(){
             @Override
@@ -98,6 +99,17 @@ public class ClientManagementForm extends javax.swing.JPanel {
                 EditClientDialog editClientDialog = new EditClientDialog((JFrame) SwingUtilities.getWindowAncestor(ClientManagementForm.this),true,selectedClientID); 
                 editClientDialog.setVisible(true);
                 refreshTable();
+            }
+        });
+        
+        //Xử lý sự kiện cho nút chi tiết 
+        JButton detailButton = tableMenuBar1.getDetailTableDataButton();
+        detailButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                int selectedClientID = Integer.parseInt(clientManagementTable1.getClientTable().getValueAt(selectedClientIndex,0).toString());
+                DetailClientDialog detailClientDialog =new DetailClientDialog((JFrame) SwingUtilities.getWindowAncestor(ClientManagementForm.this),true,selectedClientID);
+                detailClientDialog.setVisible(true);
             }
         });
     }

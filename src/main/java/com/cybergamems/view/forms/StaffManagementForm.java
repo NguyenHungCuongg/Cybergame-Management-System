@@ -9,6 +9,7 @@ import javax.swing.SwingUtilities;
 import com.cybergamems.view.dialogs.AddStaffDialog;
 import com.cybergamems.view.components.StaffManagementTable;
 import com.cybergamems.controller.NhanVienController;
+import com.cybergamems.view.dialogs.DetailStaffDialog;
 import com.cybergamems.view.dialogs.EditStaffDialog;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -90,7 +91,7 @@ public class StaffManagementForm extends javax.swing.JPanel {
             }
         });
         
-        //Xử lý sự kiện cho nút chỉnh sửa thành viên
+        //Xử lý sự kiện cho nút chỉnh sửa nhân viên
         JButton editButton = tableMenuBar1.getEditTableDataButton();
         editButton.addActionListener(new ActionListener(){
             @Override
@@ -98,6 +99,19 @@ public class StaffManagementForm extends javax.swing.JPanel {
                 int selectedStaffID = Integer.parseInt(staffManagementTable1.getStaffTable().getValueAt(selectedStaffIndex,0).toString());
                 EditStaffDialog editStaffDialog = new EditStaffDialog((JFrame) SwingUtilities.getWindowAncestor(StaffManagementForm.this),true,selectedStaffID); 
                 editStaffDialog.setVisible(true);
+                refreshTable();
+            }
+        });
+        
+        
+        //Xử lý sự kiện cho nút chi tiết của nhân viên
+        JButton detailButton = tableMenuBar1.getDetailTableDataButton();
+        detailButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                int selectedStaffID = Integer.parseInt(staffManagementTable1.getStaffTable().getValueAt(selectedStaffIndex,0).toString());
+                DetailStaffDialog detailStaffDialog = new DetailStaffDialog((JFrame) SwingUtilities.getWindowAncestor(StaffManagementForm.this),true,selectedStaffID); 
+                detailStaffDialog.setVisible(true);
                 refreshTable();
             }
         });

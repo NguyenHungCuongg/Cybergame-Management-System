@@ -33,7 +33,7 @@ public class BillTable extends javax.swing.JPanel {
     public DefaultTableModel  getTableModel(){
         String[] columnNames = {"Mã hóa đơn","Tên khách hàng","Tên nhân viên","Tên dịch vụ","Thành tiền","Ngày lập hóa đơn","Trạng thái hóa đơn"};
         Object[][] tableData = {
-            {1, "Khách hàng B","Nhân viên A","Mì xào bò, Pepsi",35000,"3/16/2025","Đã thanh toán"},
+            {1, "Khách hàng B","Nhân viên A","Mì xào bò",35000,"3/16/2025","Đã thanh toán"},
             {2, "Khách hàng D","Nhân viên A","Mì xào trứng",25000,"4/16/2025","Chưa thanh toán"},
         };
         DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
