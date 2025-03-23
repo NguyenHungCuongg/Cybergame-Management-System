@@ -98,4 +98,16 @@ public class MayTinhDAO {
             e.printStackTrace();
         }  
     }
+    
+    public void deletePhienChoi(int maMay){
+        String query = "DELETE FROM PhienChoi WHERE MaMay=?";
+        try(Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);
+            ){
+            stmt.setInt(1, maMay);
+            stmt.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }   
+    }
 }

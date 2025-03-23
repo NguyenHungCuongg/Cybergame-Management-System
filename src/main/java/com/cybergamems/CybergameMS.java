@@ -15,7 +15,7 @@ public class CybergameMS {
 //
 //        try { 
 //            UIManager.setLookAndFeel(new FlatArcDarkOrangeIJTheme());
-//        } catch (Exception e) {
+//        } catch (Exception e) {  
 //            System.err.println("Không thể thiết lập theme: " + e.getMessage());
 //        }
         

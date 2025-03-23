@@ -33,7 +33,7 @@ public class MayTinhController {
     }
     
     public int addPhienChoiIntoModel(String tenDangNhap, int maMay){
-        //Kiểm tra máy có available không?
+        //Kiểm tra máy có trống không?
         String kiemTraTrangThai = mayTinhModel.kiemTraTinhTrang(maMay);
         if(!kiemTraTrangThai.equals("Trống")) return 1;
         
@@ -51,6 +51,22 @@ public class MayTinhController {
         catch(Exception e){
             e.printStackTrace();
             return 3;
+        }
+    }
+    
+    public boolean deletePhienChoiFromModel(int maMay){
+        //Kiểm tra máy có đang sử dụng không không?
+        String kiemTraTrangThai = mayTinhModel.kiemTraTinhTrang(maMay);
+        if(!kiemTraTrangThai.equals("Đang sử dụng")) return false;
+        
+        try{
+            mayTinhModel.deletePhienChoi(maMay);
+            mayTinhModel.capNhatTrangThai(maMay, "Trống");
+            return true;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return false;
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.cybergamems.view.forms;
 
+import com.cybergamems.controller.MayTinhController;
 import com.cybergamems.view.components.ClientManagementTable;
 import com.cybergamems.view.components.ComputerRoomTable;
 import com.cybergamems.view.dialogs.AddSessionDialog;
@@ -12,9 +13,9 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 public class ComputerRoomForm extends javax.swing.JPanel {
-    int selectedNormalComputerIndex;
-    int selectedVIPComputerIndex;
-    int selectedLivestreamComputerIndex;
+    int selectedNormalComputerIndex=-1;
+    int selectedVIPComputerIndex=-1;
+    int selectedLivestreamComputerIndex=-1;
     
     public ComputerRoomForm() {
         initComponents();
@@ -23,12 +24,17 @@ public class ComputerRoomForm extends javax.swing.JPanel {
     }
     
     private void refreshTable(){
-        ComputerRoomTable newTable = new ComputerRoomTable();
-        DefaultTableModel newTableModel = (DefaultTableModel) newTable.getTableModel();
+        ComputerRoomTable newNormalComputerTable = new ComputerRoomTable();
+        ComputerRoomTable newVIPComputerTable = new ComputerRoomTable();
+        ComputerRoomTable newLivestreamComputerTable = new ComputerRoomTable();
+        
+        DefaultTableModel newNormalComputerTableModel = (DefaultTableModel) normalComputerRoomTable.getTableModel();
+        DefaultTableModel newVIPComputerTableModel = (DefaultTableModel) vipComputerRoomTable.getTableModel();
+        DefaultTableModel newLivestreamComputerTableModel = (DefaultTableModel) livestreamComputerRoomTable.getTableModel();
 
-        normalComputerRoomTable.setTableModel(newTableModel);
-        vipComputerRoomTable.setTableModel(newTableModel);
-        livestreamComputerRoomTable.setTableModel(newTableModel);
+        normalComputerRoomTable.setTableModel(newNormalComputerTableModel);
+        vipComputerRoomTable.setTableModel(newVIPComputerTableModel);
+        livestreamComputerRoomTable.setTableModel(newLivestreamComputerTableModel);
         
         repaint();
         revalidate();
@@ -45,6 +51,12 @@ public class ComputerRoomForm extends javax.swing.JPanel {
                     //Nếu truy xuất được hàng
                     if(selectedRow != -1){
                         selectedNormalComputerIndex = selectedRow;
+                        
+                        //Nếu 1 hàng của 1 bảng đang được chọn thì các bảng còn lại không được chọn nữa
+                        vipComputerRoomTable.getComputerTable().clearSelection();
+                        livestreamComputerRoomTable.getComputerTable().clearSelection();
+                        selectedVIPComputerIndex=-1;
+                        selectedLivestreamComputerIndex=-1;
                     }
                 }
             }
@@ -59,7 +71,13 @@ public class ComputerRoomForm extends javax.swing.JPanel {
                     int selectedRow = vipComputerRoomTable.getComputerTable().getSelectedRow();
                     //Nếu truy xuất được hàng
                     if(selectedRow != -1){
-                        selectedNormalComputerIndex = selectedRow;
+                        selectedVIPComputerIndex = selectedRow;
+                        
+                        //Nếu 1 hàng của 1 bảng đang được chọn thì các bảng còn lại không được chọn nữa
+                        normalComputerRoomTable.getComputerTable().clearSelection();
+                        livestreamComputerRoomTable.getComputerTable().clearSelection();
+                        selectedNormalComputerIndex=-1;
+                        selectedLivestreamComputerIndex=-1;
                     }
                 }
             }
@@ -74,7 +92,13 @@ public class ComputerRoomForm extends javax.swing.JPanel {
                     int selectedRow = livestreamComputerRoomTable.getComputerTable().getSelectedRow();
                     //Nếu truy xuất được hàng
                     if(selectedRow != -1){
-                        selectedNormalComputerIndex = selectedRow;
+                        selectedLivestreamComputerIndex = selectedRow;
+                        
+                        //Nếu 1 hàng của 1 bảng đang được chọn thì các bảng còn lại không được chọn nữa
+                        normalComputerRoomTable.getComputerTable().clearSelection();
+                        vipComputerRoomTable.getComputerTable().clearSelection();
+                        selectedNormalComputerIndex=-1;
+                        selectedVIPComputerIndex=-1;
                     }
                 }
             }
@@ -90,6 +114,45 @@ public class ComputerRoomForm extends javax.swing.JPanel {
                 AddSessionDialog addSessionDialog = new AddSessionDialog((JFrame) SwingUtilities.getWindowAncestor(ComputerRoomForm.this),true);
                 addSessionDialog.setVisible(true);
                 refreshTable();
+            }
+        });
+        
+        JButton deleteSessionButton = computerTableMenuBar.getEndTableDataButton();
+        deleteSessionButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                boolean result = false;
+                
+                System.out.println(selectedNormalComputerIndex);
+                System.out.println(selectedVIPComputerIndex);
+                System.out.println(selectedLivestreamComputerIndex);
+       
+                if(selectedVIPComputerIndex==-1 && selectedLivestreamComputerIndex==-1){
+                    int selectedNormalComputerID = Integer.parseInt(normalComputerRoomTable.getComputerTable().getValueAt(selectedNormalComputerIndex, 0).toString());
+                    MayTinhController mayTinhController = new MayTinhController();
+                    result = mayTinhController.deletePhienChoiFromModel(selectedNormalComputerID);
+                }
+                else if(selectedNormalComputerIndex==-1 && selectedLivestreamComputerIndex==-1){
+                    int selectedVIPComputerID = Integer.parseInt(vipComputerRoomTable.getComputerTable().getValueAt(selectedVIPComputerIndex, 0).toString());
+                    MayTinhController mayTinhController = new MayTinhController();
+                    result = mayTinhController.deletePhienChoiFromModel(selectedVIPComputerID);
+                }
+                else if(selectedVIPComputerIndex==-1 && selectedNormalComputerIndex==-1){
+                    int selectedLivestreamComputerID = Integer.parseInt(livestreamComputerRoomTable.getComputerTable().getValueAt(selectedLivestreamComputerIndex, 0).toString());
+                    MayTinhController mayTinhController = new MayTinhController();
+                    result = mayTinhController.deletePhienChoiFromModel(selectedLivestreamComputerID);
+                }
+                else{
+                    result = false;
+                }
+                
+                if(result){
+                    JOptionPane.showMessageDialog(null, "Kết thúc phiên chơi thành công!");
+                    refreshTable();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Kết thúc phiên chơi thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }

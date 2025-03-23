@@ -32,7 +32,7 @@ public class ComputerTableMenuBar extends javax.swing.JPanel {
         return startSessionButton;
     }
 
-    public JButton getEditTableDataButton() {
+    public JButton getEndTableDataButton() {
         return endSessionButton;
     }
 
