@@ -1,5 +1,8 @@
 package com.cybergamems.view.dialogs;
 
+import com.cybergamems.controller.MayTinhController;
+import javax.swing.JOptionPane;
+
 public class AddSessionDialog extends javax.swing.JDialog {
 
     public AddSessionDialog(java.awt.Frame parent, boolean modal) {
@@ -146,7 +149,23 @@ public class AddSessionDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_maMayTextFieldActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-
+        String tenDangNhap = tenDangNhapTextField.getText();
+        int maMay = Integer.parseInt(maMayTextField.getText()); 
+        MayTinhController mayTinhController = new MayTinhController();
+        int result = mayTinhController.addPhienChoiIntoModel(tenDangNhap, maMay);
+        if(result==0){
+            JOptionPane.showMessageDialog(this, "Thêm phiên chơi cho người dùng thành công!");
+            dispose();
+        }
+        else if (result==1){
+            JOptionPane.showMessageDialog(this, "Máy này hiện không thể sử dụng được!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (result==2){
+            JOptionPane.showMessageDialog(this, "Tên đăng nhập không tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Thêm phiên chơi cho người dùng thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

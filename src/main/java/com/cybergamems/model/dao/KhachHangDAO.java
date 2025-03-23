@@ -59,6 +59,31 @@ public class KhachHangDAO {
         }
     }
     
+    public KhachHang getKhachHangByUsername(String username){
+        String query = "Select * From KhachHang Where KhachHang.Username = ?";
+        try(Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);){
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            KhachHang currentKhachHang = new KhachHang();
+            while(rs.next()){
+                currentKhachHang = new KhachHang(
+                        rs.getInt("MaKhachHang"),
+                        rs.getString("HoVaTen"),
+                        rs.getString("Username"),
+                        rs.getString("Password"),
+                        rs.getString("Email"),
+                        rs.getBoolean("TrangThaiKH")
+                );
+            }
+            return currentKhachHang;
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     public void addKhachHang(String hoVaTen, String username, String matKhau, String email, int trangThai){
         String query="INSERT INTO KhachHang (HoVaTen,Username,Password,Email,TrangThaiKH)\n" +
                 "VALUES\n" +

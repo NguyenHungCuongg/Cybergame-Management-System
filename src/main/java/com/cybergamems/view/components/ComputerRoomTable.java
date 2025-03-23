@@ -53,6 +53,10 @@ public class ComputerRoomTable extends javax.swing.JPanel {
     public JTable getComputerTable(){
         return computerRoomTable;
     }
+    
+    public void setTableModel(DefaultTableModel model){
+        computerRoomTable.setModel(model);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

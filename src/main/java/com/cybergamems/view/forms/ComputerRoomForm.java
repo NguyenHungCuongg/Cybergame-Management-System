@@ -1,5 +1,7 @@
 package com.cybergamems.view.forms;
 
+import com.cybergamems.view.components.ClientManagementTable;
+import com.cybergamems.view.components.ComputerRoomTable;
 import com.cybergamems.view.dialogs.AddSessionDialog;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -7,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 public class ComputerRoomForm extends javax.swing.JPanel {
     int selectedNormalComputerIndex;
@@ -17,6 +20,18 @@ public class ComputerRoomForm extends javax.swing.JPanel {
         initComponents();
         initTableEvent();
         initButtonEvent();
+    }
+    
+    private void refreshTable(){
+        ComputerRoomTable newTable = new ComputerRoomTable();
+        DefaultTableModel newTableModel = (DefaultTableModel) newTable.getTableModel();
+
+        normalComputerRoomTable.setTableModel(newTableModel);
+        vipComputerRoomTable.setTableModel(newTableModel);
+        livestreamComputerRoomTable.setTableModel(newTableModel);
+        
+        repaint();
+        revalidate();
     }
     
     public void initTableEvent(){
@@ -74,6 +89,7 @@ public class ComputerRoomForm extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e){
                 AddSessionDialog addSessionDialog = new AddSessionDialog((JFrame) SwingUtilities.getWindowAncestor(ComputerRoomForm.this),true);
                 addSessionDialog.setVisible(true);
+                refreshTable();
             }
         });
     }

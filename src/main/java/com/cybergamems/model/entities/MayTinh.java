@@ -1,13 +1,11 @@
 package com.cybergamems.model.entities;
 
-import java.util.Date;
-
 public class MayTinh {
     private int maMayTinh;
     private String trangThaiMay;
     private int maNguoiChoi;
     private String tenDangNhap;
-    private Date thoiGianBatDau;
+    private String thoiGianBatDau;
 
     //Constructor
     public MayTinh(){
@@ -15,10 +13,10 @@ public class MayTinh {
         trangThaiMay = "";
         maNguoiChoi=0;
         tenDangNhap="";
-        thoiGianBatDau=new Date();
+        thoiGianBatDau="";
     }
     
-    public MayTinh(int maMayTinh, String trangThaiMay, int maNguoiChoi, String tenDangNhap, Date thoiGianBatDau) {
+    public MayTinh(int maMayTinh, String trangThaiMay, int maNguoiChoi, String tenDangNhap, String thoiGianBatDau) {
         this.maMayTinh = maMayTinh;
         this.trangThaiMay = trangThaiMay;
         this.maNguoiChoi = maNguoiChoi;
@@ -43,7 +41,7 @@ public class MayTinh {
         return tenDangNhap;
     }
 
-    public Date getThoiGianBatDau() {
+    public String getThoiGianBatDau() {
         return thoiGianBatDau;
     }
     
@@ -64,7 +62,7 @@ public class MayTinh {
         this.tenDangNhap = tenDangNhap;
     }
 
-    public void setThoiGianBatDau(Date thoiGianBatDau) {
+    public void setThoiGianBatDau(String thoiGianBatDau) {
         this.thoiGianBatDau = thoiGianBatDau;
     }    
 }
