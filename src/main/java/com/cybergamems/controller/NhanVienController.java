@@ -125,4 +125,17 @@ public class NhanVienController {
             }
         }
     }
+    
+    public NhanVien loginNhanVienIntoModel(String tenDangNhap, String matKhau){
+        if(tenDangNhap.trim().isEmpty() || matKhau.trim().isEmpty()) return null;
+        else {
+            try{
+                return nhanVienModel.loginNhanVien(tenDangNhap, matKhau);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
 }

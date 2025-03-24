@@ -38,7 +38,7 @@ public class NhanVienDAO {
     }
     
     public NhanVien getNhanVien(int maNhanVien){
-        String query = "Select * From NhanVien Join ViTri On NhanVien.MaViTri = ViTri.MaViTri Where NhanVien.MaNhanVien = ?";
+        String query = "SELECT * FROM NhanVien JOIN ViTri ON NhanVien.MaViTri = ViTri.MaViTri WHERE NhanVien.MaNhanVien = ?";
         try(Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query);){
             stmt.setInt(1, maNhanVien);
@@ -85,7 +85,7 @@ public class NhanVienDAO {
     }
     
     public void deleteNhanVien(int maNhanVien){
-        String query="Delete from NhanVien Where MaNhanVien=?";
+        String query="DELETE FROM NhanVien WHERE MaNhanVien=?";
         try(Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query);){
             stmt.setInt(1, maNhanVien);
@@ -97,7 +97,7 @@ public class NhanVienDAO {
     }
     
     public void updateNhanVIen(int maNhanVien,int maViTri, String hoVaTen, String username, String matKhau, String email, int trangThai){
-        String query = "Update NhanVien Set HoVaTen=?, Username=?,Password=?,Email=?, MaViTri=?, TrangThaiNV=? Where MaNhanVien=?";
+        String query = "UPDATE NhanVien SET HoVaTen=?, Username=?,Password=?,Email=?, MaViTri=?, TrangThaiNV=? WHERE MaNhanVien=?";
         try(Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query);){
             stmt.setString(1, hoVaTen);
@@ -111,5 +111,23 @@ public class NhanVienDAO {
         }catch(SQLException e){
             e.printStackTrace();
         }
+    }
+    
+    public NhanVien loginNhanVien(String username, String matKhau){
+        String query = "SELECT * FROM NhanVien WHERE Username=? AND Password=?";
+        try(Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);){
+            stmt.setString(1, username);
+            stmt.setString(2, matKhau);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                int maNhanVien = rs.getInt("MaNhanVien");
+                NhanVien loginedNhanVien = getNhanVien(maNhanVien);
+                return loginedNhanVien;
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

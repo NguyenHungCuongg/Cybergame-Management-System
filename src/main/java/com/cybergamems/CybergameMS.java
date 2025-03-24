@@ -19,19 +19,19 @@ public class CybergameMS {
 //            System.err.println("Không thể thiết lập theme: " + e.getMessage());
 //        }
         
-////        //Testing Login Frame
-//        SwingUtilities.invokeLater(()->{
-//            LoginFrame loginFrame = new LoginFrame();
-//            loginFrame.setLocationRelativeTo(null);
-//            loginFrame.setVisible(true);
-//        });
+//        //Testing Login Frame
+        SwingUtilities.invokeLater(()->{
+            LoginFrame loginFrame = new LoginFrame();
+            loginFrame.setLocationRelativeTo(null);
+            loginFrame.setVisible(true);
+        });
         
 //        Testing Dashboard Frame
-        SwingUtilities.invokeLater(()->{
-            MainDashboardFrame mainDashboardFrame = new MainDashboardFrame();
-            mainDashboardFrame.setLocationRelativeTo(null);
-            mainDashboardFrame.setVisible(true);
-        });
+//        SwingUtilities.invokeLater(()->{
+//            MainDashboardFrame mainDashboardFrame = new MainDashboardFrame();
+//            mainDashboardFrame.setLocationRelativeTo(null);
+//            mainDashboardFrame.setVisible(true);
+//        });
         
         System.out.println("Testing...");
     }

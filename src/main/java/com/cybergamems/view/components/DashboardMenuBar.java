@@ -1,6 +1,7 @@
 package com.cybergamems.view.components;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.cybergamems.view.events.MenuItemSelectedEvent;
+import javax.swing.JLabel;
 
 /*
 *Note: menu ở đây là một panel(JPanel) chứa một list(JList) các items(là một JPanel khác tự định nghĩa) chứ không phải là một JMenuBar.
@@ -36,34 +37,38 @@ public class DashboardMenuBar extends javax.swing.JPanel {
         dashboardMenuList1.addItem(new DashboardMenuItemModel("","",DashboardMenuItemModel.menuType.EMPTY));
     }
     
+    public JLabel getStaffName(){
+        return staffName;
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         headerOfMenuPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        cyberLogo = new javax.swing.JLabel();
+        cyberName = new javax.swing.JLabel();
+        staffIcon = new javax.swing.JLabel();
+        staffName = new javax.swing.JLabel();
         dashboardMenuList1 = new com.cybergamems.view.components.DashboardMenuList<>();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel2.setIcon(new FlatSVGIcon("svg/gamepad-solid.svg"));
-        jLabel2.setMaximumSize(new java.awt.Dimension(64, 64));
-        jLabel2.setMinimumSize(new java.awt.Dimension(64, 64));
+        cyberLogo.setIcon(new FlatSVGIcon("svg/gamepad-solid.svg"));
+        cyberLogo.setMaximumSize(new java.awt.Dimension(64, 64));
+        cyberLogo.setMinimumSize(new java.awt.Dimension(64, 64));
 
-        jLabel1.setFont(new java.awt.Font("Roboto Bk", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 140, 0));
-        jLabel1.setText("CYBER CORE");
+        cyberName.setFont(new java.awt.Font("Roboto Bk", 1, 24)); // NOI18N
+        cyberName.setForeground(new java.awt.Color(255, 140, 0));
+        cyberName.setText("CYBER CORE");
 
-        jLabel4.setIcon(new FlatSVGIcon("svg/user-icon.svg"));
-        jLabel4.setMaximumSize(new java.awt.Dimension(25, 25));
-        jLabel4.setMinimumSize(new java.awt.Dimension(25, 25));
+        staffIcon.setIcon(new FlatSVGIcon("svg/user-icon.svg"));
+        staffIcon.setMaximumSize(new java.awt.Dimension(25, 25));
+        staffIcon.setMinimumSize(new java.awt.Dimension(25, 25));
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jLabel3.setText("Nguyễn Hùng Cường");
+        staffName.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        staffName.setText("Nguyễn Hùng Cường");
 
         javax.swing.GroupLayout headerOfMenuPanelLayout = new javax.swing.GroupLayout(headerOfMenuPanel);
         headerOfMenuPanel.setLayout(headerOfMenuPanelLayout);
@@ -72,14 +77,14 @@ public class DashboardMenuBar extends javax.swing.JPanel {
             .addGroup(headerOfMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(headerOfMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(staffIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cyberLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(headerOfMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addComponent(cyberName)
                     .addGroup(headerOfMenuPanelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jLabel3)))
+                        .addComponent(staffName)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         headerOfMenuPanelLayout.setVerticalGroup(
@@ -87,12 +92,12 @@ public class DashboardMenuBar extends javax.swing.JPanel {
             .addGroup(headerOfMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(headerOfMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cyberName)
+                    .addComponent(cyberLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(headerOfMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(staffIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staffName))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -117,11 +122,11 @@ public class DashboardMenuBar extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cyberLogo;
+    private javax.swing.JLabel cyberName;
     private com.cybergamems.view.components.DashboardMenuList<String> dashboardMenuList1;
     private javax.swing.JPanel headerOfMenuPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel staffIcon;
+    private javax.swing.JLabel staffName;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,13 +1,18 @@
 package com.cybergamems.view.frames;
 
+import com.cybergamems.model.entities.NhanVien;
 import com.cybergamems.view.events.MenuItemSelectedEvent;
 import com.cybergamems.view.forms.*;
 import javax.swing.*;
 
 public class MainDashboardFrame extends javax.swing.JFrame {
-    public MainDashboardFrame() {
+    private NhanVien loginedNhanVien;
+    
+    public MainDashboardFrame(NhanVien loginedNhanVien) {
+        this.loginedNhanVien = loginedNhanVien;
         initComponents();
-        setSize(1400, 800);
+        dashboardMenu2.getStaffName().setText(loginedNhanVien.getHoVaTen());
+        setSize(1600, 850);
         /*
         *Instance "dashboardMenu" đại diện cho một đối tượng của class "DashboardMenu.java"
         *Qua instance này, ta gọi phương thức "addMenuItemSelectedEvent()" của class "DashboardMenu.java" với đối số truyền vào là 
@@ -63,6 +68,7 @@ public class MainDashboardFrame extends javax.swing.JFrame {
         dashboardFormMainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1600, 850));
         setSize(new java.awt.Dimension(1200, 800));
 
         mainDashboardPanel1.setLayout(new java.awt.BorderLayout());
@@ -113,7 +119,7 @@ public class MainDashboardFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainDashboardFrame().setVisible(true);
+                new MainDashboardFrame(null).setVisible(true);
             }
         });
     }
