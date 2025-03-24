@@ -122,10 +122,6 @@ public class ComputerRoomForm extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent e){
                 boolean result = false;
-                
-                System.out.println(selectedNormalComputerIndex);
-                System.out.println(selectedVIPComputerIndex);
-                System.out.println(selectedLivestreamComputerIndex);
        
                 if(selectedVIPComputerIndex==-1 && selectedLivestreamComputerIndex==-1){
                     int selectedNormalComputerID = Integer.parseInt(normalComputerRoomTable.getComputerTable().getValueAt(selectedNormalComputerIndex, 0).toString());
@@ -146,7 +142,7 @@ public class ComputerRoomForm extends javax.swing.JPanel {
                     result = false;
                 }
                 
-                if(result){
+                if(result){ 
                     JOptionPane.showMessageDialog(null, "Kết thúc phiên chơi thành công!");
                     refreshTable();
                 }

@@ -2,13 +2,11 @@ package com.cybergamems.view.components;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
-import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
-public class BillTable extends javax.swing.JPanel {
-
-    public BillTable() {
+public class DetailBillTable extends javax.swing.JPanel {
+    public DetailBillTable() {
         try {
             UIManager.setLookAndFeel(new FlatArcDarkOrangeIJTheme());
         } catch (Exception e) {
@@ -21,26 +19,15 @@ public class BillTable extends javax.swing.JPanel {
             System.err.println("Không thể thiết lập theme Dark Flat: " + e.getMessage());
         }
     }
-    
-    
+
     public DefaultTableModel  getTableModel(){
-        String[] columnNames = {"Mã hóa đơn","Tên khách hàng","Tên nhân viên","Ngày lập hóa đơn","Tổng tiền","Trạng thái hóa đơn","Phương thức thanh toán"};
+        String[] columnNames = {"Tên dịch vụ","Loại dịch vụ","Số lượng","Đơn giá","Thành tiền"};
         Object[][] tableData = {
-            {1,"Cuong","Toan","09/11/2004",120000,"Đã thanh toán","Chuyển khoản"}
         };
         DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
         return tableModel;
   
     }
-    
-    public JTable getBillTable(){
-        return billTable;
-    }
-    
-    public void setTableModel(DefaultTableModel model){
-        billTable.setModel(model);
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -65,11 +52,11 @@ public class BillTable extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tableScrollPane)
+            .addComponent(tableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tableScrollPane)
+            .addComponent(tableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

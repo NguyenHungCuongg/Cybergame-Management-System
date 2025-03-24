@@ -52,7 +52,7 @@ public class ComputerRoomTable extends javax.swing.JPanel {
     
     public JTable getComputerTable(){
         return computerRoomTable;
-    }
+    }       
     
     public void setTableModel(DefaultTableModel model){
         computerRoomTable.setModel(model);

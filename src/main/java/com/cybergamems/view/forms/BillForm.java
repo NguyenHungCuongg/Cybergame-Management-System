@@ -1,9 +1,60 @@
 package com.cybergamems.view.forms;
 
+import com.cybergamems.view.components.BillTable;
+import com.cybergamems.view.dialogs.DetailBillDialog;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
 public class BillForm extends javax.swing.JPanel {
+    private int selectedBillIndex;
 
     public BillForm() {
         initComponents();
+        initTableEvent();
+        initButtonEvent();
+    }
+    
+    public void initTableEvent(){
+        billTable1.getBillTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!e.getValueIsAdjusting()){ // Đảm bảo sự kiện chỉ kích hoạt một lần
+                    //truy xuất index của hàng được người dùng chọn trong table
+                    int selectedRow = billTable1.getBillTable().getSelectedRow();
+                    //Nếu truy xuất được hàng
+                    if(selectedRow != -1){
+                        selectedBillIndex = selectedRow;
+                    }
+                }
+            }
+        });
+    }
+    
+    private void refreshTable(){
+        BillTable newTable = new BillTable();
+        DefaultTableModel newTableModel = (DefaultTableModel) newTable.getTableModel();
+
+        billTable1.setTableModel(newTableModel);
+        repaint();
+        revalidate();
+    } 
+    
+    public void initButtonEvent(){
+        JButton detailButton = tableMenuBar1.getDetailTableDataButton();
+        detailButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                int selectedBillID = Integer.parseInt(billTable1.getBillTable().getValueAt(selectedBillIndex,0).toString());
+                DetailBillDialog detailBillDialog =new DetailBillDialog((JFrame) SwingUtilities.getWindowAncestor(BillForm.this),true,selectedBillID);
+                detailBillDialog.setVisible(true);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
