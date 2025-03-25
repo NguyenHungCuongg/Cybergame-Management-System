@@ -10,20 +10,21 @@ public class HoaDon {
     String tenKhachHang;
     String tenNhanVien;
     boolean trangThaiHD;
-    private ArrayList<ChiTietHoaDon> dsCTHD;
+    double tongTien;
     private Date ngayLapHoaDon;
     
     //Constructor
     public HoaDon(){
     }
     
-    public HoaDon(int maHoaDon,String tenKhachHang, String tenNhanVien, boolean trangThaiHD){
+    public HoaDon(int maHoaDon,String tenKhachHang, String tenNhanVien, boolean trangThaiHD, double tongTien, Date ngayLapHoaDon)   {
         this.maHoaDon = maHoaDon;
         this.tenKhachHang = tenKhachHang;
         this.tenNhanVien = tenNhanVien;
         this.trangThaiHD = trangThaiHD;
-        this.dsCTHD = new ArrayList<>();
         this.ngayLapHoaDon = new Date();
+        this.tongTien = tongTien;
+        this.ngayLapHoaDon = ngayLapHoaDon;
     }
     
     //Getter
@@ -51,12 +52,13 @@ public class HoaDon {
         return trangThaiHD;
     }
 
-    public ArrayList<ChiTietHoaDon> getDsCTHD() {
-        return dsCTHD;
-    }
 
     public Date getNgayLapHoaDon() {
         return ngayLapHoaDon;
+    }
+    
+    public double getTongTien(){
+        return tongTien;
     }
     
 }

@@ -11,6 +11,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MayTinhController {
     private MayTinhDAO mayTinhModel;
@@ -63,8 +64,9 @@ public class MayTinhController {
         
         //Tạo hóa đơn cho người dùng này.
         int maNhanVien = loginedNhanVien.getMaNhanVien();
+        Date ngayLapHD = new Date();
         try{
-            hoaDonModel.addHoaDon(maKhachHang, maNhanVien, false);
+            hoaDonModel.addHoaDon(maKhachHang, maNhanVien, false, ngayLapHD);
             return 0;
         }
         catch(Exception e){
@@ -100,7 +102,7 @@ public class MayTinhController {
         // Lấy thời gian hiện tại (kiểu LocalDateTime)
         LocalDateTime thoiGianHienTai = LocalDateTime.now();
         //Tính hiệu số giờ hiện tại bằng class Duration;
-        double soGioPhienChoi = Duration.between(thoiGianBatDau, thoiGianHienTai).toHours();
+        double soGioPhienChoi = Duration.between(thoiGianBatDau, thoiGianHienTai).toMinutes() / 60.0;
         soGioPhienChoi = (soGioPhienChoi<=1)?1:soGioPhienChoi;
         System.out.println("So gio choi: " + soGioPhienChoi);
         

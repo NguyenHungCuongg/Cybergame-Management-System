@@ -1,5 +1,6 @@
 package com.cybergamems.view.components;
 
+import com.cybergamems.controller.HoaDonController;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
 import javax.swing.JTable;
@@ -24,10 +25,9 @@ public class BillTable extends javax.swing.JPanel {
     
     
     public DefaultTableModel  getTableModel(){
-        String[] columnNames = {"Mã hóa đơn","Tên khách hàng","Tên nhân viên","Ngày lập hóa đơn","Tổng tiền","Trạng thái hóa đơn","Phương thức thanh toán"};
-        Object[][] tableData = {
-            {1,"Cuong","Toan","09/11/2004",120000,"Đã thanh toán","Chuyển khoản"}
-        };
+        String[] columnNames = {"Mã hóa đơn","Tên khách hàng","Tên nhân viên","Ngày lập hóa đơn","Tổng tiền","Trạng thái hóa đơn"};
+        HoaDonController hoaDonController = new HoaDonController();
+        Object[][] tableData = hoaDonController.getHoaDonFromModel();
         DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
         return tableModel;
   
