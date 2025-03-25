@@ -65,7 +65,8 @@ CREATE TABLE HoaDon (
     MaKhachHang INT FOREIGN KEY REFERENCES KhachHang(MaKhachHang),
     MaNhanVien INT FOREIGN KEY REFERENCES NhanVien(MaNhanVien),
     NgayLapHD DATETIME NOT NULL,
-    TrangThaiHD BIT NOT NULL
+    TrangThaiHD BIT NOT NULL,
+	TongTien MONEY DEFAULT 0 NOT NULL
 );
 
 -- Bảng Chi Tiết Hóa Đơn
@@ -111,6 +112,28 @@ CREATE TABLE ThuChi (
     TongChiTieu MONEY CHECK (TongChiTieu >= 0) NOT NULL
 );
 
+-- Tạo trigger cập nhật TongTien bằng tổng các ThanhTien của các ChiTietHoaDon
+
+CREATE TRIGGER trg_UpdateTongTien
+ON ChiTietHoaDon
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+    -- Cập nhật TongTien cho các hóa đơn bị ảnh hưởng
+    UPDATE HoaDon
+    SET TongTien = (
+        SELECT COALESCE(SUM(ThanhTien), 0)
+        FROM ChiTietHoaDon
+        WHERE ChiTietHoaDon.MaHoaDon = HoaDon.MaHoaDon
+    )
+    WHERE MaHoaDon IN (
+        SELECT DISTINCT MaHoaDon FROM inserted
+        UNION
+        SELECT DISTINCT MaHoaDon FROM deleted
+    );
+END;
+
+
 
 -- Chèn dữ liệu vào các bảng mặc định
 
@@ -132,7 +155,7 @@ VALUES
 (N'Xá xị',10000,'DRINK'),
 (N'Cà phê đen',15000,'DRINK'),
 (N'Cà phê sữa',18000,'DRINK'),
-(N'Cà phê muối',20000,'DRINK'),
+(N'Cà phê muối',20000,'DRINK')
 
 INSERT INTO ViTri (TenViTri,LuongMoiThang)
 VALUES
@@ -218,4 +241,3 @@ VALUES
 (3,N'Trống'),
 (3,N'Trống'),
 (3,N'Trống')
-
