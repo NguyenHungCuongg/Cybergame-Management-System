@@ -32,7 +32,7 @@ CREATE TABLE ViTri (
 CREATE TABLE Phong (
     MaPhong INT PRIMARY KEY IDENTITY,
     TenPhong NVARCHAR(100) NOT NULL,
-    GiaMoGio MONEY CHECK (GiaMoGio >= 0)
+    GiaMoiGio MONEY CHECK (GiaMoGio >= 0)
 );
 
 -- Bảng Máy Tính
@@ -73,7 +73,7 @@ CREATE TABLE ChiTietHoaDon (
     MaCTHD INT PRIMARY KEY IDENTITY,
     MaHoaDon INT FOREIGN KEY REFERENCES HoaDon(MaHoaDon),
     MaDichVu INT FOREIGN KEY REFERENCES DichVu(MaDichVu),
-    SoLuong INT CHECK (SoLuong > 0) NOT NULL,
+    SoLuong DECIMAL(10, 2) CHECK (SoLuong > 0) NOT NULL,
     DonGia MONEY CHECK (DonGia >= 0) NOT NULL,
     ThanhTien MONEY NOT NULL
 );
@@ -113,6 +113,26 @@ CREATE TABLE ThuChi (
 
 
 -- Chèn dữ liệu vào các bảng mặc định
+
+INSERT INTO DichVu(TenDichVu,GiaGoc,LoaiDichVu)
+VALUES
+(N'Sử dụng máy',0,'GAME'),
+(N'Mì xào bò',25000,'FOOD'),
+(N'Mì xào trứng',18000,'FOOD'),
+(N'Mì xào thập cẩm',30000,'FOOD'),
+(N'Mì nước bò',25000,'FOOD'),
+(N'Mì nước trứng',18000,'FOOD'),
+(N'Mì nước thập cẩm',30000,'FOOD'),
+(N'Burger bò phô mai',30000,'FOOD'),
+(N'Burger gà phô mai',30000,'FOOD'),
+(N'Pepsi',10000,'DRINK'),
+(N'Coca Cola',10000,'DRINK'),
+(N'Fanta',10000,'DRINK'),
+(N'Sting dâu',10000,'DRINK'),
+(N'Xá xị',10000,'DRINK'),
+(N'Cà phê đen',15000,'DRINK'),
+(N'Cà phê sữa',18000,'DRINK'),
+(N'Cà phê muối',20000,'DRINK'),
 
 INSERT INTO ViTri (TenViTri,LuongMoiThang)
 VALUES

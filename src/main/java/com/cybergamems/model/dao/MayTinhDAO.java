@@ -14,14 +14,16 @@ public class MayTinhDAO {
     public ArrayList<MayTinh> getAllMayTinh(int maPhong){
         ArrayList<MayTinh> dsMayTinh = new ArrayList<>();
         String query = "SELECT \n" +
-                        "    MayTinh.MaMay, \n" +
-                        "    MayTinh.TrangThaiMay, \n" +
-                        "    PhienChoi.MaKhachHang, \n" +
-                        "    KhachHang.Username, \n" +
-                        "    PhienChoi.ThoiGianBatDau\n" +
+                        "MayTinh.MaMay,\n" +
+                        "MayTinh.TrangThaiMay,\n" +
+                        "PhienChoi.MaKhachHang,\n" +
+                        "KhachHang.Username,\n" +
+                        "PhienChoi.ThoiGianBatDau,\n" +
+                        "Phong.GiaMoiGio\n" +
                         "FROM MayTinh\n" +
-                        "LEFT JOIN PhienChoi ON MayTinh.MaMay = PhienChoi.MaMay \n" +
-                        "    AND PhienChoi.ThoiGianKetThuc IS NULL  \n" +
+                        "JOIN Phong ON MayTinh.MaPhong = Phong.MaPhong\n" +
+                        "LEFT JOIN PhienChoi ON MayTinh.MaMay = PhienChoi.MaMay\n" +
+                        "AND PhienChoi.ThoiGianKetThuc IS NULL\n" +
                         "LEFT JOIN KhachHang ON PhienChoi.MaKhachHang = KhachHang.MaKhachHang\n" +
                         "WHERE MayTinh.MaPhong = ?; ";
         try(Connection conn = DatabaseConnection.getConnection();
@@ -42,7 +44,8 @@ public class MayTinhDAO {
                     rs.getString("TrangThaiMay"),
                     rs.getInt("MaKhachHang"),
                     rs.getString("Username"),
-                    formattedDate
+                    formattedDate,
+                    rs.getDouble("GiaMoiGio")
                 );
                 dsMayTinh.add(currentMayTinh);
             }   
@@ -61,7 +64,7 @@ public class MayTinhDAO {
                 PreparedStatement stmt = conn.prepareStatement(query);){
             stmt.setInt(1, maMay);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
+            if(rs.next()){
                 result = rs.getString("TrangThaiMay");
             }
             return result;
@@ -84,6 +87,50 @@ public class MayTinhDAO {
         }catch(SQLException e){
             e.printStackTrace();
         }   
+    }
+    
+    public MayTinh getMayTinh(int maMay){
+        String query = "SELECT \n" +
+                        "MayTinh.MaMay,\n" +
+                        "MayTinh.TrangThaiMay,\n" +
+                        "PhienChoi.MaKhachHang,\n" +
+                        "KhachHang.Username,\n" +
+                        "PhienChoi.ThoiGianBatDau,\n" +
+                        "Phong.GiaMoiGio\n" +
+                        "FROM MayTinh\n" +
+                        "JOIN Phong ON MayTinh.MaPhong = Phong.MaPhong\n" +
+                        "LEFT JOIN PhienChoi ON MayTinh.MaMay = PhienChoi.MaMay\n" +
+                        "AND PhienChoi.ThoiGianKetThuc IS NULL\n" +
+                        "LEFT JOIN KhachHang ON PhienChoi.MaKhachHang = KhachHang.MaKhachHang\n" +
+                        "WHERE MayTinh.MaMay = ?; ";
+        try(Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);){
+            stmt.setInt(1, maMay);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Timestamp timestamp = rs.getTimestamp("ThoiGianBatDau");
+                String formattedDate = null;
+                if (timestamp != null) {
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    formattedDate = formatter.format(timestamp);
+                } else {
+                    formattedDate = "N/A"; 
+                }
+                MayTinh currentMayTinh = new MayTinh(
+                    rs.getInt("MaMay"),
+                    rs.getString("TrangThaiMay"),
+                    rs.getInt("MaKhachHang"),
+                    rs.getString("Username"),
+                    formattedDate,
+                    rs.getDouble("GiaMoiGio")
+                );
+                return currentMayTinh;
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
     
     public void capNhatTrangThai(int maMay, String trangThai){

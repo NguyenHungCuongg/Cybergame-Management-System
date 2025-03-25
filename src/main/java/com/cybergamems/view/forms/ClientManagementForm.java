@@ -1,6 +1,7 @@
 package com.cybergamems.view.forms;
 
 import com.cybergamems.controller.KhachHangController;
+import com.cybergamems.model.entities.NhanVien;
 import com.cybergamems.view.components.ClientManagementTable;
 import com.cybergamems.view.dialogs.AddClientDialog;
 import com.cybergamems.view.dialogs.DetailClientDialog;
@@ -18,9 +19,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class ClientManagementForm extends javax.swing.JPanel {
     private int selectedClientIndex;
+    private NhanVien loginedNhanVien;
 
-    public ClientManagementForm() {
+    public ClientManagementForm(NhanVien loginedNhanVien) {
         selectedClientIndex = -1;
+        this.loginedNhanVien = loginedNhanVien;
         initComponents();
         initTableEvent();
         initButtonEvent();

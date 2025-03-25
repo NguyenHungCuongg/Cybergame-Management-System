@@ -24,7 +24,7 @@ public class FoodAndDrinkBar extends javax.swing.JPanel {
             this.addCard(new FoodAndDrinkCardModel("Mì xào thập cẩm",FoodAndDrinkCardModel.productCategories.FOOD,"",30000));
             this.addCard(new FoodAndDrinkCardModel("Mì nước bò",FoodAndDrinkCardModel.productCategories.FOOD,"",25000));
             this.addCard(new FoodAndDrinkCardModel("Mì nước trứng",FoodAndDrinkCardModel.productCategories.FOOD,"",18000));
-            this.addCard(new FoodAndDrinkCardModel("Mì nước thập cẩm",FoodAndDrinkCardModel.productCategories.FOOD,"",20000));
+            this.addCard(new FoodAndDrinkCardModel("Mì nước thập cẩm",FoodAndDrinkCardModel.productCategories.FOOD,"",30000));
             this.addCard(new FoodAndDrinkCardModel("Burger bò phô mai",FoodAndDrinkCardModel.productCategories.FOOD,"",30000));
             this.addCard(new FoodAndDrinkCardModel("Burger gà phô mai",FoodAndDrinkCardModel.productCategories.FOOD,"",30000));
         }

@@ -1,6 +1,7 @@
 package com.cybergamems.view.forms;
 
 import com.cybergamems.controller.MayTinhController;
+import com.cybergamems.model.entities.NhanVien;
 import com.cybergamems.view.components.ClientManagementTable;
 import com.cybergamems.view.components.ComputerRoomTable;
 import com.cybergamems.view.dialogs.AddSessionDialog;
@@ -13,21 +14,19 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 public class ComputerRoomForm extends javax.swing.JPanel {
-    int selectedNormalComputerIndex=-1;
-    int selectedVIPComputerIndex=-1;
-    int selectedLivestreamComputerIndex=-1;
+    private NhanVien loginedNhanVien;
+    private int selectedNormalComputerIndex=-1;
+    private int selectedVIPComputerIndex=-1;
+    private int selectedLivestreamComputerIndex=-1;
     
-    public ComputerRoomForm() {
+    public ComputerRoomForm(NhanVien loginedNhanVien) {
+        this.loginedNhanVien = loginedNhanVien;
         initComponents();
         initTableEvent();
         initButtonEvent();
     }
     
     private void refreshTable(){
-        ComputerRoomTable newNormalComputerTable = new ComputerRoomTable();
-        ComputerRoomTable newVIPComputerTable = new ComputerRoomTable();
-        ComputerRoomTable newLivestreamComputerTable = new ComputerRoomTable();
-        
         DefaultTableModel newNormalComputerTableModel = (DefaultTableModel) normalComputerRoomTable.getTableModel();
         DefaultTableModel newVIPComputerTableModel = (DefaultTableModel) vipComputerRoomTable.getTableModel();
         DefaultTableModel newLivestreamComputerTableModel = (DefaultTableModel) livestreamComputerRoomTable.getTableModel();
@@ -111,37 +110,39 @@ public class ComputerRoomForm extends javax.swing.JPanel {
         addSessionButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                AddSessionDialog addSessionDialog = new AddSessionDialog((JFrame) SwingUtilities.getWindowAncestor(ComputerRoomForm.this),true);
+                AddSessionDialog addSessionDialog = new AddSessionDialog((JFrame) SwingUtilities.getWindowAncestor(ComputerRoomForm.this),true,loginedNhanVien);
                 addSessionDialog.setVisible(true);
                 refreshTable();
             }
         });
         
+        //Xử lý sự kiện cho nút kết thúc phiên chơi
         JButton deleteSessionButton = computerTableMenuBar.getEndTableDataButton();
         deleteSessionButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 boolean result = false;
-       
+    
                 if(selectedVIPComputerIndex==-1 && selectedLivestreamComputerIndex==-1){
                     int selectedNormalComputerID = Integer.parseInt(normalComputerRoomTable.getComputerTable().getValueAt(selectedNormalComputerIndex, 0).toString());
+                    
                     MayTinhController mayTinhController = new MayTinhController();
-                    result = mayTinhController.deletePhienChoiFromModel(selectedNormalComputerID);
+                    result = mayTinhController.deletePhienChoiFromModel(selectedNormalComputerID, loginedNhanVien);
+                    
                 }
                 else if(selectedNormalComputerIndex==-1 && selectedLivestreamComputerIndex==-1){
                     int selectedVIPComputerID = Integer.parseInt(vipComputerRoomTable.getComputerTable().getValueAt(selectedVIPComputerIndex, 0).toString());
                     MayTinhController mayTinhController = new MayTinhController();
-                    result = mayTinhController.deletePhienChoiFromModel(selectedVIPComputerID);
+                    result= mayTinhController.deletePhienChoiFromModel(selectedVIPComputerID,loginedNhanVien);
                 }
                 else if(selectedVIPComputerIndex==-1 && selectedNormalComputerIndex==-1){
                     int selectedLivestreamComputerID = Integer.parseInt(livestreamComputerRoomTable.getComputerTable().getValueAt(selectedLivestreamComputerIndex, 0).toString());
                     MayTinhController mayTinhController = new MayTinhController();
-                    result = mayTinhController.deletePhienChoiFromModel(selectedLivestreamComputerID);
+                    result = mayTinhController.deletePhienChoiFromModel(selectedLivestreamComputerID, loginedNhanVien);
                 }
                 else{
                     result = false;
                 }
-                
                 if(result){ 
                     JOptionPane.showMessageDialog(null, "Kết thúc phiên chơi thành công!");
                     refreshTable();

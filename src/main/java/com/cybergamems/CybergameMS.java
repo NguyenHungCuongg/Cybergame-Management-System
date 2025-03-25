@@ -12,26 +12,13 @@ public class CybergameMS {
         } catch (Exception e) {
             System.err.println("Không thể thiết lập theme Dark Flat: " + e.getMessage());
         }
-//
-//        try { 
-//            UIManager.setLookAndFeel(new FlatArcDarkOrangeIJTheme());
-//        } catch (Exception e) {  
-//            System.err.println("Không thể thiết lập theme: " + e.getMessage());
-//        }
-        
-//        //Testing Login Frame
+
         SwingUtilities.invokeLater(()->{
             LoginFrame loginFrame = new LoginFrame();
             loginFrame.setLocationRelativeTo(null);
             loginFrame.setVisible(true);
         });
         
-//        Testing Dashboard Frame
-//        SwingUtilities.invokeLater(()->{
-//            MainDashboardFrame mainDashboardFrame = new MainDashboardFrame();
-//            mainDashboardFrame.setLocationRelativeTo(null);
-//            mainDashboardFrame.setVisible(true);
-//        });
         
         System.out.println("Testing...");
     }

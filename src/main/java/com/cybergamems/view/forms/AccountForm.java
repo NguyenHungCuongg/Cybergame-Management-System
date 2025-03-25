@@ -1,7 +1,12 @@
 package com.cybergamems.view.forms;
 
+import com.cybergamems.model.entities.NhanVien;
+
 public class AccountForm extends javax.swing.JPanel {
-    public AccountForm() {
+    private NhanVien loginedNhanVien;
+    
+    public AccountForm(NhanVien loginedNhanVien) {
+        this.loginedNhanVien = loginedNhanVien;
         initComponents();
     }
 

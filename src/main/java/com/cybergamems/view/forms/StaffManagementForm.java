@@ -9,6 +9,7 @@ import javax.swing.SwingUtilities;
 import com.cybergamems.view.dialogs.AddStaffDialog;
 import com.cybergamems.view.components.StaffManagementTable;
 import com.cybergamems.controller.NhanVienController;
+import com.cybergamems.model.entities.NhanVien;
 import com.cybergamems.view.dialogs.DetailStaffDialog;
 import com.cybergamems.view.dialogs.EditStaffDialog;
 import javax.swing.JOptionPane;
@@ -18,8 +19,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class StaffManagementForm extends javax.swing.JPanel {
     private int selectedStaffIndex;
+    private NhanVien loginedNhanVien;
 
-    public StaffManagementForm() {
+    public StaffManagementForm(NhanVien loginedNhanVien) {
+        this.loginedNhanVien = loginedNhanVien;
         selectedStaffIndex = -1;
         initComponents();
         initTableEvent();

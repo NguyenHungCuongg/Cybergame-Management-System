@@ -1,12 +1,15 @@
 package com.cybergamems.view.dialogs;
 
 import com.cybergamems.controller.MayTinhController;
+import com.cybergamems.model.entities.NhanVien;
 import javax.swing.JOptionPane;
 
 public class AddSessionDialog extends javax.swing.JDialog {
+    private NhanVien loginedNhanVien;
 
-    public AddSessionDialog(java.awt.Frame parent, boolean modal) {
+    public AddSessionDialog(java.awt.Frame parent, boolean modal, NhanVien loginedNhanVien) {
         super(parent, modal);
+        this.loginedNhanVien = loginedNhanVien;
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -152,7 +155,7 @@ public class AddSessionDialog extends javax.swing.JDialog {
         String tenDangNhap = tenDangNhapTextField.getText();
         int maMay = Integer.parseInt(maMayTextField.getText()); 
         MayTinhController mayTinhController = new MayTinhController();
-        int result = mayTinhController.addPhienChoiIntoModel(tenDangNhap, maMay);
+        int result = mayTinhController.addPhienChoiIntoModel(tenDangNhap, maMay, loginedNhanVien);
         if(result==0){
             JOptionPane.showMessageDialog(this, "Thêm phiên chơi cho người dùng thành công!");
             dispose();
@@ -200,7 +203,7 @@ public class AddSessionDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AddSessionDialog dialog = new AddSessionDialog(new javax.swing.JFrame(), true);
+                AddSessionDialog dialog = new AddSessionDialog(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

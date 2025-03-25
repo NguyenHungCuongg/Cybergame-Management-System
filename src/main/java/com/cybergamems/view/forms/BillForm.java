@@ -1,5 +1,6 @@
 package com.cybergamems.view.forms;
 
+import com.cybergamems.model.entities.NhanVien;
 import com.cybergamems.view.components.BillTable;
 import com.cybergamems.view.dialogs.DetailBillDialog;
 import java.awt.event.ActionEvent;
@@ -13,8 +14,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class BillForm extends javax.swing.JPanel {
     private int selectedBillIndex;
+    private NhanVien loginedNhanVien;
 
-    public BillForm() {
+    public BillForm(NhanVien loginedNhanVien) {
+        this.loginedNhanVien = loginedNhanVien;
         initComponents();
         initTableEvent();
         initButtonEvent();

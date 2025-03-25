@@ -26,25 +26,25 @@ public class MainDashboardFrame extends javax.swing.JFrame {
                         setCurrentForm(new HomeForm());
                         break;
                     case 1:
-                        setCurrentForm(new ComputerRoomForm());                      
+                        setCurrentForm(new ComputerRoomForm(loginedNhanVien));                      
                         break;
                     case 2:
-                        setCurrentForm(new ClientManagementForm());
+                        setCurrentForm(new ClientManagementForm(loginedNhanVien));
                         break;
                     case 3:
                         setCurrentForm(new ServicesForm());
                         break;
                     case 4:
-                        setCurrentForm(new StaffManagementForm());
+                        setCurrentForm(new StaffManagementForm(loginedNhanVien));
                         break;
                     case 5:
                         setCurrentForm(new StatisticsForm());
                         break;
                     case 6:
-                        setCurrentForm(new BillForm());
+                        setCurrentForm(new BillForm(loginedNhanVien));
                         break;
                     case 7:
-                        setCurrentForm(new AccountForm());
+                        setCurrentForm(new AccountForm(loginedNhanVien));
                         break;
                     default:
                 }
