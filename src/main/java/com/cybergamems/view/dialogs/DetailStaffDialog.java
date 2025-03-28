@@ -60,7 +60,8 @@ public class DetailStaffDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(20, 10, 5, 20);
         dialogInputSection.add(hoVaTenLabel, gridBagConstraints);
 
-        hoVaTenTextField.setEnabled(false);
+        hoVaTenTextField.setEditable(false);
+        hoVaTenTextField.setFocusable(false);
         hoVaTenTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hoVaTenTextFieldActionPerformed(evt);
@@ -85,7 +86,8 @@ public class DetailStaffDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(20, 10, 5, 20);
         dialogInputSection.add(tenDangNhapLabel, gridBagConstraints);
 
-        tenDangNhapTextField.setEnabled(false);
+        tenDangNhapTextField.setEditable(false);
+        tenDangNhapTextField.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -105,8 +107,9 @@ public class DetailStaffDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(20, 10, 5, 20);
         dialogInputSection.add(matKhauLabel, gridBagConstraints);
 
+        matKhauTextField.setEditable(false);
         matKhauTextField.setToolTipText("");
-        matKhauTextField.setEnabled(false);
+        matKhauTextField.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 1;
@@ -126,7 +129,8 @@ public class DetailStaffDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(20, 10, 5, 20);
         dialogInputSection.add(emailLabel, gridBagConstraints);
 
-        emailTextField.setEnabled(false);
+        emailTextField.setEditable(false);
+        emailTextField.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -147,8 +151,10 @@ public class DetailStaffDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(20, 10, 5, 20);
         dialogInputSection.add(viTriLabel, gridBagConstraints);
 
+        viTriComboBox.setEditable(true);
         viTriComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quản lí", "Nhân viên", "Đầu bếp" }));
         viTriComboBox.setEnabled(false);
+        viTriComboBox.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
@@ -169,8 +175,10 @@ public class DetailStaffDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(20, 10, 5, 20);
         dialogInputSection.add(trangThaiLabel, gridBagConstraints);
 
+        trangThaiComboBox.setEditable(true);
         trangThaiComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoạt động", "Vắng mặt" }));
         trangThaiComboBox.setEnabled(false);
+        trangThaiComboBox.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 3;

@@ -62,6 +62,15 @@ public class MayTinhController {
             return 3;
         }
         
+        //Đổi trạng thái trong bảng khách hàng từ "Vắng mặt" thành "Hoạt động"
+        try{
+            khachHangModel.setTrangThaiKHByUsername(1,tenDangNhap);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
         //Tạo hóa đơn cho người dùng này.
         int maNhanVien = loginedNhanVien.getMaNhanVien();
         Date ngayLapHD = new Date();
@@ -88,34 +97,49 @@ public class MayTinhController {
         currentKhachHang = khachHangModel.getKhachHangByMaMay(maMay);
         int maKhachHang = currentKhachHang.getMaKhachHang();
         int maNhanVien = loginedNhanVien.getMaNhanVien();
-        System.out.println("Ma khach hang: "+maKhachHang);
-        System.out.println("Ma nhan vien: "+maNhanVien);
+        System.out.println("Ma khach hang bi ket thuc: "+maKhachHang);
+        System.out.println("Ma nhan vien ket thuc: "+maNhanVien);
         HoaDon currentHoaDon = new HoaDon();
         currentHoaDon = hoaDonModel.getHoaDon(maKhachHang, maNhanVien);
         int maHoaDon = currentHoaDon.getMaHoaDon();
+        System.out.println("Ma hoa don bi ket thuc:" + maHoaDon);
         
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String thoiGianBatDauPhienChoi = mayTinhModel.getMayTinh(maMay).getThoiGianBatDau();
-        //Biến thoiGianBatDauPhienChoi từ String sang kiểu LocalDateTime
+        //Biến thoiGianBatDauPhienChoi từ String sang kiểu LocalDateTimet
         LocalDateTime thoiGianBatDau = LocalDateTime.parse(thoiGianBatDauPhienChoi, formatter);
-        // Lấy thời gian hiện tại (kiểu LocalDateTime)
+        // Lấy thời gian hiện tại (kiểu LocalDateTime)  
         LocalDateTime thoiGianHienTai = LocalDateTime.now();
         //Tính hiệu số giờ hiện tại bằng class Duration;
         double soGioPhienChoi = Duration.between(thoiGianBatDau, thoiGianHienTai).toMinutes() / 60.0;
         soGioPhienChoi = (soGioPhienChoi<=1)?1:soGioPhienChoi;
+        
+        System.out.println("Thoi gian bat dau: " + thoiGianBatDau);
+        
+        System.out.println("Thoi gian hien tai: " + thoiGianHienTai);
+        
         System.out.println("So gio choi: " + soGioPhienChoi);
         
         double giaMoiGio = mayTinhModel.getMayTinh(maMay).getGiaMoiGio();
         
         double thanhTien = soGioPhienChoi*giaMoiGio;
         
+        System.out.println("Thanh tien: " + thanhTien);
+        
         int maDichVu = 1;//Mã dịch vụ của dịch vụ chơi game mặc định bằng 1;
         
         //Sử dụng các giá trị "maHoaDon", "maDichVu", "soGioPhienChoi", "giaMoiGio", "thanhTien" vừa tìm được để lập CTHD.
         hoaDonModel.addCTHD(maHoaDon, maDichVu, soGioPhienChoi, giaMoiGio, thanhTien);
         
-        
+        //Đổi trạng thái trong bảng khách hàng từ "Hoạt động" thành "vắng mặt"
+        String tenDangNhap = currentKhachHang.getUsername();
+        try{
+            khachHangModel.setTrangThaiKHByUsername(0,tenDangNhap);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
         
          //Xóa phiên chơi 
         String kiemTraTrangThai = mayTinhModel.kiemTraTinhTrang(maMay);

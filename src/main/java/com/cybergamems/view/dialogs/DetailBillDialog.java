@@ -1,10 +1,14 @@
 package com.cybergamems.view.dialogs;
 
 public class DetailBillDialog extends javax.swing.JDialog {
+    private int maHoaDon;
 
     public DetailBillDialog(java.awt.Frame parent, boolean modal, int maHoaDon) {
         super(parent, modal);
+        this.maHoaDon = maHoaDon;
+        System.out.println("Ma hoa don hien tai la1:" + maHoaDon);
         initComponents();
+        System.out.println("Ma hoa don hien tai la2:" + maHoaDon);
         setLocationRelativeTo(null);
         setResizable(false);
     }
@@ -18,7 +22,7 @@ public class DetailBillDialog extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         dialogInputSection2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        detailBillTable1 = new com.cybergamems.view.components.DetailBillTable();
+        detailBillTable1 = new com.cybergamems.view.components.DetailBillTable(maHoaDon);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,6 +99,7 @@ public class DetailBillDialog extends javax.swing.JDialog {
         });
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.cybergamems.view.components.DetailBillTable detailBillTable1;
     private javax.swing.JPanel dialogHeader;

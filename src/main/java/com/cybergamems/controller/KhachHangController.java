@@ -35,8 +35,8 @@ public class KhachHangController {
             return false;
         }
         else{            
-            //Trạng thái mặc định khi thêm khách hàng sẽ là "hoạt động"
-            int trangThai = 1;
+            //Trạng thái mặc định khi thêm khách hàng sẽ là "vắng mặt"
+            int trangThai = 2;
             
             try{
                 //Khi sử dụng truy xuất SQL thì nên sử dụng trong Try Catch.

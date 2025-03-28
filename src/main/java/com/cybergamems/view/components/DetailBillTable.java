@@ -1,17 +1,22 @@
 package com.cybergamems.view.components;
 
+import com.cybergamems.controller.HoaDonController;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 public class DetailBillTable extends javax.swing.JPanel {
-    public DetailBillTable() {
+    private int maHoaDon;
+    
+    public DetailBillTable(int maHoaDon) {
         try {
             UIManager.setLookAndFeel(new FlatArcDarkOrangeIJTheme());
         } catch (Exception e) {
             System.err.println("Không thể thiết lập theme Dark Orange: " + e.getMessage());
         }
+        this.maHoaDon = maHoaDon;
         initComponents();
         try {
             UIManager.setLookAndFeel(new FlatDarkFlatIJTheme());
@@ -22,12 +27,20 @@ public class DetailBillTable extends javax.swing.JPanel {
 
     public DefaultTableModel  getTableModel(){
         String[] columnNames = {"Tên dịch vụ","Loại dịch vụ","Số lượng","Đơn giá","Thành tiền"};
-        Object[][] tableData = {
-        };
+        HoaDonController hoaDonController = new HoaDonController();
+        Object[][] tableData = hoaDonController.getCTHDFromModel(maHoaDon);
         DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
         return tableModel;
-  
     }
+    
+    public JTable getDetailBillTable(){
+        return billTable;
+    }
+    
+    public void setTableModel(DefaultTableModel model){
+        billTable.setModel(model);
+    }
+            
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

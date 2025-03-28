@@ -110,6 +110,9 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Component class="com.cybergamems.view.components.DetailBillTable" name="detailBillTable1">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.cybergamems.view.components.DetailBillTable(maHoaDon)"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

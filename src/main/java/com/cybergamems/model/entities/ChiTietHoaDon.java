@@ -3,20 +3,24 @@ package com.cybergamems.model.entities;
 public class ChiTietHoaDon {
     private int maCTHD;
     private String tenDichVu;
+    private String loaiDichVu;
     private double soLuong;
     private double donGia;
+    private double thanhTien;
     
     //Constructor
     public ChiTietHoaDon(){
         maCTHD = 0;
         tenDichVu = "";
+        loaiDichVu="";
         soLuong = 0;
         donGia = 0;
     }
     
-    public ChiTietHoaDon(int maCTHD,String tenDichVu,double soLuong,double donGia){
+    public ChiTietHoaDon(int maCTHD,String tenDichVu, String loaiDichVu,double soLuong,double donGia){
         this.maCTHD = maCTHD;
         this.tenDichVu = tenDichVu;
+        this.loaiDichVu = loaiDichVu;
         this.soLuong = soLuong;
         this.donGia = donGia;
     }
@@ -29,6 +33,10 @@ public class ChiTietHoaDon {
     public String getTenDichVu() {
         return tenDichVu;
     }
+    
+    public String getLoaiDichVu(){
+        return loaiDichVu;
+    }
 
     public double getSoLuong() {
         return soLuong;
@@ -37,6 +45,7 @@ public class ChiTietHoaDon {
     public double getDonGia() {
         return donGia;
     }
+    
 
     //Setter
     public void setMaCTHD(int maCTHD) {
@@ -47,6 +56,10 @@ public class ChiTietHoaDon {
         this.tenDichVu = tenDichVu;
     }
 
+    public void setLoaiDichVu(String loaiDichVu){
+        this.loaiDichVu = loaiDichVu;
+    }
+    
     public void setSoLuong(double soLuong) {
         this.soLuong = soLuong;
     }

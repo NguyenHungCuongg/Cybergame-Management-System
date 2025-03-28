@@ -1,6 +1,7 @@
 package com.cybergamems.model.dao;
 
 import com.cybergamems.model.DatabaseConnection;
+import com.cybergamems.model.entities.ChiTietHoaDon;
 import com.cybergamems.model.entities.HoaDon;
 import java.sql.Connection;
 import java.util.Date;
@@ -62,23 +63,24 @@ public class HoaDonDAO {
     }
     
     public HoaDon getHoaDon(int maKhachHang, int maNhanVien){
-        String query = "SELECT " +
-                "HoaDon.MaHoaDon, " +
-                "HoaDon.TrangThaiHD, " +
-                "NhanVien.HoVaTen AS HoVaTenNhanVien, " +
-                "KhachHang.HoVaTen AS HoVaTenKhachHang, " + 
-                "HoaDon.TongTien, " +
-                "HoaDon.NgayLapHD " +
-            "FROM HoaDon " +
-            "JOIN NhanVien ON NhanVien.MaNhanVien = HoaDon.MaNhanVien " +
-            "JOIN KhachHang ON KhachHang.MaKhachHang = HoaDon.MaKhachHang " +
-            "WHERE HoaDon.MaKhachHang = ? AND HoaDon.MaNhanVien = ?;";
+        String query = "SELECT TOP 1 WITH TIES\n" +
+                "HoaDon.MaHoaDon,\n" +
+                "HoaDon.TrangThaiHD, \n" +
+                "NhanVien.HoVaTen AS HoVaTenNhanVien,\n" +
+                "KhachHang.HoVaTen AS HoVaTenKhachHang,  \n" +
+                "HoaDon.TongTien, \n" +
+                "HoaDon.NgayLapHD\n" +
+                "FROM HoaDon\n" +
+                "JOIN NhanVien ON NhanVien.MaNhanVien = HoaDon.MaNhanVien \n" +
+                "JOIN KhachHang ON KhachHang.MaKhachHang = HoaDon.MaKhachHang\n" +
+                "WHERE HoaDon.MaKhachHang = ? AND HoaDon.MaNhanVien = ?\n" +
+                "ORDER BY MaHoaDon DESC;";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, maKhachHang);
             stmt.setInt(2, maNhanVien);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 HoaDon hoaDon = new HoaDon(
                         rs.getInt("MaHoaDon"),
                         rs.getString("HoVatenNhanVien"),
@@ -108,5 +110,37 @@ public class HoaDonDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public ArrayList<ChiTietHoaDon> getAllCTHD(int maHoaDon){
+        ArrayList<ChiTietHoaDon> dsCTHD = new ArrayList<>();
+        String query ="SELECT *\n" +
+                        "FROM ChiTietHoaDon\n" +
+                        "JOIN DichVu ON DichVu.MaDichVu = ChiTietHoaDon.MaDichVu\n" +
+                        "WHERE MaHoaDon = ?;";
+        try (Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);
+            ) {
+            stmt.setInt(1, maHoaDon);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                ChiTietHoaDon cthd = new ChiTietHoaDon(
+                        rs.getInt("MaCTHD"),
+                        rs.getString("TenDichVu"),
+                        rs.getString("LoaiDichVu"),
+                        rs.getDouble("SoLuong"),
+                        rs.getDouble("DonGia")
+                ); 
+                dsCTHD.add(cthd);
+                System.out.println(rs.getInt("MaCTHD"));
+                System.out.println(rs.getInt("TenDichVu"));
+                System.out.println(rs.getInt("LoaiDichVu"));
+                System.out.println(rs.getInt("SoLuong"));
+                System.out.println(rs.getInt("DonGia"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsCTHD;
     }
 }

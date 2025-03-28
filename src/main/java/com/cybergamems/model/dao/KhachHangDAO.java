@@ -84,6 +84,21 @@ public class KhachHangDAO {
         }
     }
     
+    public void setTrangThaiKHByUsername(int trangThai, String username){
+        String query = "UPDATE KhachHang\n" +
+                    "SET TrangThaiKH = ?\n" +
+                    "WHERE Username = ?;";
+        try(Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);){
+            stmt.setInt(1, trangThai);
+            stmt.setString(2,username);
+            stmt.executeUpdate();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }      
+    }
+    
     public KhachHang getKhachHangByMaMay(int maMay){
         String query = "select * from KhachHang\n" +
                         "join PhienChoi on PhienChoi.MaKhachHang = KhachHang.MaKhachHang\n" +

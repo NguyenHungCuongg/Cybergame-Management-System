@@ -1,6 +1,7 @@
 package com.cybergamems.controller;
 
 import com.cybergamems.model.dao.HoaDonDAO;
+import com.cybergamems.model.entities.ChiTietHoaDon;
 import com.cybergamems.model.entities.HoaDon;
 import java.util.ArrayList;
 
@@ -28,5 +29,25 @@ public class HoaDonController {
             hoaDonTableData[i][5] = "chua chuyen";
         }
         return hoaDonTableData;
+    }
+    
+    public Object[][] getCTHDFromModel(int maHoaDon){
+        ArrayList<ChiTietHoaDon> CTHDList = hoaDonModel.getAllCTHD(maHoaDon);
+        
+        int columnNum = 5; 
+        int rowNum = CTHDList.size();
+        
+        Object[][] detailBillTableData = new Object[rowNum][columnNum];
+        for(int i = 0 ; i<rowNum;i++){
+            detailBillTableData[i][0] = CTHDList.get(i).getTenDichVu();
+            detailBillTableData[i][1] = CTHDList.get(i).getLoaiDichVu();
+            detailBillTableData[i][2] = CTHDList.get(i).getSoLuong();
+            detailBillTableData[i][3] = CTHDList.get(i).getDonGia();
+            detailBillTableData[i][4] = CTHDList.get(i).getThanhTien();
+        }
+        
+        
+        
+        return detailBillTableData;
     }
 }
