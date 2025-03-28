@@ -18,9 +18,8 @@ public class CybergameMS {
             loginFrame.setLocationRelativeTo(null);
             loginFrame.setVisible(true);
         });
-        
-        
         System.out.println("Testing...");
     }
 }
 
+    
