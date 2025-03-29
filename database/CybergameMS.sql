@@ -112,6 +112,17 @@ CREATE TABLE ThuChi (
     TongChiTieu MONEY CHECK (TongChiTieu >= 0) NOT NULL
 );
 
+--Bảng Chi Phi Hoạt Động (đây là bảng chi phí sẽ được nhập tay)
+CREATE TABLE ChiPhiHoatDong(
+	MaChiPhiHD INT PRIMARY KEY IDENTITY,
+	Thang INT CHECK (Thang BETWEEN 1 AND 12) NOT NULL,
+    Nam INT CHECK (Nam >= 2000) NOT NULL,
+	TienDien MONEY CHECK (TienDien >= 0) NOT NULL,
+	TienNuoc MONEY CHECK (TienNuoc >= 0) NOT NULL,
+	TienTaiNguyen MONEY CHECK (TienTaiNguyen >= 0) NOT NULL,
+	NgayNhap DATE DEFAULT GETDATE()  
+);
+
 -- Tạo trigger cập nhật TongTien bằng tổng các ThanhTien của các ChiTietHoaDon
 
 CREATE TRIGGER trg_UpdateTongTien

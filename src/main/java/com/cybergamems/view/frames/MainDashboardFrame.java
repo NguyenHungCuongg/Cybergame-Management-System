@@ -11,6 +11,7 @@ public class MainDashboardFrame extends javax.swing.JFrame {
     public MainDashboardFrame(NhanVien loginedNhanVien) {
         this.loginedNhanVien = loginedNhanVien;
         initComponents();
+      
         dashboardMenu2.getStaffName().setText(loginedNhanVien.getHoVaTen());
         setSize(1600, 850);
         /*

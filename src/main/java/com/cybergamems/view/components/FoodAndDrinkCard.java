@@ -2,6 +2,10 @@ package com.cybergamems.view.components;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
+import java.awt.BorderLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.UIManager;
 
 public class FoodAndDrinkCard extends javax.swing.JPanel {
@@ -13,15 +17,55 @@ public class FoodAndDrinkCard extends javax.swing.JPanel {
         }
         initComponents();
         setOpaque(false);
-        productName.setText(data.getProductName());
-        productCategory.setText(data.getProductCategory()!=null?data.getProductCategory().toString():"");
-        productPrice.setText(data.getProductPrice()+"");
+        displayCardInfo(data);
         try {
             UIManager.setLookAndFeel(new FlatDarkFlatIJTheme());
         } catch (Exception e) {
             System.err.println("Không thể thiết lập theme Dark Flat: " + e.getMessage());
         }
     }
+    
+    private void displayCardInfo(FoodAndDrinkCardModel data){
+        productName.setText(data.getProductName());
+        productCategory.setText(data.getProductCategory()!=null?data.getProductCategory().toString():"");
+        productPrice.setText(data.getProductPrice()+"");
+        loadImageIntoPanel(data.getProductImagePath());
+        System.out.println(data.getProductImagePath()); //"/images/mi-xao-bo-small.png"
+    }
+    
+    private void loadImageIntoPanel(String imagePath) {
+    imageCardSection.removeAll(); // Xóa các thành phần cũ
+    try {
+        ImageIcon originalIcon = new ImageIcon(getClass().getResource(imagePath)); 
+        Image originalImage = originalIcon.getImage();
+
+        // Resize ảnh để vừa với panel
+        int panelWidth = imageCardSection.getWidth();
+        int panelHeight = imageCardSection.getHeight();
+
+        if (panelWidth == 0 || panelHeight == 0) {
+            panelWidth = 200; // Giá trị mặc định nếu panel chưa render
+            panelHeight = 117;
+        }
+
+        Image scaledImage = originalImage.getScaledInstance(panelWidth, panelHeight, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+        // Tạo JLabel chứa ảnh và thêm vào panel
+        JLabel imageLabel = new JLabel(scaledIcon);
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+        imageLabel.setVerticalAlignment(JLabel.CENTER);
+
+        imageCardSection.setLayout(new BorderLayout()); // Căn giữa
+        imageCardSection.add(imageLabel, BorderLayout.CENTER);
+
+        imageCardSection.revalidate();
+        imageCardSection.repaint();
+    } catch (Exception e) {
+        System.err.println("Lỗi tải ảnh!");
+        e.printStackTrace();
+    }
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -41,11 +85,15 @@ public class FoodAndDrinkCard extends javax.swing.JPanel {
 
         cardMainPanel.setBackground(new java.awt.Color(50, 50, 50));
 
+        imageCardSection.setMaximumSize(new java.awt.Dimension(200, 117));
+        imageCardSection.setMinimumSize(new java.awt.Dimension(200, 117));
+        imageCardSection.setPreferredSize(new java.awt.Dimension(200, 117));
+
         javax.swing.GroupLayout imageCardSectionLayout = new javax.swing.GroupLayout(imageCardSection);
         imageCardSection.setLayout(imageCardSectionLayout);
         imageCardSectionLayout.setHorizontalGroup(
             imageCardSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
         imageCardSectionLayout.setVerticalGroup(
             imageCardSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +145,7 @@ public class FoodAndDrinkCard extends javax.swing.JPanel {
                 .addGroup(infoCardSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(infoCardSectionLayout.createSequentialGroup()
                         .addComponent(productTitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(productPrice))
                     .addGroup(infoCardSectionLayout.createSequentialGroup()
                         .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,7 +174,7 @@ public class FoodAndDrinkCard extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(cardMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(infoCardSection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(imageCardSection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(imageCardSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         cardMainPanelLayout.setVerticalGroup(
