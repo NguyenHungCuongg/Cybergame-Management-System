@@ -1,5 +1,8 @@
 package com.cybergamems.view.dialogs;
 
+import com.cybergamems.view.components.DetailBillTable;
+import java.awt.BorderLayout;
+
 public class DetailBillDialog extends javax.swing.JDialog {
     private int maHoaDon;
 
@@ -8,9 +11,18 @@ public class DetailBillDialog extends javax.swing.JDialog {
         this.maHoaDon = maHoaDon;
         System.out.println("Ma hoa don hien tai la1:" + maHoaDon);
         initComponents();
+        displayDetailBillTable(maHoaDon);
         System.out.println("Ma hoa don hien tai la2:" + maHoaDon);
         setLocationRelativeTo(null);
         setResizable(false);
+    }
+    
+    private void displayDetailBillTable(int maHoaDon){
+        DetailBillTable detailBillTable = new DetailBillTable(maHoaDon);
+        dialogInputSection2.setLayout(new java.awt.BorderLayout());
+        dialogInputSection2.add(detailBillTable, BorderLayout.CENTER); 
+        dialogInputSection2.revalidate();
+        dialogInputSection2.repaint();
     }
 
     @SuppressWarnings("unchecked")
@@ -21,8 +33,6 @@ public class DetailBillDialog extends javax.swing.JDialog {
         dialogHeader = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         dialogInputSection2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        detailBillTable1 = new com.cybergamems.view.components.DetailBillTable(maHoaDon);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -36,27 +46,15 @@ public class DetailBillDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
         dialogHeader.add(jLabel1, gridBagConstraints);
 
-        jScrollPane1.setViewportView(detailBillTable1);
-
         javax.swing.GroupLayout dialogInputSection2Layout = new javax.swing.GroupLayout(dialogInputSection2);
         dialogInputSection2.setLayout(dialogInputSection2Layout);
         dialogInputSection2Layout.setHorizontalGroup(
             dialogInputSection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 754, Short.MAX_VALUE)
-            .addGroup(dialogInputSection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(dialogInputSection2Layout.createSequentialGroup()
-                    .addGap(0, 4, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 4, Short.MAX_VALUE)))
+            .addGap(0, 762, Short.MAX_VALUE)
         );
         dialogInputSection2Layout.setVerticalGroup(
             dialogInputSection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 356, Short.MAX_VALUE)
-            .addGroup(dialogInputSection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(dialogInputSection2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1)
-                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -68,7 +66,7 @@ public class DetailBillDialog extends javax.swing.JDialog {
                 .addComponent(dialogInputSection2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(dialogHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE))
+                .addComponent(dialogHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,10 +99,8 @@ public class DetailBillDialog extends javax.swing.JDialog {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.cybergamems.view.components.DetailBillTable detailBillTable1;
     private javax.swing.JPanel dialogHeader;
     private javax.swing.JPanel dialogInputSection2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

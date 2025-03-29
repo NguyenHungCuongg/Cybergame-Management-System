@@ -102,10 +102,10 @@
                           <Group type="102" attributes="0">
                               <Component id="productTitlePanel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="productPrice" min="-2" max="-2" attributes="0"/>
+                              <Component id="productPriceLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSpinner1" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="numberOfProductsSpinner" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="addProductButton" min="-2" pref="86" max="-2" attributes="0"/>
                           </Group>
@@ -119,12 +119,12 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="productPrice" min="-2" max="-2" attributes="0"/>
+                          <Component id="productPriceLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="productTitlePanel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="45" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="numberOfProductsSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="addProductButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -142,8 +142,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="productName" min="-2" max="-2" attributes="0"/>
-                              <Component id="productCategory" min="-2" max="-2" attributes="0"/>
+                              <Component id="productNameLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="productCategoryLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -152,16 +152,16 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="productName" min="-2" max="-2" attributes="0"/>
+                          <Component id="productNameLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="productCategory" min="-2" max="-2" attributes="0"/>
+                          <Component id="productCategoryLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="productName">
+                <Component class="javax.swing.JLabel" name="productNameLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto" size="14" style="1"/>
@@ -169,7 +169,7 @@
                     <Property name="text" type="java.lang.String" value="FoodOrDrink Name"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="productCategory">
+                <Component class="javax.swing.JLabel" name="productCategoryLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Lt" size="10" style="0"/>
@@ -180,7 +180,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="productPrice">
+            <Component class="javax.swing.JLabel" name="productPriceLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto" size="18" style="1"/>
@@ -196,7 +196,12 @@
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="jSpinner1">
+            <Component class="javax.swing.JSpinner" name="numberOfProductsSpinner">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1)" type="code"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

@@ -187,9 +187,6 @@ VALUES
 (N'VIP',10000),
 (N'Livestream',15000)
 
-SELECT * FROM Phong
-SELECT * FROM MayTinh
-
 INSERT INTO MayTinh(MaPhong,TrangThaiMay)
 VALUES
 (1,N'Trống'),

@@ -49,6 +49,8 @@ public class BillForm extends javax.swing.JPanel {
     } 
     
     public void initButtonEvent(){
+        
+        //Xử lý sự kiện của nút xem chi tiết hóa đơn
         JButton detailButton = tableMenuBar1.getDetailTableDataButton();
         detailButton.addActionListener(new ActionListener(){
             @Override
