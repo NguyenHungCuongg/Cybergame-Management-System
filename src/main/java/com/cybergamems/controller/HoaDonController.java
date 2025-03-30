@@ -1,16 +1,22 @@
 package com.cybergamems.controller;
 
 import com.cybergamems.model.dao.HoaDonDAO;
+import com.cybergamems.model.dao.KhachHangDAO;
 import com.cybergamems.model.entities.ChiTietHoaDon;
 import com.cybergamems.model.entities.HoaDon;
+import com.cybergamems.model.entities.KhachHang;
+import com.cybergamems.model.entities.NhanVien;
 import com.cybergamems.utils.viewUtils;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 public class HoaDonController {
     private HoaDonDAO hoaDonModel;
+    private KhachHangDAO khachHangModel;
     
     public HoaDonController(){
         this.hoaDonModel = new HoaDonDAO();
+        this.khachHangModel = new KhachHangDAO();
     }
     
     //Đây sẽ là phương thức trả về đúng kiểu dữ liệu mảng 2 chiều Object mà JTable sẽ dùng trong view
@@ -47,8 +53,33 @@ public class HoaDonController {
             detailBillTableData[i][4] = viewUtils.formatDoubleWithoutDecimal(CTHDList.get(i).getThanhTien());
         }
         
-        
-        
         return detailBillTableData;
+    }
+    
+    public int addFoodAndDrinkBill(String tenDangNhap,NhanVien loginedNhanVien,DefaultTableModel tableData ){
+        KhachHang currentKhachHang = khachHangModel.getKhachHangByUsername(tenDangNhap);
+        if (currentKhachHang.getMaKhachHang()==-1 ) return 0;
+        if(currentKhachHang.isTrangThaiKH()==false) return 2;
+        int maKhachHang = currentKhachHang.getMaKhachHang();
+        int maNhanVien = loginedNhanVien.getMaNhanVien();
+        HoaDon currentHoaDon = new HoaDon();
+        currentHoaDon = hoaDonModel.getHoaDon(maKhachHang, maNhanVien);
+        int maHoaDon = currentHoaDon.getMaHoaDon();
+        
+        try{
+            for(int row = 0; row < tableData.getRowCount(); row++){
+                String tenDichVu = tableData.getValueAt(row,0).toString();
+                int maDichVu = hoaDonModel.getMaDichVuByTenDichVu(tenDichVu);
+                int soLuong = Integer.parseInt(tableData.getValueAt(row,2).toString());
+                double donGia = Double.parseDouble(tableData.getValueAt(row,3).toString());
+                double thanhTien = soLuong * donGia;
+                hoaDonModel.addCTHD(maHoaDon, maDichVu, soLuong, donGia, thanhTien);
+            }
+            return 1;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return 3;
+        }
     }
 }

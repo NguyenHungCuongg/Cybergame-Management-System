@@ -18,12 +18,11 @@ public class HoaDonDAO {
                     "HoaDon.TrangThaiHD, \n" +
                     "NhanVien.HoVaTen AS HoVaTenNhanVien,\n" +
                     "KhachHang.HoVaTen AS HoVaTenKhachHang,\n" +
-                    "HoaDon.TongTien\n ," +
+                    "HoaDon.TongTien,\n" +
                     "HoaDon.NgayLapHD\n " +
                     "FROM HoaDon \n" +
                     "JOIN NhanVien ON NhanVien.MaNhanVien = HoaDon.MaNhanVien\n" +
-                    "JOIN KhachHang ON KhachHang.MaKhachHang = HoaDon.MaKhachHang \n" +
-                    "LEFT JOIN ChiTietHoaDon ON ChiTietHoaDon.MaHoaDon = HoaDon.MaHoaDon";
+                    "JOIN KhachHang ON KhachHang.MaKhachHang = HoaDon.MaKhachHang";
         try (Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query);
             ) {
@@ -31,8 +30,8 @@ public class HoaDonDAO {
             while (rs.next()) {
                 HoaDon hoaDon = new HoaDon(
                         rs.getInt("MaHoaDon"),
-                        rs.getString("HoVatenNhanVien"),
-                        rs.getString("HoVaTenKhachHang"),
+                        rs.getNString("HoVatenNhanVien"),
+                        rs.getNString("HoVaTenKhachHang"),
                         rs.getBoolean("TrangThaiHD"), 
                         rs.getDouble("TongTien"),
                         rs.getDate("NgayLapHD")
@@ -83,8 +82,8 @@ public class HoaDonDAO {
             while (rs.next()) {
                 HoaDon hoaDon = new HoaDon(
                         rs.getInt("MaHoaDon"),
-                        rs.getString("HoVatenNhanVien"),
-                        rs.getString("HoVaTenKhachHang"),
+                        rs.getNString("HoVatenNhanVien"),
+                        rs.getNString("HoVaTenKhachHang"),
                         rs.getBoolean("TrangThaiHD"), //Ta có thể lấy giá trị Boolean với kiểu BIT trong database
                         rs.getDouble("TongTien"),
                         rs.getDate("NgayLapHD")
@@ -112,6 +111,21 @@ public class HoaDonDAO {
         }
     }
     
+    public int getMaDichVuByTenDichVu(String tenDichVu){
+        String query = "SELECT MaDichVu FROM DichVu WHERE TenDichVu=?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, tenDichVu);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                return rs.getInt("MaDichVu");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+    
     public ArrayList<ChiTietHoaDon> getAllCTHD(int maHoaDon){
         ArrayList<ChiTietHoaDon> dsCTHD = new ArrayList<>();
         String query ="SELECT *\n" +
@@ -126,17 +140,12 @@ public class HoaDonDAO {
             while (rs.next()) {
                 ChiTietHoaDon cthd = new ChiTietHoaDon(
                         rs.getInt("MaCTHD"),
-                        rs.getString("TenDichVu"),
+                        rs.getNString("TenDichVu"),
                         rs.getString("LoaiDichVu"),
                         rs.getDouble("SoLuong"),
                         rs.getDouble("DonGia")
                 ); 
                 dsCTHD.add(cthd);
-                System.out.println(rs.getInt("MaCTHD"));
-                System.out.println(rs.getInt("TenDichVu"));
-                System.out.println(rs.getInt("LoaiDichVu"));
-                System.out.println(rs.getInt("SoLuong"));
-                System.out.println(rs.getInt("DonGia"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

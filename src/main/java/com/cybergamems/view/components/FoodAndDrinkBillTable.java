@@ -11,6 +11,10 @@ import javax.swing.table.DefaultTableModel;
 public class FoodAndDrinkBillTable extends javax.swing.JPanel {
     private ServicesForm servicesForm;
     
+    public FoodAndDrinkBillTable(){
+        initComponents();
+    }
+    
     public FoodAndDrinkBillTable(ServicesForm servicesForm) {
         try {
             UIManager.setLookAndFeel(new FlatArcDarkOrangeIJTheme());
@@ -31,6 +35,16 @@ public class FoodAndDrinkBillTable extends javax.swing.JPanel {
         Object[][] tableData = {};
         DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
         return tableModel;
+    }
+    
+    public DefaultTableModel getCurrentTableData() {
+        return (DefaultTableModel) this.billTable.getModel(); 
+    }
+    
+    public void clearTableModel(){
+        DefaultTableModel model = (DefaultTableModel) billTable.getModel();
+        model.setRowCount(0);
+        billTable.setModel(model);
     }
     
     public void addFoodAndDrinkBill(String tenMon, String loai, int soLuong, double donGia){

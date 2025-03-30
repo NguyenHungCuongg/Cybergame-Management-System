@@ -92,17 +92,13 @@ public class MayTinhController {
         *Để làm được điều này thì ta cần phải truy xuất được mã hóa đơn tương tứng -> để tìm được mã hóa đơn tương tứng
         *Ta cần tìm thông qua mã khách hàng đang chơi máy này và mã nhân viên đang đăng nhập
         */
-        System.out.println("Ma may: "+maMay);
         KhachHang currentKhachHang = new KhachHang();
         currentKhachHang = khachHangModel.getKhachHangByMaMay(maMay);
         int maKhachHang = currentKhachHang.getMaKhachHang();
         int maNhanVien = loginedNhanVien.getMaNhanVien();
-        System.out.println("Ma khach hang bi ket thuc: "+maKhachHang);
-        System.out.println("Ma nhan vien ket thuc: "+maNhanVien);
         HoaDon currentHoaDon = new HoaDon();
         currentHoaDon = hoaDonModel.getHoaDon(maKhachHang, maNhanVien);
         int maHoaDon = currentHoaDon.getMaHoaDon();
-        System.out.println("Ma hoa don bi ket thuc:" + maHoaDon);
         
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -115,17 +111,10 @@ public class MayTinhController {
         double soGioPhienChoi = Duration.between(thoiGianBatDau, thoiGianHienTai).toMinutes() / 60.0;
         soGioPhienChoi = (soGioPhienChoi<=1)?1:soGioPhienChoi;
         
-        System.out.println("Thoi gian bat dau: " + thoiGianBatDau);
-        
-        System.out.println("Thoi gian hien tai: " + thoiGianHienTai);
-        
-        System.out.println("So gio choi: " + soGioPhienChoi);
-        
         double giaMoiGio = mayTinhModel.getMayTinh(maMay).getGiaMoiGio();
         
         double thanhTien = soGioPhienChoi*giaMoiGio;
         
-        System.out.println("Thanh tien: " + thanhTien);
         
         int maDichVu = 1;//Mã dịch vụ của dịch vụ chơi game mặc định bằng 1;
         

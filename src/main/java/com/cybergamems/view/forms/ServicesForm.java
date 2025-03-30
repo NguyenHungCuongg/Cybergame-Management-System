@@ -1,17 +1,23 @@
 package com.cybergamems.view.forms;
+import com.cybergamems.controller.HoaDonController;
+import com.cybergamems.model.entities.NhanVien;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
 import com.cybergamems.utils.viewUtils;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
-public class ServicesForm extends javax.swing.JPanel {
-    public ServicesForm() {
+public class ServicesForm extends javax.swing.JPanel {    
+    private NhanVien loginedNhanVien;
+    
+    public ServicesForm(NhanVien loginedNhanVien) {
+        this.loginedNhanVien = loginedNhanVien;
         initComponents();
     }
     
     public void updateTotalBill() {
         double tongTien = foodAndDrinkBillTable1.calculateTotalBill();
-        
         totalBillLabel.setText("Tổng tiền: " + viewUtils.formatDoubleWithoutDecimal(tongTien) + " VND");
         totalBillLabel.revalidate();
         totalBillLabel.repaint();
@@ -57,7 +63,7 @@ public class ServicesForm extends javax.swing.JPanel {
         detailBillTablePanel.setLayout(detailBillTablePanelLayout);
         detailBillTablePanelLayout.setHorizontalGroup(
             detailBillTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(foodAndDrinkBillTable1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(foodAndDrinkBillTable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         detailBillTablePanelLayout.setVerticalGroup(
             detailBillTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,6 +107,11 @@ public class ServicesForm extends javax.swing.JPanel {
         cancelButton.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         cancelButton.setText("Hủy");
         cancelButton.setPreferredSize(new java.awt.Dimension(150, 40));
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -235,12 +246,42 @@ public class ServicesForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addToBillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToBillButtonActionPerformed
-        // TODO add your handling code here:
+        String tenDangNhap = clientUsernameTextField.getText();
+        if(tenDangNhap.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Cần phải nhập tên đăng nhập của khách hàng!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        HoaDonController hoaDonController = new HoaDonController();
+        DefaultTableModel tableData = foodAndDrinkBillTable1.getCurrentTableData();
+            
+        int result = hoaDonController.addFoodAndDrinkBill(tenDangNhap,loginedNhanVien,tableData);
+        if(result==0){
+            JOptionPane.showMessageDialog(null, "Không tìm được tên đăng nhập của khách hàng!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else if(result==1){
+            JOptionPane.showMessageDialog(null, "Đã thêm vào hóa đơn của khách hàng!");
+            return;
+        }
+        else if(result==2){
+            JOptionPane.showMessageDialog(null, "Người dùng không hoạt động", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi thêm vào hóa đơn của khách hàng!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
     }//GEN-LAST:event_addToBillButtonActionPerformed
 
     private void clientUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientUsernameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_clientUsernameTextFieldActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        foodAndDrinkBillTable1.clearTableModel();
+        totalBillLabel.setText("Tổng tiền: 0 VND");
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

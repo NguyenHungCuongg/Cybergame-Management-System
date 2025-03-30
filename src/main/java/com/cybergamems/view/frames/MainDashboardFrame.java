@@ -33,7 +33,7 @@ public class MainDashboardFrame extends javax.swing.JFrame {
                         setCurrentForm(new ClientManagementForm(loginedNhanVien));
                         break;
                     case 3:
-                        setCurrentForm(new ServicesForm());
+                        setCurrentForm(new ServicesForm(loginedNhanVien));
                         break;
                     case 4:
                         setCurrentForm(new StaffManagementForm(loginedNhanVien));

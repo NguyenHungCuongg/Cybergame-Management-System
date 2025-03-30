@@ -2,8 +2,6 @@ package com.cybergamems.view.forms;
 
 import com.cybergamems.controller.MayTinhController;
 import com.cybergamems.model.entities.NhanVien;
-import com.cybergamems.view.components.ClientManagementTable;
-import com.cybergamems.view.components.ComputerRoomTable;
 import com.cybergamems.view.dialogs.AddSessionDialog;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
