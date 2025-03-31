@@ -1,18 +1,36 @@
 package com.cybergamems.view.forms;
 
+import com.cybergamems.controller.ThongKeController;
 import com.cybergamems.view.components.chart.ModelChart;
+import com.cybergamems.view.dialogs.AddExpensesDialog;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Calendar;
+import javax.swing.JFrame;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
 
 public class StatisticsForm extends javax.swing.JPanel {
     public StatisticsForm() {
         initComponents();
+        initSpinnerValue();
         initChartData();
+        initAndDisplayQuantityData();
     }
     
-    public void initChartData(){
+    public void initSpinnerValue(){
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR); // Lấy năm hiện tại
+        namSpinner.setModel(new SpinnerNumberModel(currentYear, 2024, currentYear, 1)); //Giá trị của spinner bắt đầu từ năm 2024 đến năm hiện tại
+        
+        JSpinner.NumberEditor editor = new JSpinner.NumberEditor(namSpinner, "####"); // Không có dấu phẩy
+        namSpinner.setEditor(editor);
+    }
+    
+    private void initChartData(){
         chart.addLegend("Doanh thu", new Color(40, 199, 122));
-        chart.addLegend("Chi phí", new Color(145, 54, 209));
+        chart.addLegend("Chi phí", new Color(46, 130, 219));
         chart.addLegend("Lợi nhuận", new Color(255, 140, 0));
         chart.addData(new ModelChart("Tháng 1", new double[]{50000000, 20000000, 8000000}));
         chart.addData(new ModelChart("Tháng 2", new double[]{60000000, 75000000, 9000000}));
@@ -27,49 +45,72 @@ public class StatisticsForm extends javax.swing.JPanel {
         chart.addData(new ModelChart("Tháng 11", new double[]{35000000, 54000000, 30000000}));
         chart.addData(new ModelChart("Tháng 12", new double[]{19000000, 28000000, 8100000}));
     }
-
     
+    private void initAndDisplayQuantityData(){
+        int soMayPhongThuong=0;
+        int soMayPhongVIP=0;
+        int soMayPhongLivestream=0;
+        int soNhanVien=0;
+        int soKhachHang=0;
+        
+        ThongKeController thongKeController = new ThongKeController();
+        ArrayList<Integer> soLuongMay = thongKeController.getSoLuongMayFromModel();
+        soMayPhongThuong = soLuongMay.get(0);
+        soMayPhongVIP  = soLuongMay.get(1);
+        soMayPhongLivestream = soLuongMay.get(2);
+        soNhanVien = thongKeController.getSoLuongNVFromModel();
+        soKhachHang = thongKeController.getSoLuongKHFromModel();
+        
+        quantityNormalComputerLabel.setText(String.valueOf(soMayPhongThuong));
+        quantityVIPComputerLabel.setText(String.valueOf(soMayPhongVIP));
+        quantityLivestreamComputerLabel.setText(String.valueOf(soMayPhongLivestream));
+        quantityStaffLabel.setText(String.valueOf(soNhanVien));
+        quantityClientLabel.setText(String.valueOf(soKhachHang));
+    }
+
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        statisticTable1 = new com.cybergamems.view.components.StatisticTable();
         quantitySection = new javax.swing.JPanel();
         quantityOfNormalComputerPanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         normalComputerIcon = new javax.swing.JLabel();
         displayQuantityPanel = new javax.swing.JPanel();
         quantityHeaderLabel = new javax.swing.JLabel();
-        quantityInfoLabel = new javax.swing.JLabel();
+        quantityNormalComputerLabel = new javax.swing.JLabel();
         quantityOfVIPComputerPanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         VIPComputerIcon = new javax.swing.JLabel();
         displayQuantityPanel1 = new javax.swing.JPanel();
         quantityHeaderLabel1 = new javax.swing.JLabel();
-        quantityInfoLabel1 = new javax.swing.JLabel();
+        quantityVIPComputerLabel = new javax.swing.JLabel();
         quantityOfLivestreamComputerPanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         LivestreamComputerIcon = new javax.swing.JLabel();
         displayQuantityPanel2 = new javax.swing.JPanel();
         quantityHeaderLabel2 = new javax.swing.JLabel();
-        quantityInfoLabel2 = new javax.swing.JLabel();
+        quantityLivestreamComputerLabel = new javax.swing.JLabel();
         quantityOfClientPanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         staffIcon = new javax.swing.JLabel();
         displayQuantityPanel3 = new javax.swing.JPanel();
         quantityHeaderLabel3 = new javax.swing.JLabel();
-        quantityInfoLabel3 = new javax.swing.JLabel();
+        quantityStaffLabel = new javax.swing.JLabel();
         quantityOfStaffPanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         clientIcon = new javax.swing.JLabel();
         displayQuantityPanel4 = new javax.swing.JPanel();
         quantityHeaderLabel4 = new javax.swing.JLabel();
-        quantityInfoLabel4 = new javax.swing.JLabel();
+        quantityClientLabel = new javax.swing.JLabel();
         chartSection = new javax.swing.JPanel();
         chartSectionScrollPane = new javax.swing.JScrollPane();
         mainChartPanel = new javax.swing.JPanel();
         charFunctionButtonsBar = new javax.swing.JPanel();
         addExpensesButton = new javax.swing.JButton();
         displayStatisticButton = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
+        namSpinner = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         chart = new com.cybergamems.view.components.chart.Chart();
+        statisticTable2 = new com.cybergamems.view.components.StatisticTable();
 
         setBackground(new java.awt.Color(50, 50, 50));
 
@@ -86,15 +127,15 @@ public class StatisticsForm extends javax.swing.JPanel {
         quantityHeaderLabel.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         quantityHeaderLabel.setText("Số máy phòng thường");
 
-        quantityInfoLabel.setFont(new java.awt.Font("Roboto Bk", 1, 24)); // NOI18N
-        quantityInfoLabel.setText("0");
+        quantityNormalComputerLabel.setFont(new java.awt.Font("Roboto Bk", 1, 24)); // NOI18N
+        quantityNormalComputerLabel.setText("0");
 
         javax.swing.GroupLayout displayQuantityPanelLayout = new javax.swing.GroupLayout(displayQuantityPanel);
         displayQuantityPanel.setLayout(displayQuantityPanelLayout);
         displayQuantityPanelLayout.setHorizontalGroup(
             displayQuantityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(quantityHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(quantityInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(quantityNormalComputerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         displayQuantityPanelLayout.setVerticalGroup(
             displayQuantityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +143,7 @@ public class StatisticsForm extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(quantityHeaderLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(quantityInfoLabel)
+                .addComponent(quantityNormalComputerLabel)
                 .addContainerGap())
         );
 
@@ -124,15 +165,15 @@ public class StatisticsForm extends javax.swing.JPanel {
         quantityHeaderLabel1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         quantityHeaderLabel1.setText("Số máy phòng VIP");
 
-        quantityInfoLabel1.setFont(new java.awt.Font("Roboto Bk", 1, 24)); // NOI18N
-        quantityInfoLabel1.setText("0");
+        quantityVIPComputerLabel.setFont(new java.awt.Font("Roboto Bk", 1, 24)); // NOI18N
+        quantityVIPComputerLabel.setText("0");
 
         javax.swing.GroupLayout displayQuantityPanel1Layout = new javax.swing.GroupLayout(displayQuantityPanel1);
         displayQuantityPanel1.setLayout(displayQuantityPanel1Layout);
         displayQuantityPanel1Layout.setHorizontalGroup(
             displayQuantityPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(quantityHeaderLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(quantityInfoLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(quantityVIPComputerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         displayQuantityPanel1Layout.setVerticalGroup(
             displayQuantityPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +181,7 @@ public class StatisticsForm extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(quantityHeaderLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(quantityInfoLabel1)
+                .addComponent(quantityVIPComputerLabel)
                 .addContainerGap())
         );
 
@@ -164,15 +205,15 @@ public class StatisticsForm extends javax.swing.JPanel {
         quantityHeaderLabel2.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         quantityHeaderLabel2.setText("Số máy phòng Livestream");
 
-        quantityInfoLabel2.setFont(new java.awt.Font("Roboto Bk", 1, 24)); // NOI18N
-        quantityInfoLabel2.setText("0");
+        quantityLivestreamComputerLabel.setFont(new java.awt.Font("Roboto Bk", 1, 24)); // NOI18N
+        quantityLivestreamComputerLabel.setText("0");
 
         javax.swing.GroupLayout displayQuantityPanel2Layout = new javax.swing.GroupLayout(displayQuantityPanel2);
         displayQuantityPanel2.setLayout(displayQuantityPanel2Layout);
         displayQuantityPanel2Layout.setHorizontalGroup(
             displayQuantityPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(quantityHeaderLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(quantityInfoLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(quantityLivestreamComputerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         displayQuantityPanel2Layout.setVerticalGroup(
             displayQuantityPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +221,7 @@ public class StatisticsForm extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(quantityHeaderLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(quantityInfoLabel2)
+                .addComponent(quantityLivestreamComputerLabel)
                 .addContainerGap())
         );
 
@@ -204,15 +245,15 @@ public class StatisticsForm extends javax.swing.JPanel {
         quantityHeaderLabel3.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         quantityHeaderLabel3.setText("Số nhân viên");
 
-        quantityInfoLabel3.setFont(new java.awt.Font("Roboto Bk", 1, 24)); // NOI18N
-        quantityInfoLabel3.setText("0");
+        quantityStaffLabel.setFont(new java.awt.Font("Roboto Bk", 1, 24)); // NOI18N
+        quantityStaffLabel.setText("0");
 
         javax.swing.GroupLayout displayQuantityPanel3Layout = new javax.swing.GroupLayout(displayQuantityPanel3);
         displayQuantityPanel3.setLayout(displayQuantityPanel3Layout);
         displayQuantityPanel3Layout.setHorizontalGroup(
             displayQuantityPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(quantityHeaderLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(quantityInfoLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(quantityStaffLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         displayQuantityPanel3Layout.setVerticalGroup(
             displayQuantityPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +261,7 @@ public class StatisticsForm extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(quantityHeaderLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(quantityInfoLabel3)
+                .addComponent(quantityStaffLabel)
                 .addContainerGap())
         );
 
@@ -242,17 +283,17 @@ public class StatisticsForm extends javax.swing.JPanel {
         quantityOfStaffPanel.add(clientIcon, gridBagConstraints);
 
         quantityHeaderLabel4.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        quantityHeaderLabel4.setText("Số khách hàng");
+        quantityHeaderLabel4.setText("Số khách hàng ");
 
-        quantityInfoLabel4.setFont(new java.awt.Font("Roboto Bk", 1, 24)); // NOI18N
-        quantityInfoLabel4.setText("0");
+        quantityClientLabel.setFont(new java.awt.Font("Roboto Bk", 1, 24)); // NOI18N
+        quantityClientLabel.setText("0");
 
         javax.swing.GroupLayout displayQuantityPanel4Layout = new javax.swing.GroupLayout(displayQuantityPanel4);
         displayQuantityPanel4.setLayout(displayQuantityPanel4Layout);
         displayQuantityPanel4Layout.setHorizontalGroup(
             displayQuantityPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(quantityHeaderLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(quantityInfoLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(quantityClientLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         displayQuantityPanel4Layout.setVerticalGroup(
             displayQuantityPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,7 +301,7 @@ public class StatisticsForm extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(quantityHeaderLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(quantityInfoLabel4)
+                .addComponent(quantityClientLabel)
                 .addContainerGap())
         );
 
@@ -300,7 +341,7 @@ public class StatisticsForm extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(namSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(displayStatisticButton)
                 .addContainerGap())
@@ -312,7 +353,7 @@ public class StatisticsForm extends javax.swing.JPanel {
                 .addGroup(charFunctionButtonsBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addExpensesButton)
                     .addComponent(displayStatisticButton)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
@@ -323,7 +364,9 @@ public class StatisticsForm extends javax.swing.JPanel {
             mainChartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(charFunctionButtonsBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(mainChartPanelLayout.createSequentialGroup()
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
+                .addGroup(mainChartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
+                    .addComponent(statisticTable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         mainChartPanelLayout.setVerticalGroup(
@@ -332,7 +375,9 @@ public class StatisticsForm extends javax.swing.JPanel {
                 .addComponent(charFunctionButtonsBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chart, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(statisticTable2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         chartSectionScrollPane.setViewportView(mainChartPanel);
@@ -345,7 +390,7 @@ public class StatisticsForm extends javax.swing.JPanel {
         );
         chartSectionLayout.setVerticalGroup(
             chartSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(chartSectionScrollPane)
+            .addComponent(chartSectionScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -371,7 +416,8 @@ public class StatisticsForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addExpensesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addExpensesButtonActionPerformed
-        // TODO add your handling code here:
+        AddExpensesDialog addExpensesDialog = new AddExpensesDialog((JFrame) SwingUtilities.getWindowAncestor(StatisticsForm.this),true);
+        addExpensesDialog.setVisible(true);
     }//GEN-LAST:event_addExpensesButtonActionPerformed
 
     private void displayStatisticButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayStatisticButtonActionPerformed
@@ -395,25 +441,27 @@ public class StatisticsForm extends javax.swing.JPanel {
     private javax.swing.JPanel displayQuantityPanel4;
     private javax.swing.JButton displayStatisticButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JPanel mainChartPanel;
+    private javax.swing.JSpinner namSpinner;
     private javax.swing.JLabel normalComputerIcon;
+    private javax.swing.JLabel quantityClientLabel;
     private javax.swing.JLabel quantityHeaderLabel;
     private javax.swing.JLabel quantityHeaderLabel1;
     private javax.swing.JLabel quantityHeaderLabel2;
     private javax.swing.JLabel quantityHeaderLabel3;
     private javax.swing.JLabel quantityHeaderLabel4;
-    private javax.swing.JLabel quantityInfoLabel;
-    private javax.swing.JLabel quantityInfoLabel1;
-    private javax.swing.JLabel quantityInfoLabel2;
-    private javax.swing.JLabel quantityInfoLabel3;
-    private javax.swing.JLabel quantityInfoLabel4;
+    private javax.swing.JLabel quantityLivestreamComputerLabel;
+    private javax.swing.JLabel quantityNormalComputerLabel;
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel quantityOfClientPanel;
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel quantityOfLivestreamComputerPanel;
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel quantityOfNormalComputerPanel;
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel quantityOfStaffPanel;
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel quantityOfVIPComputerPanel;
     private javax.swing.JPanel quantitySection;
+    private javax.swing.JLabel quantityStaffLabel;
+    private javax.swing.JLabel quantityVIPComputerLabel;
     private javax.swing.JLabel staffIcon;
+    private com.cybergamems.view.components.StatisticTable statisticTable1;
+    private com.cybergamems.view.components.StatisticTable statisticTable2;
     // End of variables declaration//GEN-END:variables
 }

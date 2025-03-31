@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Component class="com.cybergamems.view.components.StatisticTable" name="statisticTable1">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="32" green="32" red="32" type="rgb"/>
@@ -84,7 +88,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="quantityHeaderLabel" min="-2" pref="146" max="-2" attributes="0"/>
-                      <Component id="quantityInfoLabel" min="-2" pref="146" max="-2" attributes="0"/>
+                      <Component id="quantityNormalComputerLabel" min="-2" pref="146" max="-2" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -93,7 +97,7 @@
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="quantityHeaderLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="quantityInfoLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantityNormalComputerLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -108,7 +112,7 @@
                     <Property name="text" type="java.lang.String" value="S&#x1ed1; m&#xe1;y ph&#xf2;ng th&#x1b0;&#x1edd;ng"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="quantityInfoLabel">
+                <Component class="javax.swing.JLabel" name="quantityNormalComputerLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Bk" size="24" style="1"/>
@@ -147,7 +151,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="quantityHeaderLabel1" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
-                      <Component id="quantityInfoLabel1" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                      <Component id="quantityVIPComputerLabel" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -156,7 +160,7 @@
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="quantityHeaderLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="quantityInfoLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantityVIPComputerLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -171,7 +175,7 @@
                     <Property name="text" type="java.lang.String" value="S&#x1ed1; m&#xe1;y ph&#xf2;ng VIP"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="quantityInfoLabel1">
+                <Component class="javax.swing.JLabel" name="quantityVIPComputerLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Bk" size="24" style="1"/>
@@ -210,7 +214,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="quantityHeaderLabel2" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
-                      <Component id="quantityInfoLabel2" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                      <Component id="quantityLivestreamComputerLabel" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -219,7 +223,7 @@
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="quantityHeaderLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="quantityInfoLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantityLivestreamComputerLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -234,7 +238,7 @@
                     <Property name="text" type="java.lang.String" value="S&#x1ed1; m&#xe1;y ph&#xf2;ng Livestream"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="quantityInfoLabel2">
+                <Component class="javax.swing.JLabel" name="quantityLivestreamComputerLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Bk" size="24" style="1"/>
@@ -273,7 +277,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="quantityHeaderLabel3" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
-                      <Component id="quantityInfoLabel3" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                      <Component id="quantityStaffLabel" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -282,7 +286,7 @@
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="quantityHeaderLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="quantityInfoLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantityStaffLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -297,7 +301,7 @@
                     <Property name="text" type="java.lang.String" value="S&#x1ed1; nh&#xe2;n vi&#xea;n"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="quantityInfoLabel3">
+                <Component class="javax.swing.JLabel" name="quantityStaffLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Bk" size="24" style="1"/>
@@ -336,7 +340,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="quantityHeaderLabel4" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
-                      <Component id="quantityInfoLabel4" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                      <Component id="quantityClientLabel" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -345,7 +349,7 @@
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="quantityHeaderLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="quantityInfoLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantityClientLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -357,10 +361,10 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto" size="12" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="S&#x1ed1; kh&#xe1;ch h&#xe0;ng"/>
+                    <Property name="text" type="java.lang.String" value="S&#x1ed1; kh&#xe1;ch h&#xe0;ng "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="quantityInfoLabel4">
+                <Component class="javax.swing.JLabel" name="quantityClientLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Bk" size="24" style="1"/>
@@ -389,7 +393,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="chartSectionScrollPane" alignment="0" max="32767" attributes="0"/>
+              <Component id="chartSectionScrollPane" alignment="0" pref="650" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -404,8 +408,11 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="charFunctionButtonsBar" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="chart" pref="958" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="chart" pref="958" max="32767" attributes="0"/>
+                              <Component id="statisticTable2" max="32767" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -416,7 +423,9 @@
                           <Component id="charFunctionButtonsBar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="chart" min="-2" pref="422" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="statisticTable2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -433,7 +442,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSpinner1" min="-2" pref="114" max="-2" attributes="0"/>
+                              <Component id="namSpinner" min="-2" pref="114" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="displayStatisticButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -447,7 +456,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="addExpensesButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="displayStatisticButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="namSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="16" max="32767" attributes="0"/>
@@ -472,7 +481,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayStatisticButtonActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JSpinner" name="jSpinner1">
+                    <Component class="javax.swing.JSpinner" name="namSpinner">
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel1">
                       <Properties>
@@ -482,6 +491,8 @@
                   </SubComponents>
                 </Container>
                 <Component class="com.cybergamems.view.components.chart.Chart" name="chart">
+                </Component>
+                <Component class="com.cybergamems.view.components.StatisticTable" name="statisticTable2">
                 </Component>
               </SubComponents>
             </Container>
