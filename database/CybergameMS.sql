@@ -32,7 +32,7 @@ CREATE TABLE ViTri (
 CREATE TABLE Phong (
     MaPhong INT PRIMARY KEY IDENTITY,
     TenPhong NVARCHAR(100) NOT NULL,
-    GiaMoiGio MONEY CHECK (GiaMoGio >= 0)
+    GiaMoiGio MONEY CHECK (GiaMoiGio >= 0)
 );
 
 -- Bảng Máy Tính
@@ -144,6 +144,71 @@ BEGIN
     );
 END;
 
+-- Tạo trigger để cập nhật dữ liệu TongDoanhThu, Thang, Nam trong ThuChi dựa trên các HoaDon đã thanh toán
+
+CREATE TRIGGER trg_UpdateTongDoanhThu
+ON HoaDon
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Cập nhật bảng ThuChi khi có hóa đơn mới hoặc cập nhật trạng thái
+    UPDATE TC
+    SET TC.TongDoanhThu = (
+        SELECT SUM(HD.TongTien)
+        FROM HoaDon HD
+        WHERE HD.TrangThaiHD = 1
+        AND MONTH(HD.NgayLapHD) = TC.Thang
+        AND YEAR(HD.NgayLapHD) = TC.Nam
+    )
+    FROM ThuChi TC
+    INNER JOIN inserted I ON MONTH(I.NgayLapHD) = TC.Thang AND YEAR(I.NgayLapHD) = TC.Nam;
+
+    -- Nếu tháng và năm chưa có trong ThuChi, thêm mới
+    INSERT INTO ThuChi (Thang, Nam, TongDoanhThu, TongChiTieu)
+    SELECT 
+        MONTH(I.NgayLapHD),
+        YEAR(I.NgayLapHD),
+        SUM(I.TongTien), 
+        0 -- Mặc định chi tiêu là 0 khi mới tạo
+    FROM inserted I
+    WHERE I.TrangThaiHD = 1
+    AND NOT EXISTS (
+        SELECT 1 FROM ThuChi TC 
+        WHERE TC.Thang = MONTH(I.NgayLapHD) 
+        AND TC.Nam = YEAR(I.NgayLapHD)
+    )
+    GROUP BY MONTH(I.NgayLapHD), YEAR(I.NgayLapHD);
+END;
+
+-- Tạo trigger để cập nhật lại dữ liệu TongDoanhThu, Thang, Nam trong ThuChi khi HoaDon bị xóa
+
+CREATE TRIGGER trg_DeleteHoaDon_UpdateTongDoanhThu
+ON HoaDon
+AFTER DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Cập nhật TongDoanhThu, đảm bảo không bị NULL
+    UPDATE TC
+    SET TC.TongDoanhThu = COALESCE((
+        SELECT SUM(HD.TongTien)
+        FROM HoaDon HD
+        WHERE HD.TrangThaiHD = 1
+        AND MONTH(HD.NgayLapHD) = TC.Thang
+        AND YEAR(HD.NgayLapHD) = TC.Nam
+    ), 0)
+    FROM ThuChi TC
+    INNER JOIN deleted D 
+    ON MONTH(D.NgayLapHD) = TC.Thang AND YEAR(D.NgayLapHD) = TC.Nam;
+
+    -- Xóa dòng trong ThuChi nếu TongDoanhThu trở thành 0
+    DELETE FROM ThuChi
+    WHERE TongDoanhThu = 0;
+END;
+
 
 
 -- Chèn dữ liệu vào các bảng mặc định
@@ -181,7 +246,7 @@ VALUES
 (2,'Ho Minh Dat','Datt','123','datminhho@gmail.com',2,'2025-03-10'),
 (3,'Huynh Quang Minh Quan','Quann','123','quanminhquanghuynh@gmail.com',3,'2025-03-11');
 
-INSERT INTO Phong (TenPhong,GiaMoGio)
+INSERT INTO Phong (TenPhong,GiaMoiGio)
 VALUES 
 (N'Thường',7500),
 (N'VIP',10000),
@@ -249,3 +314,6 @@ VALUES
 (3,N'Trống'),
 (3,N'Trống'),
 (3,N'Trống')
+
+
+

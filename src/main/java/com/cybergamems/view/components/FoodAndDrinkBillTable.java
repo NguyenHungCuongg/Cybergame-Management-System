@@ -1,6 +1,6 @@
 package com.cybergamems.view.components;
 
-import com.cybergamems.utils.viewUtils;
+import com.cybergamems.utils.ViewUtils;
 import com.cybergamems.view.forms.ServicesForm;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;

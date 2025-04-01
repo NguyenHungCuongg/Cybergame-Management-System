@@ -3,6 +3,7 @@ package com.cybergamems.view.forms;
 import com.cybergamems.model.entities.NhanVien;
 import com.cybergamems.view.components.BillTable;
 import com.cybergamems.view.dialogs.DetailBillDialog;
+import com.cybergamems.view.dialogs.PaymentDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -22,6 +23,7 @@ public class BillForm extends javax.swing.JPanel {
         initTableEvent();
         initButtonEvent();
     }
+    
     
     public void initTableEvent(){
         billTable1.getBillTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -51,13 +53,24 @@ public class BillForm extends javax.swing.JPanel {
     public void initButtonEvent(){
         
         //Xử lý sự kiện của nút xem chi tiết hóa đơn
-        JButton detailButton = tableMenuBar1.getDetailTableDataButton();
+        JButton detailButton = billTableMenuBar1.getDetailTableDataButton();
         detailButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 int selectedBillID = Integer.parseInt(billTable1.getBillTable().getValueAt(selectedBillIndex,0).toString());
                 DetailBillDialog detailBillDialog =new DetailBillDialog((JFrame) SwingUtilities.getWindowAncestor(BillForm.this),true,selectedBillID);
                 detailBillDialog.setVisible(true);
+            }
+        });
+        
+        //Xử lý sự kiện của nút thanh toán
+        JButton payButton = billTableMenuBar1.getPayTableDataButton();
+        payButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                int selectedBillID = Integer.parseInt(billTable1.getBillTable().getValueAt(selectedBillIndex,0).toString());
+                PaymentDialog paymentDialog = new PaymentDialog((JFrame) SwingUtilities.getWindowAncestor(BillForm.this),true,selectedBillID);
+                paymentDialog.setVisible(true);
             }
         });
     }
@@ -67,7 +80,7 @@ public class BillForm extends javax.swing.JPanel {
     private void initComponents() {
 
         BillHeaderPanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
-        tableMenuBar1 = new com.cybergamems.view.components.TableMenuBar();
+        billTableMenuBar1 = new com.cybergamems.view.components.BillTableMenuBar();
         billTablePanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         billTable1 = new com.cybergamems.view.components.BillTable();
 
@@ -77,11 +90,13 @@ public class BillForm extends javax.swing.JPanel {
         BillHeaderPanel.setLayout(BillHeaderPanelLayout);
         BillHeaderPanelLayout.setHorizontalGroup(
             BillHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tableMenuBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(billTableMenuBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
         );
         BillHeaderPanelLayout.setVerticalGroup(
             BillHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tableMenuBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BillHeaderPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(billTableMenuBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         billTablePanel.setPreferredSize(new java.awt.Dimension(464, 431));
@@ -107,7 +122,7 @@ public class BillForm extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BillHeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(billTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE))
+                    .addComponent(billTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -125,7 +140,7 @@ public class BillForm extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel BillHeaderPanel;
     private com.cybergamems.view.components.BillTable billTable1;
+    private com.cybergamems.view.components.BillTableMenuBar billTableMenuBar1;
     private com.cybergamems.view.panels.CustomizedBorderRadiusPanel billTablePanel;
-    private com.cybergamems.view.components.TableMenuBar tableMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

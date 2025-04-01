@@ -6,7 +6,7 @@ import com.cybergamems.model.entities.ChiTietHoaDon;
 import com.cybergamems.model.entities.HoaDon;
 import com.cybergamems.model.entities.KhachHang;
 import com.cybergamems.model.entities.NhanVien;
-import com.cybergamems.utils.viewUtils;
+import com.cybergamems.utils.ViewUtils;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,11 +32,12 @@ public class HoaDonController {
             hoaDonTableData[i][1] = hoaDonList.get(i).getTenNhanVien();
             hoaDonTableData[i][2] = hoaDonList.get(i).getTenKhachHang();
             hoaDonTableData[i][3] = hoaDonList.get(i).getNgayLapHoaDon();
-            hoaDonTableData[i][4] = viewUtils.formatDoubleWithoutDecimal(hoaDonList.get(i).getTongTien());
-            hoaDonTableData[i][5] = "chua chuyen";
+            hoaDonTableData[i][4] = ViewUtils.formatDoubleWithoutDecimal(hoaDonList.get(i).getTongTien());
+            hoaDonTableData[i][5] = hoaDonList.get(i).isTrangThaiHD()?"Đã thanh toán":"Chưa thanh toán";
         }
         return hoaDonTableData;
     }
+    
     
     public Object[][] getCTHDFromModel(int maHoaDon){
         ArrayList<ChiTietHoaDon> CTHDList = hoaDonModel.getAllCTHD(maHoaDon);
@@ -49,11 +50,21 @@ public class HoaDonController {
             detailBillTableData[i][0] = CTHDList.get(i).getTenDichVu();
             detailBillTableData[i][1] = CTHDList.get(i).getLoaiDichVu();
             detailBillTableData[i][2] = CTHDList.get(i).getSoLuong();
-            detailBillTableData[i][3] = viewUtils.formatDoubleWithoutDecimal(CTHDList.get(i).getDonGia());
-            detailBillTableData[i][4] = viewUtils.formatDoubleWithoutDecimal(CTHDList.get(i).getThanhTien());
+            detailBillTableData[i][3] = ViewUtils.formatDoubleWithoutDecimal(CTHDList.get(i).getDonGia());
+            detailBillTableData[i][4] = ViewUtils.formatDoubleWithoutDecimal(CTHDList.get(i).getThanhTien());
         }
         
         return detailBillTableData;
+    }
+    
+    public HoaDon getHoaDonFromModel(int maHoaDon){
+        try{
+            return hoaDonModel.getHoaDonByID(maHoaDon);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
     
     public int addFoodAndDrinkBill(String tenDangNhap,NhanVien loginedNhanVien,DefaultTableModel tableData ){

@@ -9,10 +9,8 @@ public class DetailBillDialog extends javax.swing.JDialog {
     public DetailBillDialog(java.awt.Frame parent, boolean modal, int maHoaDon) {
         super(parent, modal);
         this.maHoaDon = maHoaDon;
-        System.out.println("Ma hoa don hien tai la1:" + maHoaDon);
         initComponents();
         displayDetailBillTable(maHoaDon);
-        System.out.println("Ma hoa don hien tai la2:" + maHoaDon);
         setLocationRelativeTo(null);
         setResizable(false);
     }

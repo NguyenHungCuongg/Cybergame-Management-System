@@ -52,7 +52,17 @@ public class MayTinhController {
         currentKhachHang = khachHangModel.getKhachHangByUsername(tenDangNhap);
         if (currentKhachHang.getMaKhachHang()==-1 ) return 2;
         
+        //Tạo hóa đơn cho người dùng này.
         int maKhachHang = currentKhachHang.getMaKhachHang();
+        int maNhanVien = loginedNhanVien.getMaNhanVien();
+        Date ngayLapHD = new Date();
+        try{
+            hoaDonModel.addHoaDon(maKhachHang, maNhanVien, false, ngayLapHD);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
         try{
             mayTinhModel.addPhienChoi(maKhachHang, maMay);
             mayTinhModel.capNhatTrangThai(maMay, "Đang sử dụng");
@@ -65,23 +75,13 @@ public class MayTinhController {
         //Đổi trạng thái trong bảng khách hàng từ "Vắng mặt" thành "Hoạt động"
         try{
             khachHangModel.setTrangThaiKHByUsername(1,tenDangNhap);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        
-        
-        //Tạo hóa đơn cho người dùng này.
-        int maNhanVien = loginedNhanVien.getMaNhanVien();
-        Date ngayLapHD = new Date();
-        try{
-            hoaDonModel.addHoaDon(maKhachHang, maNhanVien, false, ngayLapHD);
             return 0;
         }
         catch(Exception e){
             e.printStackTrace();
-            return 3;
         }
+        
+        return 3;
     }
     
     public boolean deletePhienChoiFromModel(int maMay , NhanVien loginedNhanVien){

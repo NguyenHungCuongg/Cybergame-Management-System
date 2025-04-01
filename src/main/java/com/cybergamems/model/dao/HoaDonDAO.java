@@ -96,6 +96,39 @@ public class HoaDonDAO {
         return null;
     }
     
+    public HoaDon getHoaDonByID(int maHoaDon){
+        String query = "SELECT\n" +
+                "HoaDon.MaHoaDon,\n" +
+                "HoaDon.TrangThaiHD, \n" +
+                "NhanVien.HoVaTen AS HoVaTenNhanVien,\n" +
+                "KhachHang.HoVaTen AS HoVaTenKhachHang,  \n" +
+                "HoaDon.TongTien, \n" +
+                "HoaDon.NgayLapHD\n" +
+                "FROM HoaDon\n" +
+                "JOIN NhanVien ON NhanVien.MaNhanVien = HoaDon.MaNhanVien\n" +
+                "JOIN KhachHang ON KhachHang.MaKhachHang = HoaDon.MaKhachHang\n" +
+                "WHERE MaHoaDon = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, maHoaDon);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                HoaDon hoaDon = new HoaDon(
+                        rs.getInt("MaHoaDon"),
+                        rs.getNString("HoVatenNhanVien"),
+                        rs.getNString("HoVaTenKhachHang"),
+                        rs.getBoolean("TrangThaiHD"), //Ta có thể lấy giá trị Boolean với kiểu BIT trong database
+                        rs.getDouble("TongTien"),
+                        rs.getDate("NgayLapHD")
+                );
+                return hoaDon;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     public void addCTHD(int maHoaDon,int maDichVu,double soLuong, double donGia, double thanhTien){
         String query = "INSERT INTO ChiTietHoaDon (MaHoaDon, MaDichVu, SoLuong, DonGia, ThanhTien) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();

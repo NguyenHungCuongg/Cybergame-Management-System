@@ -3,7 +3,7 @@ import com.cybergamems.controller.HoaDonController;
 import com.cybergamems.model.entities.NhanVien;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
-import com.cybergamems.utils.viewUtils;
+import com.cybergamems.utils.ViewUtils;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -18,7 +18,7 @@ public class ServicesForm extends javax.swing.JPanel {
     
     public void updateTotalBill() {
         double tongTien = foodAndDrinkBillTable1.calculateTotalBill();
-        totalBillLabel.setText("Tổng tiền: " + viewUtils.formatDoubleWithoutDecimal(tongTien) + " VND");
+        totalBillLabel.setText("Tổng tiền: " + ViewUtils.formatDoubleWithoutDecimal(tongTien) + " VND");
         totalBillLabel.revalidate();
         totalBillLabel.repaint();
     }
