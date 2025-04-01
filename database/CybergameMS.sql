@@ -145,7 +145,6 @@ BEGIN
 END;
 
 -- Tạo trigger để cập nhật dữ liệu TongDoanhThu, Thang, Nam trong ThuChi dựa trên các HoaDon đã thanh toán
-
 CREATE TRIGGER trg_UpdateTongDoanhThu
 ON HoaDon
 AFTER INSERT, UPDATE
@@ -153,34 +152,24 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Cập nhật bảng ThuChi khi có hóa đơn mới hoặc cập nhật trạng thái
+    -- Cập nhật bảng ThuChi khi có hóa đơn mới, cập nhật trạng thái hoặc bị xóa
     UPDATE TC
-    SET TC.TongDoanhThu = (
+    SET TC.TongDoanhThu = COALESCE((
         SELECT SUM(HD.TongTien)
         FROM HoaDon HD
         WHERE HD.TrangThaiHD = 1
         AND MONTH(HD.NgayLapHD) = TC.Thang
         AND YEAR(HD.NgayLapHD) = TC.Nam
-    )
+    ), 0) -- Nếu SUM trả về NULL, thay thế bằng 0
     FROM ThuChi TC
-    INNER JOIN inserted I ON MONTH(I.NgayLapHD) = TC.Thang AND YEAR(I.NgayLapHD) = TC.Nam;
-
-    -- Nếu tháng và năm chưa có trong ThuChi, thêm mới
-    INSERT INTO ThuChi (Thang, Nam, TongDoanhThu, TongChiTieu)
-    SELECT 
-        MONTH(I.NgayLapHD),
-        YEAR(I.NgayLapHD),
-        SUM(I.TongTien), 
-        0 -- Mặc định chi tiêu là 0 khi mới tạo
-    FROM inserted I
-    WHERE I.TrangThaiHD = 1
-    AND NOT EXISTS (
-        SELECT 1 FROM ThuChi TC 
-        WHERE TC.Thang = MONTH(I.NgayLapHD) 
-        AND TC.Nam = YEAR(I.NgayLapHD)
-    )
-    GROUP BY MONTH(I.NgayLapHD), YEAR(I.NgayLapHD);
+    INNER JOIN (
+        SELECT DISTINCT MONTH(NgayLapHD) AS Thang, YEAR(NgayLapHD) AS Nam FROM inserted
+        UNION
+        SELECT DISTINCT MONTH(NgayLapHD) AS Thang, YEAR(NgayLapHD) AS Nam FROM deleted
+    ) AS Changes
+    ON TC.Thang = Changes.Thang AND TC.Nam = Changes.Nam;
 END;
+
 
 -- Tạo trigger để cập nhật lại dữ liệu TongDoanhThu, Thang, Nam trong ThuChi khi HoaDon bị xóa
 
@@ -315,5 +304,11 @@ VALUES
 (3,N'Trống'),
 (3,N'Trống')
 
+Select * from ThanhToan
 
+Select * from HoaDon
+
+UPDATE HoaDon
+SET TrangThaiHD=0
+WHERE MaHoaDon=45
 

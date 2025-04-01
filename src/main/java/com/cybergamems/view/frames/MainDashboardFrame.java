@@ -48,9 +48,17 @@ public class MainDashboardFrame extends javax.swing.JFrame {
                         setCurrentForm(new AccountForm(loginedNhanVien));
                         break;
                     default:
+                        logout();
                 }
             }
         });
+    }
+    
+    private void logout(){
+        dispose();
+        LoginFrame loginFrame = new LoginFrame();
+        loginFrame.setLocationRelativeTo(null);
+        loginFrame.setVisible(true);
     }
     
     private void setCurrentForm(JPanel currentForm){

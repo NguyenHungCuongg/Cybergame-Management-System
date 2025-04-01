@@ -6,7 +6,7 @@ import com.cybergamems.model.entities.ChiTietHoaDon;
 import com.cybergamems.model.entities.HoaDon;
 import com.cybergamems.model.entities.KhachHang;
 import com.cybergamems.model.entities.NhanVien;
-import com.cybergamems.utils.ViewUtils;
+import com.cybergamems.utils.ViewUtilities;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,7 +32,7 @@ public class HoaDonController {
             hoaDonTableData[i][1] = hoaDonList.get(i).getTenNhanVien();
             hoaDonTableData[i][2] = hoaDonList.get(i).getTenKhachHang();
             hoaDonTableData[i][3] = hoaDonList.get(i).getNgayLapHoaDon();
-            hoaDonTableData[i][4] = ViewUtils.formatDoubleWithoutDecimal(hoaDonList.get(i).getTongTien());
+            hoaDonTableData[i][4] = ViewUtilities.formatDoubleWithoutDecimal(hoaDonList.get(i).getTongTien());
             hoaDonTableData[i][5] = hoaDonList.get(i).isTrangThaiHD()?"Đã thanh toán":"Chưa thanh toán";
         }
         return hoaDonTableData;
@@ -50,8 +50,8 @@ public class HoaDonController {
             detailBillTableData[i][0] = CTHDList.get(i).getTenDichVu();
             detailBillTableData[i][1] = CTHDList.get(i).getLoaiDichVu();
             detailBillTableData[i][2] = CTHDList.get(i).getSoLuong();
-            detailBillTableData[i][3] = ViewUtils.formatDoubleWithoutDecimal(CTHDList.get(i).getDonGia());
-            detailBillTableData[i][4] = ViewUtils.formatDoubleWithoutDecimal(CTHDList.get(i).getThanhTien());
+            detailBillTableData[i][3] = ViewUtilities.formatDoubleWithoutDecimal(CTHDList.get(i).getDonGia());
+            detailBillTableData[i][4] = ViewUtilities.formatDoubleWithoutDecimal(CTHDList.get(i).getThanhTien());
         }
         
         return detailBillTableData;
@@ -91,6 +91,18 @@ public class HoaDonController {
         catch(Exception e){
             e.printStackTrace();
             return 3;
+        }
+    }
+    
+    public boolean paymentComplete(int phuongThucTT, int maHoaDon, double tongTien){
+        try{
+            hoaDonModel.addBillPayment(phuongThucTT, maHoaDon, tongTien);
+            hoaDonModel.updatePaymentStatus(true, maHoaDon);
+            return true;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return false;
         }
     }
 }

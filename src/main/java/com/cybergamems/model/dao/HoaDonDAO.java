@@ -185,4 +185,34 @@ public class HoaDonDAO {
         }
         return dsCTHD;
     }
+    
+    public void addBillPayment(int phuongThucTT, int maHoaDon, double tongTien){        
+        String phuongThuc = phuongThucTT == 0?"Tiền mặt":"Chuyển khoản";
+        String query = "INSERT INTO ThanhToan(MaHoaDon,SoTienTT,PhuongThucTT)\n" +
+                        "VALUES (?,?,?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, maHoaDon);
+            stmt.setDouble(2, tongTien);
+            stmt.setNString(3, phuongThuc);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void updatePaymentStatus(boolean trangThai, int maHoaDon){
+        int trangThaiHD = trangThai?1:0;
+        String query = "UPDATE HoaDon\n" +
+                "SET TrangThaiHD=?\n" +
+                "WHERE MaHoaDon=?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, trangThaiHD);
+            stmt.setInt(2, maHoaDon);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

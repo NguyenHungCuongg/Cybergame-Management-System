@@ -73,6 +73,15 @@ public class BillForm extends javax.swing.JPanel {
                 paymentDialog.setVisible(true);
             }
         });
+        
+        //Xử lý sự kiện của nút làm mới
+        JButton refreshButton = billTableMenuBar1.getRefreshTableDataButton();
+        refreshButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                refreshTable();
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
