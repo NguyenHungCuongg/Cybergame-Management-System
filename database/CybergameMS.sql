@@ -262,7 +262,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Cập nhật TongChiTieu cho các dòng mới
+    -- Chỉ cập nhật TongChiTieu cho các dòng mới có TongChiTieu là NULL
     UPDATE TC
     SET TC.TongChiTieu = COALESCE((
         -- Tính tổng lương toàn bộ nhân viên hiện tại
@@ -271,7 +271,8 @@ BEGIN
         JOIN ViTri VT ON NV.MaViTri = VT.MaViTri
     ), 0)
     FROM ThuChi TC
-    JOIN inserted I ON TC.MaThuChi = I.MaThuChi;
+    JOIN inserted I ON TC.MaThuChi = I.MaThuChi
+    WHERE I.TongChiTieu IS NULL OR I.TongChiTieu = 0; -- Chỉ cập nhật khi TongChiTieu là NULL hoặc bằng 0
 END;
 
 -- Tạo trigger để cập nhật dữ liệu TongThuChi trong ThuChi khi LuongMoiThang của nhân viên được thêm xóa sửa.
@@ -447,3 +448,5 @@ VALUES
 (1, 2025, 90000000, 70000000),
 (2, 2025, 95000000, 75000000),
 (3, 2025, 88000000, 68000000);
+
+

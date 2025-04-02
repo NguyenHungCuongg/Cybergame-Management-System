@@ -2,9 +2,11 @@ package com.cybergamems.view.forms;
 
 import com.cybergamems.controller.ThongKeController;
 import com.cybergamems.model.entities.ThongKe;
+import com.cybergamems.view.components.StatisticTable;
 import com.cybergamems.view.components.chart.ModelChart;
 import com.cybergamems.view.dialogs.AddExpensesDialog;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,10 +16,14 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 
 public class StatisticsForm extends javax.swing.JPanel {
+    private int nam;
+    
     public StatisticsForm() {
         initComponents();
         initSpinnerValue();
+        nam = (Integer) namSpinner.getValue();
         initChartData();
+        displayTable();
         initAndDisplayQuantityData();
     }
     
@@ -34,16 +40,30 @@ public class StatisticsForm extends javax.swing.JPanel {
         chart.addLegend("Chi phí", new Color(46, 130, 219));
         chart.addLegend("Lợi nhuận", new Color(255, 140, 0));
         
-        int nam = (Integer) namSpinner.getValue();
+        displayCharData();
+    }
+    
+    private void displayCharData(){
+        chart.clearData();
+        nam = (Integer) namSpinner.getValue();
+        System.out.println("Coi du lieu cua nam" + nam);
         ThongKeController thongKeController = new ThongKeController();
         for(int thang=1;thang<=12;thang++){
             ThongKe currentThangThongKe = thongKeController.getThongKeFromModel(thang, nam);
             double doanhThu = currentThangThongKe.getTongDoanhThu();
             double chiPhi = currentThangThongKe.getTongChiTieu();
             double loiNhuan = doanhThu - chiPhi;
-            if(loiNhuan<0) loiNhuan=0;
-            chart.addData(new ModelChart("Tháng " + thang, new double[]{doanhThu, chiPhi, loiNhuan}));
+            double loiNhuanHienThi = loiNhuan;
+            if(loiNhuanHienThi<=0) loiNhuanHienThi=0;
+            chart.addData(new ModelChart("Tháng " + thang, new double[]{doanhThu, chiPhi, loiNhuanHienThi}));
         }
+    }
+    
+    private void displayTable(){
+        tableSection.removeAll();
+        StatisticTable statisticTable = new StatisticTable(nam);
+        tableSection.setLayout(new java.awt.BorderLayout());
+        tableSection.add(statisticTable,BorderLayout.CENTER);
     }
     
     private void initAndDisplayQuantityData(){
@@ -74,7 +94,6 @@ public class StatisticsForm extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        statisticTable1 = new com.cybergamems.view.components.StatisticTable();
         quantitySection = new javax.swing.JPanel();
         quantityOfNormalComputerPanel = new com.cybergamems.view.panels.CustomizedBorderRadiusPanel();
         normalComputerIcon = new javax.swing.JLabel();
@@ -110,7 +129,7 @@ public class StatisticsForm extends javax.swing.JPanel {
         namSpinner = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         chart = new com.cybergamems.view.components.chart.Chart();
-        statisticTable2 = new com.cybergamems.view.components.StatisticTable();
+        tableSection = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(50, 50, 50));
 
@@ -358,6 +377,17 @@ public class StatisticsForm extends javax.swing.JPanel {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout tableSectionLayout = new javax.swing.GroupLayout(tableSection);
+        tableSection.setLayout(tableSectionLayout);
+        tableSectionLayout.setHorizontalGroup(
+            tableSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        tableSectionLayout.setVerticalGroup(
+            tableSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 179, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout mainChartPanelLayout = new javax.swing.GroupLayout(mainChartPanel);
         mainChartPanel.setLayout(mainChartPanelLayout);
         mainChartPanelLayout.setHorizontalGroup(
@@ -366,7 +396,7 @@ public class StatisticsForm extends javax.swing.JPanel {
             .addGroup(mainChartPanelLayout.createSequentialGroup()
                 .addGroup(mainChartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
-                    .addComponent(statisticTable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(tableSection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         mainChartPanelLayout.setVerticalGroup(
@@ -376,8 +406,8 @@ public class StatisticsForm extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chart, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statisticTable2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tableSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         chartSectionScrollPane.setViewportView(mainChartPanel);
@@ -421,7 +451,10 @@ public class StatisticsForm extends javax.swing.JPanel {
     }//GEN-LAST:event_addExpensesButtonActionPerformed
 
     private void displayStatisticButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayStatisticButtonActionPerformed
-        // TODO add your handling code here:
+        displayCharData();
+        displayTable();
+        repaint();
+        revalidate();
     }//GEN-LAST:event_displayStatisticButtonActionPerformed
 
 
@@ -461,7 +494,6 @@ public class StatisticsForm extends javax.swing.JPanel {
     private javax.swing.JLabel quantityStaffLabel;
     private javax.swing.JLabel quantityVIPComputerLabel;
     private javax.swing.JLabel staffIcon;
-    private com.cybergamems.view.components.StatisticTable statisticTable1;
-    private com.cybergamems.view.components.StatisticTable statisticTable2;
+    private javax.swing.JPanel tableSection;
     // End of variables declaration//GEN-END:variables
 }

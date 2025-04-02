@@ -1,5 +1,6 @@
 package com.cybergamems.view.components;
 
+import com.cybergamems.controller.ThongKeController;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
 import javax.swing.JTable;
@@ -7,8 +8,10 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 public class StatisticTable extends javax.swing.JPanel {
+    private int nam;
     
-    public StatisticTable() {
+    public StatisticTable(int nam) {
+        this.nam = nam;
         try {
             UIManager.setLookAndFeel(new FlatArcDarkOrangeIJTheme());
         } catch (Exception e) {
@@ -24,7 +27,8 @@ public class StatisticTable extends javax.swing.JPanel {
 
     public DefaultTableModel  getTableModel(){
         String[] columnNames = {"Tháng","Doanh Thu","Chi phí","Lợi nhuận"};
-        Object[][] tableData = {};
+        ThongKeController thongKeController = new ThongKeController();
+        Object[][] tableData = thongKeController.getThongkeFromModelByYear(nam);
         DefaultTableModel tableModel = new DefaultTableModel(tableData,columnNames);      
         return tableModel;
     }

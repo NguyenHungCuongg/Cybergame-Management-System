@@ -63,6 +63,15 @@ public class Chart extends javax.swing.JPanel {
             blankPlotChart.setMaxValues(max);
         }
     }
+    
+    public void clearData() {
+        // Xóa tất cả dữ liệu model (dữ liệu biểu đồ)
+        model.clear();
+        // Repaint lại các component
+        panelLegend.revalidate();
+        panelLegend.repaint();
+        blankPlotChart.repaint();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

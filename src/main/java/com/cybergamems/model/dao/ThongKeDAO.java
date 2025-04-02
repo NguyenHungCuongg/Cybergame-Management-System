@@ -85,6 +85,29 @@ public class ThongKeDAO {
         return new ThongKe(thang,nam,0.0,0.0);
     }
     
+    public ArrayList<ThongKe> getAllThongKe(int nam){
+        ArrayList<ThongKe> dsThongKe = new ArrayList<>();
+        String query ="SELECT * FROM ThuChi WHERE nam = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);
+            ) {
+            stmt.setInt(1, nam);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                ThongKe currentThongKe = new ThongKe(
+                        rs.getInt("Thang"),
+                        rs.getInt("Nam"),
+                        rs.getDouble("TongDoanhThu"),
+                        rs.getDouble("TongChiTieu")
+                );
+                dsThongKe.add(currentThongKe);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsThongKe;
+    } 
+    
     public void addChiPhi(int thang, int nam, double tienDien, double tienNuoc, double tienTaiNguyen){
         String query = "INSERT INTO ChiPhiHoatDong(Thang,Nam,TienDien,TienNuoc,TienTaiNguyen,NgayNhap)\n" +
             "VALUES (?,?,?,?,?,GETDATE());";
