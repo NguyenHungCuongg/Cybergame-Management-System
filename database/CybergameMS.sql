@@ -430,15 +430,20 @@ VALUES
 (3,N'Trống'),
 (3,N'Trống')
 
-Select * from ThuChi
-Select * from ChiTietHoaDon
-Select * from ChiPhiHoatDong
-Select * from HoaDon
-
-	
-
-Delete from ChiTietHoaDon
-Delete from ThanhToan
-Delete from HoaDon
-Delete from ThuChi
-Delete from ChiPhiHoatDong
+INSERT INTO ThuChi (Thang, Nam, TongDoanhThu, TongChiTieu)
+VALUES
+(1, 2024, 90000000, 70000000),
+(2, 2024, 95000000, 75000000),
+(3, 2024, 88000000, 68000000),
+(4, 2024, 92000000, 72000000),
+(5, 2024, 85000000, 65000000),
+(6, 2024, 98000000, 78000000),
+(7, 2024, 80000000, 60000000),
+(8, 2024, 93000000, 73000000),
+(9, 2024, 87000000, 67000000),
+(10, 2024, 96000000, 76000000),
+(11, 2024, 82000000, 62000000),
+(12, 2024, 99000000, 79000000),
+(1, 2025, 90000000, 70000000),
+(2, 2025, 95000000, 75000000),
+(3, 2025, 88000000, 68000000);

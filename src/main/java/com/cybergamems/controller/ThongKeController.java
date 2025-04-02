@@ -1,6 +1,7 @@
 package com.cybergamems.controller;
 
 import com.cybergamems.model.dao.ThongKeDAO;
+import com.cybergamems.model.entities.ThongKe;
 import java.util.ArrayList;
 
 public class ThongKeController {
@@ -57,5 +58,15 @@ public class ThongKeController {
             e.printStackTrace();
         }
         return false;
+    }
+    
+    public ThongKe getThongKeFromModel(int thang, int nam){
+        try{
+            return thongKeModel.getThongKe(thang, nam);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

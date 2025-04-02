@@ -43,8 +43,8 @@ public class Chart extends javax.swing.JPanel {
                 }
             }
         });
-        blankPlotChart.initValues(0, 50000000); // Đổi trục tung từ 0-10 thành 0-100.000.000
-        blankPlotChart.setLabelCount(5000000); // Điều chỉnh khoảng cách  
+        blankPlotChart.initValues(0, 100000000); // Đổi trục tung từ 0-10 thành 0-100.000.000
+        blankPlotChart.setLabelCount(10000000); // Điều chỉnh khoảng cách  
     }
 
     public void addLegend(String name, Color color) {

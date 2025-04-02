@@ -1,6 +1,7 @@
 package com.cybergamems.model.dao;
 
 import com.cybergamems.model.DatabaseConnection;
+import com.cybergamems.model.entities.ThongKe;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -59,6 +60,29 @@ public class ThongKeDAO {
             e.printStackTrace();
         }
         return 0;
+    }
+    
+    public ThongKe getThongKe(int thang, int nam){
+        String query = "SELECT * FROM ThuChi\n" +
+            "WHERE Thang = ? AND Nam= ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);
+            ) {
+            stmt.setInt(1, thang);
+            stmt.setInt(2, nam);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new ThongKe(
+                        rs.getInt("Thang"),
+                        rs.getInt("Nam"),
+                        rs.getDouble("TongDoanhThu"),
+                        rs.getDouble("TongChiTieu") 
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new ThongKe(thang,nam,0.0,0.0);
     }
     
     public void addChiPhi(int thang, int nam, double tienDien, double tienNuoc, double tienTaiNguyen){

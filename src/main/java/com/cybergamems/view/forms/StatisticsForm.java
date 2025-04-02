@@ -1,6 +1,7 @@
 package com.cybergamems.view.forms;
 
 import com.cybergamems.controller.ThongKeController;
+import com.cybergamems.model.entities.ThongKe;
 import com.cybergamems.view.components.chart.ModelChart;
 import com.cybergamems.view.dialogs.AddExpensesDialog;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
@@ -32,18 +33,17 @@ public class StatisticsForm extends javax.swing.JPanel {
         chart.addLegend("Doanh thu", new Color(40, 199, 122));
         chart.addLegend("Chi phí", new Color(46, 130, 219));
         chart.addLegend("Lợi nhuận", new Color(255, 140, 0));
-        chart.addData(new ModelChart("Tháng 1", new double[]{50000000, 20000000, 8000000}));
-        chart.addData(new ModelChart("Tháng 2", new double[]{60000000, 75000000, 9000000}));
-        chart.addData(new ModelChart("Tháng 3", new double[]{20000000, 35000000, 46000000}));
-        chart.addData(new ModelChart("Tháng 4", new double[]{48000000, 15000000, 75000000}));
-        chart.addData(new ModelChart("Tháng 5", new double[]{35000000, 54000000, 30000000}));
-        chart.addData(new ModelChart("Tháng 6", new double[]{19000000, 28000000, 8100000}));
-        chart.addData(new ModelChart("Tháng 7", new double[]{50000000, 20000000, 8000000}));
-        chart.addData(new ModelChart("Tháng 8", new double[]{60000000, 75000000, 9000000}));
-        chart.addData(new ModelChart("Tháng 9", new double[]{20000000, 35000000, 46000000}));
-        chart.addData(new ModelChart("Tháng 10", new double[]{48000000, 15000000, 75000000}));
-        chart.addData(new ModelChart("Tháng 11", new double[]{35000000, 54000000, 30000000}));
-        chart.addData(new ModelChart("Tháng 12", new double[]{19000000, 28000000, 8100000}));
+        
+        int nam = (Integer) namSpinner.getValue();
+        ThongKeController thongKeController = new ThongKeController();
+        for(int thang=1;thang<=12;thang++){
+            ThongKe currentThangThongKe = thongKeController.getThongKeFromModel(thang, nam);
+            double doanhThu = currentThangThongKe.getTongDoanhThu();
+            double chiPhi = currentThangThongKe.getTongChiTieu();
+            double loiNhuan = doanhThu - chiPhi;
+            if(loiNhuan<0) loiNhuan=0;
+            chart.addData(new ModelChart("Tháng " + thang, new double[]{doanhThu, chiPhi, loiNhuan}));
+        }
     }
     
     private void initAndDisplayQuantityData(){
