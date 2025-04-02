@@ -60,4 +60,62 @@ public class ThongKeDAO {
         }
         return 0;
     }
+    
+    public void addChiPhi(int thang, int nam, double tienDien, double tienNuoc, double tienTaiNguyen){
+        String query = "INSERT INTO ChiPhiHoatDong(Thang,Nam,TienDien,TienNuoc,TienTaiNguyen,NgayNhap)\n" +
+            "VALUES (?,?,?,?,?,GETDATE());";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, thang);
+            stmt.setInt(2, nam);
+            stmt.setDouble(3, tienDien);
+            stmt.setDouble(4, tienNuoc);
+            stmt.setDouble(5, tienTaiNguyen);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void updateChiPhi(int thang, int nam, double tienDien, double tienNuoc, double tienTaiNguyen){
+        String query = "UPDATE ChiPhiHoatDong\n" +
+                "SET\n" +
+                "TienDien = ?,\n" +
+                "TienNuoc = ?,\n" +
+                "TienTaiNguyen = ?,\n" +
+                "NgayNhap = GETDATE()\n" +
+                "WHERE Thang = ? AND Nam = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setDouble(1, tienDien);
+            stmt.setDouble(2, tienNuoc);
+            stmt.setDouble(3, tienTaiNguyen);
+            stmt.setInt(4, thang);
+            stmt.setInt(5, nam);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public boolean checkChiPhi(int thang, int nam){
+        String query = "SELECT * FROM ChiPhiHoatDong\n" +
+            "WHERE Thang=? AND Nam =?";
+        try (Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);
+            ) {
+            stmt.setInt(1, thang);
+            stmt.setInt(2,nam);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+            else{
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

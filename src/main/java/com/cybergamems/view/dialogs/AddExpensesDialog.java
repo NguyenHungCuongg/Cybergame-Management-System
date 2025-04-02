@@ -1,6 +1,8 @@
 package com.cybergamems.view.dialogs;
 
+import com.cybergamems.controller.ThongKeController;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
@@ -34,8 +36,8 @@ public class AddExpensesDialog extends javax.swing.JDialog {
         thangSpinner = new javax.swing.JSpinner();
         namLabel = new javax.swing.JLabel();
         namSpinner = new javax.swing.JSpinner();
-        tienNguyenLieuLabel = new javax.swing.JLabel();
-        tienNguyenLieuTextField = new javax.swing.JTextField();
+        tienTaiNguyenLabel = new javax.swing.JLabel();
+        tienTaiNguyenTextField = new javax.swing.JTextField();
         tienDienLabel = new javax.swing.JLabel();
         tienDienTextField = new javax.swing.JTextField();
         tienNuocLabel = new javax.swing.JLabel();
@@ -91,16 +93,16 @@ public class AddExpensesDialog extends javax.swing.JDialog {
         gridBagConstraints.ipady = 5;
         dialogInputSection.add(namSpinner, gridBagConstraints);
 
-        tienNguyenLieuLabel.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        tienNguyenLieuLabel.setText("Tiền nguyên liệu");
+        tienTaiNguyenLabel.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        tienTaiNguyenLabel.setText("Tiền tài nguyên");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 10, 5, 20);
-        dialogInputSection.add(tienNguyenLieuLabel, gridBagConstraints);
+        dialogInputSection.add(tienTaiNguyenLabel, gridBagConstraints);
 
-        tienNguyenLieuTextField.setToolTipText("");
+        tienTaiNguyenTextField.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
@@ -109,7 +111,7 @@ public class AddExpensesDialog extends javax.swing.JDialog {
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 10, 10);
-        dialogInputSection.add(tienNguyenLieuTextField, gridBagConstraints);
+        dialogInputSection.add(tienTaiNguyenTextField, gridBagConstraints);
 
         tienDienLabel.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         tienDienLabel.setText("Tiền điện");
@@ -205,8 +207,21 @@ public class AddExpensesDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:        
-
+        int thang = (Integer)thangSpinner.getValue();
+        int nam = (Integer)namSpinner.getValue();
+        double tienDien = Double.parseDouble(tienDienTextField.getText().trim());
+        double tienNuoc = Double.parseDouble(tienNuocTextField.getText().trim());
+        double tienTaiNguyen = Double.parseDouble(tienTaiNguyenTextField.getText().trim());
+        
+        ThongKeController thongKeController = new ThongKeController();
+        boolean result = thongKeController.addChiPhiIntoModel(thang, nam, tienDien, tienNuoc, tienTaiNguyen);
+        if(result){
+            JOptionPane.showMessageDialog(this, "Thêm chi phí hoạt động thành công!");
+            dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Thêm chi phí hoạt động thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -242,9 +257,9 @@ public class AddExpensesDialog extends javax.swing.JDialog {
     private javax.swing.JSpinner thangSpinner;
     private javax.swing.JLabel tienDienLabel;
     private javax.swing.JTextField tienDienTextField;
-    private javax.swing.JLabel tienNguyenLieuLabel;
-    private javax.swing.JTextField tienNguyenLieuTextField;
     private javax.swing.JLabel tienNuocLabel;
     private javax.swing.JTextField tienNuocTextField;
+    private javax.swing.JLabel tienTaiNguyenLabel;
+    private javax.swing.JTextField tienTaiNguyenTextField;
     // End of variables declaration//GEN-END:variables
 }

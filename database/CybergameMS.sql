@@ -145,6 +145,7 @@ BEGIN
 END;
 
 -- Tạo trigger để cập nhật dữ liệu TongDoanhThu, Thang, Nam trong ThuChi dựa trên các HoaDon đã thanh toán
+
 CREATE TRIGGER trg_UpdateTongDoanhThu
 ON HoaDon
 AFTER INSERT, UPDATE
@@ -152,7 +153,22 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Cập nhật bảng ThuChi khi có hóa đơn mới, cập nhật trạng thái hoặc bị xóa
+    -- Thêm bản ghi mới vào ThuChi nếu chưa tồn tại cho tháng/năm của hóa đơn
+    INSERT INTO ThuChi (Thang, Nam, TongDoanhThu, TongChiTieu)
+    SELECT 
+        MONTH(I.NgayLapHD) AS Thang,
+        YEAR(I.NgayLapHD) AS Nam,
+        0 AS TongDoanhThu,
+        (SELECT COALESCE(SUM(VT.LuongMoiThang), 0) FROM NhanVien NV JOIN ViTri VT ON NV.MaViTri = VT.MaViTri) AS TongChiTieu
+    FROM inserted I
+    WHERE I.TrangThaiHD = 1
+    AND NOT EXISTS (
+        SELECT 1 FROM ThuChi TC 
+        WHERE TC.Thang = MONTH(I.NgayLapHD) 
+        AND TC.Nam = YEAR(I.NgayLapHD)
+    );
+
+    -- Cập nhật TongDoanhThu cho các bản ghi ThuChi
     UPDATE TC
     SET TC.TongDoanhThu = COALESCE((
         SELECT SUM(HD.TongTien)
@@ -160,14 +176,13 @@ BEGIN
         WHERE HD.TrangThaiHD = 1
         AND MONTH(HD.NgayLapHD) = TC.Thang
         AND YEAR(HD.NgayLapHD) = TC.Nam
-    ), 0) -- Nếu SUM trả về NULL, thay thế bằng 0
+    ), 0)
     FROM ThuChi TC
-    INNER JOIN (
-        SELECT DISTINCT MONTH(NgayLapHD) AS Thang, YEAR(NgayLapHD) AS Nam FROM inserted
-        UNION
-        SELECT DISTINCT MONTH(NgayLapHD) AS Thang, YEAR(NgayLapHD) AS Nam FROM deleted
-    ) AS Changes
-    ON TC.Thang = Changes.Thang AND TC.Nam = Changes.Nam;
+    WHERE EXISTS (
+        SELECT 1 FROM inserted I
+        WHERE MONTH(I.NgayLapHD) = TC.Thang 
+        AND YEAR(I.NgayLapHD) = TC.Nam
+    );
 END;
 
 
@@ -196,6 +211,117 @@ BEGIN
     -- Xóa dòng trong ThuChi nếu TongDoanhThu trở thành 0
     DELETE FROM ThuChi
     WHERE TongDoanhThu = 0;
+END;
+
+-- Tạo trigger để cập nhật dữ liệu TongThuChi, Thang, Nam trong ThuChi khi ChiPhiHoatDong được thêm xóa sửa.
+
+CREATE TRIGGER trg_UpdateThuChi_ChiPhi
+ON ChiPhiHoatDong
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Cập nhật TongChiTieu nếu tháng/năm đã có trong ThuChi
+    UPDATE TC
+    SET TC.TongChiTieu = COALESCE((
+        -- Tính tổng tiền điện, nước, tài nguyên
+        SELECT SUM(CPH.TienDien + CPH.TienNuoc + CPH.TienTaiNguyen) 
+        FROM ChiPhiHoatDong CPH
+        WHERE CPH.Thang = TC.Thang AND CPH.Nam = TC.Nam
+    ), 0) + COALESCE((
+        -- Tổng tiền lương của tất cả nhân viên
+        SELECT SUM(VT.LuongMoiThang) 
+        FROM NhanVien NV 
+        JOIN ViTri VT ON NV.MaViTri = VT.MaViTri
+    ), 0)
+    FROM ThuChi TC
+    WHERE EXISTS (
+        SELECT 1 FROM inserted I WHERE I.Thang = TC.Thang AND I.Nam = TC.Nam
+        UNION
+        SELECT 1 FROM deleted D WHERE D.Thang = TC.Thang AND D.Nam = TC.Nam
+    );
+
+    -- Chèn mới vào ThuChi nếu chưa có bản ghi (chỉ khi INSERT)
+    INSERT INTO ThuChi (Thang, Nam, TongDoanhThu, TongChiTieu)
+    SELECT I.Thang, I.Nam, 0, 
+        (I.TienDien + I.TienNuoc + I.TienTaiNguyen) + 
+        (SELECT COALESCE(SUM(VT.LuongMoiThang), 0) FROM NhanVien NV JOIN ViTri VT ON NV.MaViTri = VT.MaViTri)
+    FROM inserted I
+    WHERE NOT EXISTS (
+        SELECT 1 FROM ThuChi TC WHERE TC.Thang = I.Thang AND TC.Nam = I.Nam
+    );
+END;
+
+-- Tạo trigger để cập nhật dữ liệu TongThuChi trong ThuChi khi bảng ThuChi được thêm dữ liệu mới(TongThuChi sẽ mặc định ban đầu là lương của toàn bộ nhân viên)
+
+CREATE TRIGGER trg_SetDefaultTongChiTieu
+ON ThuChi
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Cập nhật TongChiTieu cho các dòng mới
+    UPDATE TC
+    SET TC.TongChiTieu = COALESCE((
+        -- Tính tổng lương toàn bộ nhân viên hiện tại
+        SELECT SUM(VT.LuongMoiThang) 
+        FROM NhanVien NV
+        JOIN ViTri VT ON NV.MaViTri = VT.MaViTri
+    ), 0)
+    FROM ThuChi TC
+    JOIN inserted I ON TC.MaThuChi = I.MaThuChi;
+END;
+
+-- Tạo trigger để cập nhật dữ liệu TongThuChi trong ThuChi khi LuongMoiThang của nhân viên được thêm xóa sửa.
+
+CREATE TRIGGER trg_UpdateThuChi_NhanVien
+ON NhanVien
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Cập nhật tất cả các dòng trong ThuChi
+    UPDATE TC
+    SET TC.TongChiTieu = COALESCE((
+        -- Tính tổng tiền điện, nước, tài nguyên
+        SELECT SUM(CPH.TienDien + CPH.TienNuoc + CPH.TienTaiNguyen) 
+        FROM ChiPhiHoatDong CPH
+        WHERE CPH.Thang = TC.Thang AND CPH.Nam = TC.Nam
+    ), 0) + COALESCE((
+        -- Tính tổng lương nhân viên
+        SELECT SUM(VT.LuongMoiThang) 
+        FROM NhanVien NV 
+        JOIN ViTri VT ON NV.MaViTri = VT.MaViTri
+    ), 0)
+    FROM ThuChi TC;
+END;
+
+-- Tạo trigger để cập nhật dữ liệu TongThuChi trong ThuChi khi nhân viên thay đổi vị trí
+
+CREATE TRIGGER trg_UpdateThuChi_Luong
+ON ViTri
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Cập nhật tất cả các dòng trong ThuChi
+    UPDATE TC
+    SET TC.TongChiTieu = COALESCE((
+        -- Tính tổng tiền điện, nước, tài nguyên
+        SELECT SUM(CPH.TienDien + CPH.TienNuoc + CPH.TienTaiNguyen) 
+        FROM ChiPhiHoatDong CPH
+        WHERE CPH.Thang = TC.Thang AND CPH.Nam = TC.Nam
+    ), 0) + COALESCE((
+        -- Tính tổng lương nhân viên
+        SELECT SUM(VT.LuongMoiThang) 
+        FROM NhanVien NV 
+        JOIN ViTri VT ON NV.MaViTri = VT.MaViTri
+    ), 0)
+    FROM ThuChi TC;
 END;
 
 
@@ -304,11 +430,15 @@ VALUES
 (3,N'Trống'),
 (3,N'Trống')
 
-Select * from ThanhToan
-
+Select * from ThuChi
+Select * from ChiTietHoaDon
+Select * from ChiPhiHoatDong
 Select * from HoaDon
 
-UPDATE HoaDon
-SET TrangThaiHD=0
-WHERE MaHoaDon=45
+	
 
+Delete from ChiTietHoaDon
+Delete from ThanhToan
+Delete from HoaDon
+Delete from ThuChi
+Delete from ChiPhiHoatDong
