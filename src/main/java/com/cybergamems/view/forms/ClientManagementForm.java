@@ -115,6 +115,22 @@ public class ClientManagementForm extends javax.swing.JPanel {
                 detailClientDialog.setVisible(true);
             }
         });
+        
+        //Xử lý sự kiện cho nút tìm kiếm 
+        JButton searchButton = tableMenuBar1.getSearchTableDataButton();
+        searchButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String searchInput = tableMenuBar1.getSearchTableDataTextField().getText().trim();
+                KhachHangController khachHangController = new KhachHangController();
+                String[] columnNames = {"Mã khách hàng","Họ và tên","Tên đăng nhập","Email","Trạng thái"};
+                Object[][] tableData = khachHangController.getSearchedKhachHangFromModel(searchInput);
+                DefaultTableModel newTableModel = new DefaultTableModel(tableData,columnNames);
+                clientManagementTable1.setTableModel(newTableModel);
+                repaint();
+                revalidate();
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")

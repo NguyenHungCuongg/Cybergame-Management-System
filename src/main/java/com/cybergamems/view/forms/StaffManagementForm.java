@@ -118,6 +118,22 @@ public class StaffManagementForm extends javax.swing.JPanel {
                 refreshTable();
             }
         });
+        
+        //Xử lý sự kiện cho nút tìm kiếm 
+        JButton searchButton = tableMenuBar1.getSearchTableDataButton();
+        searchButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String searchInput = tableMenuBar1.getSearchTableDataTextField().getText().trim();
+                NhanVienController khachHangController = new NhanVienController();
+                String[] columnNames = {"Mã nhân viên","Họ và tên","Tên đăng nhập","Email","Trạng thái","Vị trí","Ngày vào làm"};
+                Object[][] tableData = khachHangController.getSearchedNhanVienFromModel(searchInput);
+                DefaultTableModel newTableModel = new DefaultTableModel(tableData,columnNames);
+                staffManagementTable1.setTableModel(newTableModel);
+                repaint();
+                revalidate();
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")

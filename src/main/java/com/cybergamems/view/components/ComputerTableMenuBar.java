@@ -37,18 +37,11 @@ public class ComputerTableMenuBar extends javax.swing.JPanel {
     }
 
 
-    public JButton getSearchTableDataButton() {
-        return searchTableDataButton;
-    }
     
     public JButton getRefreshTableDataButton(){
         return refreshTableDataButton1;
     }
 
-    public JTextField getSearchTableDataTextField() {
-        return searchTableDataTextField;
-    }
-    
     
     
 
@@ -61,8 +54,6 @@ public class ComputerTableMenuBar extends javax.swing.JPanel {
         startSessionButton = new javax.swing.JButton();
         endSessionButton = new javax.swing.JButton();
         tableSearchBarPanel = new javax.swing.JPanel();
-        searchTableDataTextField = new javax.swing.JTextField();
-        searchTableDataButton = new javax.swing.JButton();
         refreshTableDataButton1 = new javax.swing.JButton();
 
         tableFunctionBarPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -103,42 +94,6 @@ public class ComputerTableMenuBar extends javax.swing.JPanel {
         tableSearchBarPanel.setOpaque(false);
         tableSearchBarPanel.setLayout(new java.awt.GridBagLayout());
 
-        searchTableDataTextField.setBackground(new java.awt.Color(50, 50, 50));
-        searchTableDataTextField.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        searchTableDataTextField.setForeground(new java.awt.Color(153, 153, 153));
-        searchTableDataTextField.setText("Nhập nội dung tìm kiếm...");
-        searchTableDataTextField.setPreferredSize(new java.awt.Dimension(78, 25));
-        searchTableDataTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                searchTableDataTextFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                searchTableDataTextFieldFocusLost(evt);
-            }
-        });
-        searchTableDataTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTableDataTextFieldActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 160;
-        gridBagConstraints.ipady = 14;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        tableSearchBarPanel.add(searchTableDataTextField, gridBagConstraints);
-
-        searchTableDataButton.setBackground(new java.awt.Color(60, 63, 65));
-        searchTableDataButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        searchTableDataButton.setText("Tìm kiến");
-        searchTableDataButton.setMaximumSize(new java.awt.Dimension(100, 40));
-        searchTableDataButton.setMinimumSize(new java.awt.Dimension(100, 40));
-        searchTableDataButton.setPreferredSize(new java.awt.Dimension(100, 40));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        tableSearchBarPanel.add(searchTableDataButton, gridBagConstraints);
-
         refreshTableDataButton1.setBackground(new java.awt.Color(60, 63, 65));
         refreshTableDataButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         refreshTableDataButton1.setText("Làm mới");
@@ -172,32 +127,10 @@ public class ComputerTableMenuBar extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_endSessionButtonActionPerformed
 
-    private void searchTableDataTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTableDataTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchTableDataTextFieldActionPerformed
-
-    private void searchTableDataTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTableDataTextFieldFocusGained
-        // TODO add your handling code here:
-        if(searchTableDataTextField.getText().equals("Nhập nội dung tìm kiếm...")){
-            searchTableDataTextField.setText("");
-            searchTableDataTextField.setForeground(new Color(221,221,221));
-        }
-    }//GEN-LAST:event_searchTableDataTextFieldFocusGained
-
-    private void searchTableDataTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTableDataTextFieldFocusLost
-        // TODO add your handling code here:
-        if(searchTableDataTextField.getText().trim().equals("")){
-            searchTableDataTextField.setText("Nhập nội dung tìm kiếm...");
-            searchTableDataTextField.setForeground(new Color(153,153,153));
-        }
-    }//GEN-LAST:event_searchTableDataTextFieldFocusLost
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton endSessionButton;
     private javax.swing.JButton refreshTableDataButton1;
-    private javax.swing.JButton searchTableDataButton;
-    private javax.swing.JTextField searchTableDataTextField;
     private javax.swing.JButton startSessionButton;
     private javax.swing.JPanel tableFunctionBarPanel;
     private javax.swing.JPanel tableSearchBarPanel;

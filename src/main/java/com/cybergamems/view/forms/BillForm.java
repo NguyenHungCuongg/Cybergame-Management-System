@@ -1,5 +1,6 @@
 package com.cybergamems.view.forms;
 
+import com.cybergamems.controller.HoaDonController;
 import com.cybergamems.model.entities.NhanVien;
 import com.cybergamems.view.components.BillTable;
 import com.cybergamems.view.dialogs.DetailBillDialog;
@@ -80,6 +81,22 @@ public class BillForm extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent e){
                 refreshTable();
+            }
+        });
+        
+        //Xử lý sự kiện cho nút tìm kiếm 
+        JButton searchButton = billTableMenuBar1.getSearchTableDataButton();
+        searchButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String searchInput = billTableMenuBar1.getSearchTableDataTextField().getText().trim();
+                HoaDonController hoaDonController = new HoaDonController();
+                String[] columnNames = {"Mã hóa đơn","Tên khách hàng","Tên nhân viên","Ngày lập hóa đơn","Tổng tiền","Trạng thái hóa đơn"};
+                Object[][] tableData = hoaDonController.getSearchedHoaDonFromModel(searchInput);
+                DefaultTableModel newTableModel = new DefaultTableModel(tableData,columnNames);
+                billTable1.setTableModel(newTableModel);
+                repaint();
+                revalidate();
             }
         });
     }

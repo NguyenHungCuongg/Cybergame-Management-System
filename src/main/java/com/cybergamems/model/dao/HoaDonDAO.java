@@ -30,7 +30,47 @@ public class HoaDonDAO {
             while (rs.next()) {
                 HoaDon hoaDon = new HoaDon(
                         rs.getInt("MaHoaDon"),
-                        rs.getNString("HoVatenNhanVien"),
+                        rs.getNString("HoVaTenNhanVien"),
+                        rs.getNString("HoVaTenKhachHang"),
+                        rs.getBoolean("TrangThaiHD"), 
+                        rs.getDouble("TongTien"),
+                        rs.getDate("NgayLapHD")
+                );
+                dsHoaDon.add(hoaDon);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsHoaDon;
+    }
+    
+    public ArrayList<HoaDon> getAllSearchedHoaDon(String searchInput){
+        ArrayList<HoaDon> dsHoaDon = new ArrayList<>();
+        String query ="SELECT\n" +
+                    "HoaDon.MaHoaDon,\n" +
+                    "HoaDon.TrangThaiHD, \n" +
+                    "NhanVien.HoVaTen AS HoVaTenNhanVien,\n" +
+                    "KhachHang.HoVaTen AS HoVaTenKhachHang,\n" +
+                    "HoaDon.TongTien,\n" +
+                    "HoaDon.NgayLapHD\n " +
+                    "FROM HoaDon \n" +
+                    "JOIN NhanVien ON NhanVien.MaNhanVien = HoaDon.MaNhanVien\n" +
+                    "JOIN KhachHang ON KhachHang.MaKhachHang = HoaDon.MaKhachHang\n "
+                + "WHERE MaHoaDon LIKE ? OR NhanVien.HoVaTen LIKE ? "
+                + "OR KhachHang.HoVaTen LIKE ? OR TongTien LIKE ? ";
+        try (Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);
+            ) {
+            String searchPattern = "%" + searchInput + "%";
+            stmt.setString(1, searchPattern);
+            stmt.setString(2, searchPattern);
+            stmt.setString(3, searchPattern);
+            stmt.setString(4, searchPattern);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                HoaDon hoaDon = new HoaDon(
+                        rs.getInt("MaHoaDon"),
+                        rs.getNString("HoVaTenNhanVien"),
                         rs.getNString("HoVaTenKhachHang"),
                         rs.getBoolean("TrangThaiHD"), 
                         rs.getDouble("TongTien"),

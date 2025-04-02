@@ -32,6 +32,25 @@ public class NhanVienController {
         return nhanVienTableData;
     }
     
+    public Object[][] getSearchedNhanVienFromModel(String searchInput){
+        ArrayList<NhanVien> nhanVienList = nhanVienModel.getAllSearchedNhanVien(searchInput);
+        
+        int columnNum = 7; //"Mã nhân viên","Họ và tên","Tên đăng nhập","Email","Trạng thái","Vị trí","Ngày vào làm"
+        int rowNum = nhanVienList.size();
+        
+        Object[][] nhanVienTableData = new Object[rowNum][columnNum];
+        for(int i=0;i<rowNum;i++){
+            nhanVienTableData[i][0] = nhanVienList.get(i).getMaNhanVien();
+            nhanVienTableData[i][1] = nhanVienList.get(i).getHoVaTen();
+            nhanVienTableData[i][2] = nhanVienList.get(i).getUsername();
+            nhanVienTableData[i][3] = nhanVienList.get(i).getEmail();
+            nhanVienTableData[i][4] = nhanVienList.get(i).isTrangThaiNV()?"Hoạt động":"Vắng mặt";
+            nhanVienTableData[i][5] = nhanVienList.get(i).getViTri();
+            nhanVienTableData[i][6] = nhanVienList.get(i).getNgayVaoLam();
+        }
+        return nhanVienTableData;
+    }
+    
     public boolean addNhanVienIntoModel(String hoVaTen, String tenDangNhap, String matKhau,String email, String viTri ){
         if(hoVaTen.trim().isEmpty() || tenDangNhap.trim().isEmpty() || matKhau.trim().isEmpty() 
                 || email.trim().isEmpty() || viTri.trim().isEmpty()){

@@ -37,6 +37,39 @@ public class NhanVienDAO {
         return dsNhanVien;
     }
     
+    public ArrayList<NhanVien> getAllSearchedNhanVien(String searchInput){
+        ArrayList<NhanVien> dsNhanVien = new ArrayList<>();
+        String query ="SELECT * FROM NhanVien JOIN ViTri On NhanVien.MaViTri = ViTri.MaViTri "
+                + "WHERE MaNhanvien LIKE ? OR HoVaTen LIKE ? OR Username LIKE ? "
+                + "OR Email LIKE ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);
+            ) {
+            String searchPattern = "%" + searchInput + "%";
+            stmt.setString(1, searchPattern);
+            stmt.setString(2, searchPattern);
+            stmt.setString(3, searchPattern);
+            stmt.setString(4, searchPattern);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                NhanVien currentNhanvien = new NhanVien(
+                        rs.getInt("MaNhanvien"),
+                        rs.getString("HoVaTen"),
+                        rs.getString("Username"),
+                        rs.getString("Password"),
+                        rs.getString("Email"),
+                        rs.getBoolean("TrangThaiNV"),
+                        rs.getString("TenViTri"),
+                        rs.getDate("NgayVaoLam") //trả về java.sql.Date
+                );
+                dsNhanVien.add(currentNhanvien);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsNhanVien;
+    }
+    
     public NhanVien getNhanVien(int maNhanVien){
         String query = "SELECT * FROM NhanVien JOIN ViTri ON NhanVien.MaViTri = ViTri.MaViTri WHERE NhanVien.MaNhanVien = ?";
         try(Connection conn = DatabaseConnection.getConnection();
@@ -114,7 +147,7 @@ public class NhanVienDAO {
     }
     
     public NhanVien loginNhanVien(String username, String matKhau){
-        String query = "SELECT * FROM NhanVien WHERE Username=? AND Password=?";
+        String query = "SELECT * FROM NhanVien WHERE Username=? AND Password=? AND MaViTri=1";
         try(Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query);){
             stmt.setString(1, username);

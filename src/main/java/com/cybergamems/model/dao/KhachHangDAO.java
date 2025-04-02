@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class KhachHangDAO {
     public ArrayList<KhachHang> getAllKhachHang(){
         ArrayList<KhachHang> dsKhachHang = new ArrayList<>();
-        String query = "Select * from KhachHang";
+        String query = "SELECT * FROM KhachHang";
         try(Connection conn = DatabaseConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(query);
             ){
@@ -33,9 +33,41 @@ public class KhachHangDAO {
         }
         return dsKhachHang;
     }
+    
+    public ArrayList<KhachHang> getAllSearchedKhachHang(String searchInput){
+        ArrayList<KhachHang> dsKhachHang = new ArrayList<>();
+        String query = "SELECT * FROM KhachHang WHERE MaKhachHang LIKE ? "
+                + "OR HoVaTen LIKE ? OR Username LIKE ? "
+                + "OR Email LIKE ?";
+        try(Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ){
+            String searchPattern = "%" + searchInput + "%";
+            stmt.setString(1, searchPattern);
+            stmt.setString(2, searchPattern);
+            stmt.setString(3, searchPattern);
+            stmt.setString(4, searchPattern);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                KhachHang currentKhachHang = new KhachHang(
+                        rs.getInt("MaKhachHang"),
+                        rs.getString("HoVaTen"),
+                        rs.getString("Username"),
+                        rs.getString("Password"),
+                        rs.getString("Email"),
+                        rs.getBoolean("TrangThaiKH")
+                );
+                dsKhachHang.add(currentKhachHang);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsKhachHang;
+    }
 
     public KhachHang getKhachHang(int maKhachHang){
-        String query = "Select * From KhachHang Where KhachHang.MaKhachHang = ?";
+        String query = "SELECT * FROM KhachHang WHERE KhachHang.MaKhachHang = ?";
         try(Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query);){
             stmt.setInt(1, maKhachHang);
@@ -60,7 +92,7 @@ public class KhachHangDAO {
     }
     
     public KhachHang getKhachHangByUsername(String username){
-        String query = "Select * From KhachHang Where KhachHang.Username = ?";
+        String query = "SELECT * FROM KhachHang WHERE KhachHang.Username = ?";
         try(Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query);){
             stmt.setString(1, username);
@@ -100,9 +132,9 @@ public class KhachHangDAO {
     }
     
     public KhachHang getKhachHangByMaMay(int maMay){
-        String query = "select * from KhachHang\n" +
-                        "join PhienChoi on PhienChoi.MaKhachHang = KhachHang.MaKhachHang\n" +
-                        "Where PhienChoi.MaMay = ?";
+        String query = "SELECT * FROM KhachHang\n" +
+                        "JOIN PhienChoi ON PhienChoi.MaKhachHang = KhachHang.MaKhachHang\n" +
+                        "WHERE PhienChoi.MaMay = ?";
         try(Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query);){
             stmt.setInt(1, maMay);
@@ -145,7 +177,7 @@ public class KhachHangDAO {
     }
     
     public void deleteKhachHang(int maKhachHang){
-        String query="Delete from KhachHang Where MaKhachHang=?";
+        String query="DELETE FROM KhachHang WHERE MaKhachHang=?";
         try(Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query);){
             stmt.setInt(1, maKhachHang);
@@ -157,7 +189,7 @@ public class KhachHangDAO {
     }
     
     public void updateKhachHang(int maKhachHang,String hoVaTen, String username, String matKhau, String email, int trangThai){
-        String query = "Update KhachHang Set HoVaTen=?, Username=?,Password=?,Email=?, TrangThaiKH=? Where MaKhachHang=?";
+        String query = "UPDATE KhachHang SET HoVaTen=?, Username=?,Password=?,Email=?, TrangThaiKH=? WHERE MaKhachHang=?";
         try(Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query);){
             stmt.setString(1, hoVaTen);
