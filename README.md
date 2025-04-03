@@ -12,14 +12,24 @@
 
 ## Cài Đặt
 
-Hướng dẫn cài đặt:
+### Yêu cầu hệ thống
+- Java JDK 11+
+- SQL Server 2019+
+- NetBeans IDE (khuyến nghị)
+
+### Hướng dẫn cài đặt:
 
 ```bash
 git clone https://github.com/NguyenHungCuongg/Cybergame-Management-System.git
 ```
-## Tài khoản quản lý
+### Tài khoản quản lý
 
 ```bash
 username: Cuongg
 password: 123
 ```
+
+### Hỗ trợ
+Liên hệ: 
+Facebook: https://www.facebook.com/cuong.nguyen.813584
+Email: cuonghungnguyentop@gmail.com
