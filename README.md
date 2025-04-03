@@ -37,3 +37,30 @@ password: 123
 # Giao diện
 ### Khung đăng nhập
 ![Login Frame](screenshots/login-frame.png)
+
+### Trang chủ Dashboard
+![Dashboard Home Frame](screenshots/dashboard-home-frame.png)
+
+### Phòng máy Dashboard
+![Dashboard Computer Frame](screenshots/dashboard-computer-frame.png)
+
+### Quản lý khách hàng Dashboard (gần như tương tự với quản lý nhân viên)
+![Dashboard Client Frame](screenshots/dashboard-client-frame.png)
+
+### Dialog thêm khách hàng (gần như tương tự với thêm nhân viên)
+![Add Client Dialog](screenshots/add-client-dialog.png)
+
+### Dialog xuất một bảng (nhân viên, khách hàng, hóa đơn)
+![Export Dialog](screenshots/export-dialog.png)
+
+### Dịch vụ đồ ăn thức uống Dashboard
+![Dashboard Services Frame](screenshots/dashboard-services-frame.png)
+
+### Thống kê Dashboard
+![Dashboard Statistic Frame](screenshots/dashboard-statistic-frame.png)
+
+### Dialog nhập chi phí tháng
+![Expenses Dialog](screenshots/add-expenses-dialog.png)
+
+### Dialog thanh toán hóa đơn
+![Payment Dialog](screenshots/payment-bill-dialog.png)
