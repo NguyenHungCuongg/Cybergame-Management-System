@@ -2,6 +2,7 @@ package com.cybergamems.view.forms;
 
 import com.cybergamems.controller.HoaDonController;
 import com.cybergamems.model.entities.NhanVien;
+import com.cybergamems.utils.ExcelExporter;
 import com.cybergamems.view.components.BillTable;
 import com.cybergamems.view.dialogs.DetailBillDialog;
 import com.cybergamems.view.dialogs.PaymentDialog;
@@ -9,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -97,6 +99,20 @@ public class BillForm extends javax.swing.JPanel {
                 billTable1.setTableModel(newTableModel);
                 repaint();
                 revalidate();
+            }
+        });
+        
+        //Xử lý sự kiện cho nút xuất
+        JButton exportButton = billTableMenuBar1.getExportTableDataButton();
+        exportButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if (billTable1.getBillTable().getRowCount() > 0) {
+                    // Gọi phương thức xuất Excel
+                    ExcelExporter.exportToExcel(billTable1.getBillTable(), "Danh sách hóa đơn");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Không có dữ liệu để xuất!", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+                }
             }
         });
     }

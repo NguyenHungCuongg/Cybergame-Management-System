@@ -9,7 +9,7 @@ public class CybergameMS {
     public static void main(String[] args) {    
         try {
             UIManager.setLookAndFeel(new FlatDarkFlatIJTheme());
-        } catch (Exception e) {
+        } catch (Exception e) {  
             System.err.println("Không thể thiết lập theme Dark Flat: " + e.getMessage());
         }
 

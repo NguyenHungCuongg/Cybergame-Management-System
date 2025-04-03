@@ -2,6 +2,7 @@ package com.cybergamems.view.forms;
 
 import com.cybergamems.controller.KhachHangController;
 import com.cybergamems.model.entities.NhanVien;
+import com.cybergamems.utils.ExcelExporter;
 import com.cybergamems.view.components.ClientManagementTable;
 import com.cybergamems.view.dialogs.AddClientDialog;
 import com.cybergamems.view.dialogs.DetailClientDialog;
@@ -129,6 +130,20 @@ public class ClientManagementForm extends javax.swing.JPanel {
                 clientManagementTable1.setTableModel(newTableModel);
                 repaint();
                 revalidate();
+            }
+        });
+        
+        //Xử lý sự kiện cho nút xuất
+        JButton exportButton = tableMenuBar1.getExportTableDataButton();
+        exportButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if (clientManagementTable1.getClientTable().getRowCount() > 0) {
+                    // Gọi phương thức xuất Excel
+                    ExcelExporter.exportToExcel(clientManagementTable1.getClientTable(), "Danh sách hóa đơn");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Không có dữ liệu để xuất!", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+                }
             }
         });
     }

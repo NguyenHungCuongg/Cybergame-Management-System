@@ -10,6 +10,7 @@ import com.cybergamems.view.dialogs.AddStaffDialog;
 import com.cybergamems.view.components.StaffManagementTable;
 import com.cybergamems.controller.NhanVienController;
 import com.cybergamems.model.entities.NhanVien;
+import com.cybergamems.utils.ExcelExporter;
 import com.cybergamems.view.dialogs.DetailStaffDialog;
 import com.cybergamems.view.dialogs.EditStaffDialog;
 import javax.swing.JOptionPane;
@@ -132,6 +133,20 @@ public class StaffManagementForm extends javax.swing.JPanel {
                 staffManagementTable1.setTableModel(newTableModel);
                 repaint();
                 revalidate();
+            }
+        });
+        
+        //Xử lý sự kiện cho nút xuất
+        JButton exportButton = tableMenuBar1.getExportTableDataButton();
+        exportButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if (staffManagementTable1.getStaffTable().getRowCount() > 0) {
+                    // Gọi phương thức xuất Excel
+                    ExcelExporter.exportToExcel(staffManagementTable1.getStaffTable(), "Danh sách hóa đơn");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Không có dữ liệu để xuất!", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+                }
             }
         });
     }

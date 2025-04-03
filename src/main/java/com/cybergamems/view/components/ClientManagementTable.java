@@ -31,7 +31,7 @@ public class ClientManagementTable extends javax.swing.JPanel {
         return tableModel;
   
     }
-    
+
     public void setTableModel(DefaultTableModel model){
         clientTable.setModel(model);
     }

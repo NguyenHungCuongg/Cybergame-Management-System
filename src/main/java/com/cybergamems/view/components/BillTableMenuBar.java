@@ -39,6 +39,10 @@ public class BillTableMenuBar extends javax.swing.JPanel {
     public JButton getDetailTableDataButton(){
         return detailTableDataButton;
     }
+    
+    public JButton getExportTableDataButton(){
+        return exportTableDataButton;
+    }
 
     public JButton getSearchTableDataButton() {
         return searchTableDataButton;
@@ -64,6 +68,7 @@ public class BillTableMenuBar extends javax.swing.JPanel {
         payTableDataButton = new javax.swing.JButton();
         deleteTableDataButton = new javax.swing.JButton();
         detailTableDataButton = new javax.swing.JButton();
+        exportTableDataButton = new javax.swing.JButton();
         tableSearchBarPanel = new javax.swing.JPanel();
         searchTableDataTextField = new javax.swing.JTextField();
         searchTableDataButton = new javax.swing.JButton();
@@ -120,10 +125,27 @@ public class BillTableMenuBar extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         tableFunctionBarPanel.add(detailTableDataButton, gridBagConstraints);
+
+        exportTableDataButton.setBackground(new java.awt.Color(60, 63, 65));
+        exportTableDataButton.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        exportTableDataButton.setText("Xuất");
+        exportTableDataButton.setMaximumSize(new java.awt.Dimension(80, 40));
+        exportTableDataButton.setMinimumSize(new java.awt.Dimension(80, 40));
+        exportTableDataButton.setPreferredSize(new java.awt.Dimension(80, 40));
+        exportTableDataButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportTableDataButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        tableFunctionBarPanel.add(exportTableDataButton, gridBagConstraints);
 
         tableSearchBarPanel.setOpaque(false);
         tableSearchBarPanel.setLayout(new java.awt.GridBagLayout());
@@ -225,10 +247,15 @@ public class BillTableMenuBar extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_payTableDataButtonActionPerformed
 
+    private void exportTableDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportTableDataButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exportTableDataButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteTableDataButton;
     private javax.swing.JButton detailTableDataButton;
+    private javax.swing.JButton exportTableDataButton;
     private javax.swing.JButton payTableDataButton;
     private javax.swing.JButton refreshTableDataButton1;
     private javax.swing.JButton searchTableDataButton;
