@@ -2,6 +2,7 @@ package com.cybergamems.view.frames;
 
 import com.cybergamems.controller.NhanVienController;
 import com.cybergamems.model.entities.NhanVien;
+import com.cybergamems.view.dialogs.SendCodeDialog;
 import java.awt.Color;
 import javax.swing.*;
 import com.formdev.flatlaf.intellijthemes.*;
@@ -14,7 +15,7 @@ public class LoginFrame extends javax.swing.JFrame {
         try {
             UIManager.setLookAndFeel(new FlatArcDarkOrangeIJTheme());
         } catch (Exception e) {
-            System.err.println("Không thể thiết lập theme: " + e.getMessage());
+            System.err.println("Không thể thiết lập theme Orange Dark: " + e.getMessage());
         }
         initComponents();
         initButtonEvent();
@@ -136,6 +137,11 @@ public class LoginFrame extends javax.swing.JFrame {
 
         forgotPasswordLabel.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         forgotPasswordLabel.setText("Quên mật khẩu?");
+        forgotPasswordLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                forgotPasswordLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout inputLoginSectionLayout = new javax.swing.GroupLayout(inputLoginSection);
         inputLoginSection.setLayout(inputLoginSectionLayout);
@@ -241,6 +247,11 @@ public class LoginFrame extends javax.swing.JFrame {
             passwordTextField.setEchoChar('\u0000');
         }
     }//GEN-LAST:event_passwordTextFieldFocusLost
+
+    private void forgotPasswordLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPasswordLabelMouseClicked
+        SendCodeDialog sendCodeDialog = new SendCodeDialog((JFrame) SwingUtilities.getWindowAncestor(LoginFrame.this),true);
+        sendCodeDialog.setVisible(true);
+    }//GEN-LAST:event_forgotPasswordLabelMouseClicked
 
     /**
      * @param args the command line arguments
