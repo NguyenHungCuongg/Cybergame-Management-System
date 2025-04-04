@@ -1,4 +1,19 @@
-﻿
+-- Database: CyberGameMS
+
+-- Bảng Vị Trí (Chức vụ nhân viên)
+CREATE TABLE ViTri (
+    MaViTri INT PRIMARY KEY IDENTITY,
+    TenViTri NVARCHAR(50) NOT NULL,
+    LuongMoiThang MONEY CHECK (LuongMoiThang >= 0)  
+);﻿
+
+-- Bảng Phòng
+CREATE TABLE Phong (
+    MaPhong INT PRIMARY KEY IDENTITY,
+    TenPhong NVARCHAR(100) NOT NULL,
+    GiaMoiGio MONEY CHECK (GiaMoiGio >= 0)
+);
+
 -- Bảng Khách Hàng
 CREATE TABLE KhachHang (
     MaKhachHang INT PRIMARY KEY IDENTITY,
@@ -7,6 +22,13 @@ CREATE TABLE KhachHang (
     Password NVARCHAR(255) NOT NULL,
     Email NVARCHAR(100) UNIQUE NOT NULL,
     TrangThaiKH BIT NOT NULL
+);
+
+-- Bảng Máy Tính
+CREATE TABLE MayTinh (
+    MaMay INT PRIMARY KEY IDENTITY,
+    MaPhong INT FOREIGN KEY REFERENCES Phong(MaPhong),
+    TrangThaiMay NVARCHAR(50) NOT NULL
 );
 
 -- Bảng Nhân Viên
@@ -19,27 +41,6 @@ CREATE TABLE NhanVien (
     Email NVARCHAR(100) UNIQUE NOT NULL,
     TrangThaiNV BIT NOT NULL,
     NgayVaoLam DATE NOT NULL
-);
-
--- Bảng Vị Trí (Chức vụ nhân viên)
-CREATE TABLE ViTri (
-    MaViTri INT PRIMARY KEY IDENTITY,
-    TenViTri NVARCHAR(50) NOT NULL,
-    LuongMoiThang MONEY CHECK (LuongMoiThang >= 0)
-);
-
--- Bảng Phòng
-CREATE TABLE Phong (
-    MaPhong INT PRIMARY KEY IDENTITY,
-    TenPhong NVARCHAR(100) NOT NULL,
-    GiaMoiGio MONEY CHECK (GiaMoiGio >= 0)
-);
-
--- Bảng Máy Tính
-CREATE TABLE MayTinh (
-    MaMay INT PRIMARY KEY IDENTITY,
-    MaPhong INT FOREIGN KEY REFERENCES Phong(MaPhong),
-    TrangThaiMay NVARCHAR(50) NOT NULL
 );
 
 -- Bảng Phiên Chơi
