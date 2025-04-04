@@ -157,4 +157,15 @@ public class NhanVienController {
             }
         }
     }
+    
+    public boolean changeNhanVienPassword(String emailNhanVien ,String matKhauMoi){
+        try{
+            nhanVienModel.changePassword(emailNhanVien,matKhauMoi);
+            return true;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -163,4 +163,16 @@ public class NhanVienDAO {
         }
         return null;
     }
+    
+    public void changePassword(String email, String matKhauMoi){
+        String query = "UPDATE NhanVien SET Password=? WHERE Email=?";
+        try(Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);){
+            stmt.setString(1, matKhauMoi);
+            stmt.setString(2, email);
+            stmt.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

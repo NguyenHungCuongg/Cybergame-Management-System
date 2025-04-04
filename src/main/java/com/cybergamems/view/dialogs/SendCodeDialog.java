@@ -1,5 +1,6 @@
 package com.cybergamems.view.dialogs;
 
+import com.cybergamems.view.frames.LoginFrame;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
 import java.util.Properties;
@@ -13,6 +14,8 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class SendCodeDialog extends javax.swing.JDialog {
     private int randomCode;
@@ -56,7 +59,7 @@ public class SendCodeDialog extends javax.swing.JDialog {
 
         jLabel2.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Quên mật khẩu");
+        jLabel2.setText("QUÊN MẬT KHẨU");
         dialogHeader.add(jLabel2, new java.awt.GridBagConstraints());
 
         dialogInputSection.setOpaque(false);
@@ -208,7 +211,7 @@ public class SendCodeDialog extends javax.swing.JDialog {
 
             JOptionPane.showMessageDialog(null, "Mã xác nhận đã được gửi tới email của bạn");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Lỗi khi gửi email: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Lỗi khi gửi email: " + e.getMessage(),"Lỗi", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }//GEN-LAST:event_sendButtonActionPerformed
@@ -220,6 +223,9 @@ public class SendCodeDialog extends javax.swing.JDialog {
     private void verifiedCodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifiedCodeButtonActionPerformed
         if(Integer.valueOf(verifiedCodeTextField.getText())==randomCode){
             System.out.println("Đúng mã rồi, đổi mật khẩu đi");
+            ChangePasswordDialog changePasswordDialog = new ChangePasswordDialog(emailTextField.getText());
+            changePasswordDialog.setVisible(true);
+            setVisible(false);
         }else{
             JOptionPane.showMessageDialog(null, "Mã xác nhận không hợp lệ");
         }
