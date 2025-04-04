@@ -38,6 +38,9 @@ password: 123
 ### Khung đăng nhập
 ![Login Frame](screenshots/login-frame.png)
 
+### Dialog gửi mã qua email khi quên mật khẩu
+![Forgot Password Dialog](screenshots/forgot-password-dialog.png) 
+
 ### Trang chủ Dashboard
 ![Dashboard Home Frame](screenshots/dashboard-home-frame.png)
 
