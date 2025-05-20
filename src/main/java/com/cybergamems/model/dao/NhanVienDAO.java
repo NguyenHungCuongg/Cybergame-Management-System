@@ -147,7 +147,7 @@ public class NhanVienDAO {
     }
     
     public NhanVien loginNhanVien(String username, String matKhau){
-        String query = "SELECT * FROM NhanVien WHERE Username=? AND Password=? AND MaViTri=1";
+        String query = "SELECT * FROM NhanVien WHERE Username=? AND Password=? AND MaViTri IN (1,2)";
         try(Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query);){
             stmt.setString(1, username);

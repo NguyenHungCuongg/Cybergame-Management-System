@@ -10,7 +10,9 @@ public class MainDashboardFrame extends javax.swing.JFrame {
     
     public MainDashboardFrame(NhanVien loginedNhanVien) {
         this.loginedNhanVien = loginedNhanVien;
+        String viTri = loginedNhanVien.getViTri();
         initComponents();
+        System.out.println("Vi tri cua nguoi dang nhap la:" + viTri);
       
         dashboardMenu2.getStaffName().setText(loginedNhanVien.getHoVaTen());
         setSize(1600, 850);
@@ -22,7 +24,8 @@ public class MainDashboardFrame extends javax.swing.JFrame {
         dashboardMenu2.addMenuItemSelectedEvent(new MenuItemSelectedEvent(){
             @Override
             public void menuItemSelected(int index){
-                switch(index){
+                if(viTri.charAt(0) == 'Q'){
+                    switch(index){
                     case 0:
                         setCurrentForm(new HomeForm());
                         break;
@@ -49,6 +52,22 @@ public class MainDashboardFrame extends javax.swing.JFrame {
                         break;
                     default:
                         logout();
+                    }   
+                }
+                else if(viTri.charAt(0) == 'N'){
+                    switch(index){
+                        case 0: setCurrentForm(new HomeForm()); break;
+                        case 1: setCurrentForm(new ComputerRoomForm(loginedNhanVien)); break;
+                        case 2: setCurrentForm(new ClientManagementForm(loginedNhanVien)); break;
+                        case 3: setCurrentForm(new ServicesForm(loginedNhanVien)); break;
+                        case 6: setCurrentForm(new BillForm(loginedNhanVien)); break;
+                        case 7: setCurrentForm(new AccountForm(loginedNhanVien)); break;
+                        case 4: // StaffManagementForm
+                        case 5: // StatisticsForm
+                            JOptionPane.showMessageDialog(MainDashboardFrame.this, "Bạn không có quyền truy cập mục này!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                            break;
+                        default: logout();
+                    }
                 }
             }
         });
