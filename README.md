@@ -26,7 +26,7 @@ git clone https://github.com/NguyenHungCuongg/Cybergame-Management-System.git
 
 ```bash
 username: Cuongg
-password: 123
+password: 123456
 ```
 
 ### Hỗ trợ
